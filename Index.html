@@ -221,8 +221,8 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 .byline-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); }
 .share-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.2s; }
 .share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
-.art-section { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 28px; margin-bottom: 16px; }
-.art-section h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--mid); margin-bottom: 10px; font-style: italic; }
+.art-section { padding: 0 0 18px 0; margin-bottom: 12px; }
+.art-section h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 10px; font-style: italic; }
 .art-section p { font-size: 14px; color: var(--mid); line-height: 1.7; }
 .chart-ph { background: var(--dark); border-radius: 6px; padding: 40px 20px; text-align: center; margin: 16px 0; }
 .chart-ph-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #444; margin-bottom: 8px; }
@@ -273,6 +273,16 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 .btn-red:hover { background: var(--red-dark); }
 .btn-white { background: #fff; color: var(--dark); border: none; padding: 12px 28px; font-size: 13px; font-weight: 700; border-radius: 2px; transition: background 0.2s; cursor: pointer; }
 .btn-white:hover { background: #e5e5e5; }
+
+/* LEGAL */
+.legal-section { max-width: 800px; margin: 0 auto; padding: 64px 32px 0; }
+.legal-section + .legal-section { padding-top: 40px; }
+.legal-section h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--ink); margin-bottom: 8px; }
+.legal-section h3 { font-family: 'DM Sans', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--mid); margin-bottom: 18px; }
+.legal-section p { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 14px; }
+.legal-section ul { margin-left: 18px; margin-bottom: 14px; }
+.legal-section li { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 4px; }
+.legal-section strong { color: var(--ink); }
 
 /* FOOTER */
 footer { background: var(--dark); color: #fff; margin-top: 64px; }
@@ -482,6 +492,14 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <a class="see-all" onclick="showPage('archive')">View all →</a>
     </div>
     <div class="articles-grid">
+      <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-03" onclick="openArticle()" style="cursor:pointer;">
+        <div class="card-thumb card-thumb-soccer" style="padding:0;overflow:hidden;">
+          <img src="article-cover.png" alt="Largest sponsorship deals in soccer" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="card-tags"><span class="tag tag-soccer">Soccer</span></div>
+        <div class="card-title">Largest sponsorship deals in soccer</div>
+        <div class="card-excerpt">A short look at the biggest sponsorship deals in soccer and why modern sponsorship goes far beyond simple logo placement.</div>
+      </div>
       <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
       <div class="article-card" data-sport="basketball" data-topic="basketball" data-date="2026-03-03"><div class="card-thumb card-thumb-basketball"><div class="card-thumb-bg-text">NBA</div></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
       <div class="article-card" data-sport="nfl" data-topic="scouting" data-date="2026-02-15"><div class="card-thumb card-thumb-nfl"><div class="card-thumb-bg-text">NFL</div></div><div class="card-tags"><span class="tag tag-nfl">NFL</span><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
@@ -565,8 +583,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
 
 </div><!-- /page-home -->
 
-<!-- ══════════════════════ PAGE: ARTICLE TEMPLATE ══════════════════════ -->
-<!-- ARTICLE PAGE: This is a layout preview — replace all placeholder content with a real article -->
+<!-- ══════════════════════ PAGE: ARTICLE ══════════════════════ -->
 <div class="page" id="page-article">
   <div class="article-page">
     <div class="two-col">
@@ -574,39 +591,79 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <div class="breadcrumb">
           <a onclick="showPage('home')">Home</a><span>›</span>
           <a onclick="showPage('archive')">Archive</a><span>›</span>
-          <!-- BREADCRUMB: Update this dynamically when a real article is loaded -->
-          <span>Original Research Coming Soon</span>
+          <span>Largest sponsorship deals in soccer</span>
         </div>
-        <div class="tags-row"><span class="tag tag-soon">Layout Preview</span></div>
-        <!-- ARTICLE TITLE: Replace with real article headline -->
-        <h1 class="article-title">Original Research Coming Soon</h1>
-        <!-- ARTICLE LEAD: Replace with real article subheadline or excerpt -->
-        <p class="article-lead">This layout previews how future studies and analysis pieces will appear on SportsLab. Original research, tactical breakdowns, and data studies are in preparation.</p>
+        <div class="tags-row"><span class="tag tag-soccer">Soccer</span></div>
+        <img src="article-cover.png" alt="Largest sponsorship deals in soccer" style="width:100%;border-radius:4px;margin:12px 0 20px 0;object-fit:cover;max-height:420px;">
+        <h1 class="article-title">Largest sponsorship deals in soccer</h1>
+        <p class="article-lead">A quick look at the biggest sponsorship deals in soccer, the commercial power of global events, and why sponsorship is now about far more than logo placement.</p>
         <div class="article-byline">
           <div class="byline-author">
-            <!-- AUTHOR: Replace with real author avatar, name, and role -->
-            <div class="avatar">SL</div>
-            <div><div class="byline-name">SportsLab Editorial</div><div class="byline-role">Contributor profile coming soon</div></div>
+            <div class="avatar">JF</div>
+            <div><div class="byline-name">Joao Freitas</div><div class="byline-role">Contributor</div></div>
           </div>
-          <!-- DATE / READ TIME: Replace with real values when article is published -->
-          <div class="byline-info">Coming soon</div>
+          <div class="byline-info">March 3rd 2026 · Less than a minute</div>
           <button class="share-btn" onclick="showPage('premium')">Join the Newsletter</button>
         </div>
 
-        <!-- ARTICLE BODY: Replace sections below with real article content -->
         <div>
-          <div class="art-section"><h2>Introduction</h2><p>This section will contain the opening of the original research study. Content is in preparation by SportsLab analysts and contributors.</p></div>
-          <div class="chart-ph"><div class="chart-ph-label">Figure 1 — Data Visualization</div><div class="chart-ph-title">Shot map, heat map, or passing network will appear here</div></div>
-          <div class="art-section"><h2>Methodology</h2><p>This section will explain the data sources, analytical methods, and statistical models used in the study. All SportsLab research will include transparent methodology notes.</p></div>
-          <div class="chart-ph"><div class="chart-ph-label">Figure 2 — Statistical Chart</div><div class="chart-ph-title">Bar charts, scatter plots, and trend visualizations will appear here</div></div>
-          <div class="art-section"><h2>Findings</h2><p>Key findings will be presented here, supported by data and evidence. SportsLab research will be honest about uncertainty and clear about conclusions.</p></div>
+          <div class="art-section">
+            <h2>Introduction</h2>
+            <p>As a marketing student, I’m naturally interested in viewing sports not only as a form of entertainment, but also as a global business system. I’m also interested in the way partnerships work and how they add value to both sides.</p>
+            <p>How companies get global visibility and positioning, how teams get financial security and grow into the future.</p>
+            <p>The sponsorship market is estimated at a figure above $8B by 2032. Football is a significant driver of this market.</p>
+          </div>
+          <img src="article-clubs.png" alt="Club sponsorship examples" style="width:100%;border-radius:4px;margin:20px 0;object-fit:cover;max-height:420px;">
+          <div class="art-section">
+            <h2>Some of the largest sponsorship deals for football clubs</h2>
+            <ul>
+              <li>Puma and Manchester City F.C. – £1B+ over 10 years</li>
+              <li>Nike and FC Barcelona – ~€1.7B over 13 years</li>
+              <li>Emirates and Real Madrid C.F. – €70M per year</li>
+              <li>Spotify and FC Barcelona – ~€70M per year</li>
+              <li>Qatar Airways and Paris Saint Germain F.C. – ~€70M per year</li>
+              <li>Qualcomm Snapdragon and Manchester United F.C. – ~£70M per year</li>
+            </ul>
+            <p>These deals are about long-term security for clubs and enduring visibility for brands, creating partnerships that extend far beyond the shirt.</p>
+          </div>
+          <img src="article-events.png" alt="Athlete sponsorship examples" style="width:100%;border-radius:4px;margin:20px 0;object-fit:cover;max-height:420px;">
+          <div class="art-section">
+            <h2>The power of the athletes</h2>
+            <p>Nike has three of the largest sponsorship deals with athletes:</p>
+            <ul>
+              <li>Michael Jordan – ~$1.3B</li>
+              <li>Cristiano Ronaldo – ~$1B</li>
+              <li>LeBron James – ~$1B</li>
+            </ul>
+            <p>In these cases, the athletes themselves become global platforms. The relationship between brand and player is about long-term cultural relevance as much as it is about short-term sales.</p>
+          </div>
+          <div class="art-section">
+            <h2>The Global Event Multiplier</h2>
+            <p>While the biggest commercial spikes may not always occur at club level, they certainly do at global events.</p>
+            <p>The FIFA World Cup may arguably have the strongest sponsorship platform in sports. Global sponsors like Coca-Cola and Visa invest heavily for multi-cycle rights to the World Cup because of the sheer scale of the audience and exposure, particularly with the upcoming World Cup in North America in 2026.</p>
+            <p>The Olympic Games have an exclusive model for their TOP partner sponsors, and global sponsors like Samsung and Toyota have invested heavily in this platform. While this may not have the immediate commercial spike of other events, sponsorship for the Olympics is long-term and about global positioning and brand trust.</p>
+          </div>
+          <div class="art-section">
+            <h2>Modern sponsorship is more than logos</h2>
+            <p>On top of the headline deals, there is a wider ecosystem shaping the sponsorship landscape:</p>
+            <ul>
+              <li>66% of clubs across 31 divisions have a betting deal</li>
+              <li>£135M spent on Premier League shirt deals by betting brands alone</li>
+              <li>Clubs increasingly looking for multi-year deals for greater stability</li>
+            </ul>
+            <p>Sponsorship today is no longer just about logo placement. It is about:</p>
+            <ul>
+              <li>Strategic global positioning</li>
+              <li>Cultural relevance</li>
+              <li>Long-term brand equity for both the brand and the club</li>
+            </ul>
+          </div>
         </div>
 
-        <!-- ARTICLE TAGS: Replace with real article tags -->
         <div class="article-tags">
-          <span class="article-tag">#coming-soon</span>
-          <span class="article-tag">#sports-analytics</span>
-          <span class="article-tag">#sportslab</span>
+          <span class="article-tag">#soccer</span>
+          <span class="article-tag">#sponsorship</span>
+          <span class="article-tag">#sports-business</span>
         </div>
 
         <div style="margin-top:32px;padding:24px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;text-align:center;">
@@ -673,7 +730,8 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:20px;">Archive Preview · Layout Template</div>
     <!-- ARCHIVE GRID: Replace these placeholder cards with real articles when published -->
     <div class="articles-grid">
-      <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-03" onclick="openArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Largest sponsorship deals in soccer</div><div class="card-excerpt">A short look at the biggest sponsorship deals in soccer and why modern sponsorship goes far beyond simple logo placement.</div></div>
+      <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
       <div class="article-card" data-sport="basketball" data-topic="basketball" data-date="2026-03-03"><div class="card-thumb card-thumb-basketball"><div class="card-thumb-bg-text">NBA</div></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
       <div class="article-card" data-sport="nfl" data-topic="scouting" data-date="2026-02-15"><div class="card-thumb card-thumb-nfl"><div class="card-thumb-bg-text">NFL</div></div><div class="card-tags"><span class="tag tag-nfl">NFL</span><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
       <div class="article-card" data-sport="tennis" data-topic="tennis" data-date="2026-02-10"><div class="card-thumb card-thumb-tennis"><div class="card-thumb-bg-text">TEN</div></div><div class="card-tags"><span class="tag tag-tennis">Tennis</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
@@ -758,6 +816,102 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <button class="btn-white" onclick="showPage('archive')">Preview the Archive</button>
       </div>
     </div>
+
+    <!-- ══════════════════════ LEGAL SECTIONS (ABOUT ONLY) ══════════════════════ -->
+    <section id="privacy-policy" class="legal-section">
+  <h2>Privacy Policy</h2>
+  <h3>SportsLab Analytics · Last updated: March 2026</h3>
+  <p>SportsLab Analytics respects your privacy and is committed to protecting your personal information.</p>
+  <p><strong>1. Information we collect</strong><br>
+  We may collect the following information when you use our website:</p>
+  <ul>
+    <li>Email address, if you join our newsletter</li>
+    <li>Information you provide in forms or messages</li>
+    <li>Basic usage data such as pages visited, browser type, device information, and general analytics data</li>
+  </ul>
+  <p><strong>2. How we use your information</strong><br>
+  We use your information to:</p>
+  <ul>
+    <li>Send newsletters, updates, and new article alerts</li>
+    <li>Improve the website, content, and user experience</li>
+    <li>Monitor website performance and analytics</li>
+    <li>Communicate important updates about SportsLab Analytics</li>
+  </ul>
+  <p><strong>3. Newsletter and email communications</strong><br>
+  If you subscribe to our newsletter, we may send you:</p>
+  <ul>
+    <li>New articles and research updates</li>
+    <li>Platform news and announcements</li>
+    <li>Contributor or launch updates</li>
+  </ul>
+  <p>You can unsubscribe at any time using the link in our emails.</p>
+  <p><strong>4. Cookies and analytics</strong><br>
+  SportsLab Analytics may use cookies or similar technologies to understand how visitors use the site and to improve performance.</p>
+  <p>We may also use third-party analytics tools to collect general website usage information.</p>
+  <p><strong>5. Third-party services</strong><br>
+  We may use third-party services to help operate the website, including:</p>
+  <ul>
+    <li>Website hosting providers</li>
+    <li>Analytics services</li>
+    <li>Email newsletter providers</li>
+    <li>Form tools</li>
+  </ul>
+  <p>These services may process limited personal information on our behalf.</p>
+  <p><strong>6. Data sharing</strong><br>
+  We do not sell your personal information.</p>
+  <p>We may share information only when necessary:</p>
+  <ul>
+    <li>with service providers who help us operate the website</li>
+    <li>if required by law</li>
+    <li>to protect our rights, users, or the security of the website</li>
+  </ul>
+  <p><strong>7. Data retention</strong><br>
+  We keep personal information only as long as necessary for the purposes described in this policy, unless a longer retention period is required by law.</p>
+  <p><strong>8. Your choices</strong><br>
+  You may unsubscribe from newsletters at any time and, where applicable, request deletion of your personal information.</p>
+  <p><strong>9. Security</strong><br>
+  We take reasonable steps to protect your information, but no method of transmission or storage is completely secure.</p>
+  <p><strong>10. Children’s privacy</strong><br>
+  SportsLab Analytics is not intended for children under 13, and we do not knowingly collect personal information from children.</p>
+  <p><strong>11. Changes to this Privacy Policy</strong><br>
+  We may update this Privacy Policy from time to time. Any updates will be posted on this page with a revised “Last updated” date.</p>
+</section>
+
+<section id="terms-of-use" class="legal-section">
+  <h2>Terms of Use</h2>
+  <h3>SportsLab Analytics · Last updated: March 2026</h3>
+  <p>By accessing or using SportsLab Analytics, you agree to these Terms of Use.</p>
+  <p><strong>1. Use of the website</strong><br>
+  SportsLab Analytics provides sports analysis, research, commentary, and related content for informational purposes.</p>
+  <p>You agree to use the website lawfully and respectfully.</p>
+  <p><strong>2. Intellectual property</strong><br>
+  Unless otherwise stated, all content on SportsLab Analytics, including text, branding, design, graphics, and original analysis, is owned by or licensed to SportsLab Analytics.</p>
+  <p>You may not copy, reproduce, republish, distribute, or commercially use our content without written permission.</p>
+  <p><strong>3. User submissions</strong><br>
+  If you later submit forms, messages, or content, you are responsible for the information you provide.</p>
+  <p>By submitting content or materials, you confirm that you have the right to do so and that your submission does not violate the rights of others.</p>
+  <p><strong>4. No guarantees</strong><br>
+  We aim to provide thoughtful, accurate, and well-researched content, but we do not guarantee that all content is complete, current, or error-free.</p>
+  <p>SportsLab Analytics may update, remove, or change content at any time without notice.</p>
+  <p><strong>5. Informational purposes only</strong><br>
+  Content on SportsLab Analytics is provided for general informational and editorial purposes only. It should not be considered legal, financial, betting, investment, or professional advice.</p>
+  <p>Users are responsible for how they interpret and use the information on the website.</p>
+  <p><strong>6. External links</strong><br>
+  The website may contain links to third-party websites. We are not responsible for the content, policies, or practices of external sites.</p>
+  <p><strong>7. Prohibited use</strong><br>
+  You agree not to:</p>
+  <ul>
+    <li>use the site for unlawful purposes</li>
+    <li>interfere with site security or functionality</li>
+    <li>attempt to access restricted areas without authorization</li>
+    <li>copy or misuse content in violation of these terms</li>
+  </ul>
+  <p><strong>8. Limitation of liability</strong><br>
+  To the fullest extent permitted by law, SportsLab Analytics is not liable for any loss, damage, or claim arising from your use of the website or reliance on its content.</p>
+  <p><strong>9. Changes to these Terms</strong><br>
+  We may update these Terms of Use at any time. Continued use of the website after changes are posted means you accept the updated terms.</p>
+</section>
+
   </div>
 </div><!-- /page-about -->
 
@@ -797,14 +951,17 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <a onclick="showPage('about')">Contribute</a>
         <!-- FOOTER LINKS: Add real URLs for contact, privacy, and terms pages -->
         <a>Contact</a>
-        <a>Privacy Policy</a>
-        <a>Terms of Use</a>
+        <a href="javascript:void(0)" onclick="openLegal('privacy-policy')">Privacy Policy</a>
+        <a href="javascript:void(0)" onclick="openLegal('terms-of-use')">Terms of Use</a>
       </div>
     </div>
     <div class="footer-bottom">
       <!-- Update copyright year as needed -->
       <span class="footer-copy">© 2026 SportsLab · All rights reserved · Pre-Launch</span>
-      <div class="footer-legal"><a>Privacy Policy</a><a>Terms of Use</a></div>
+      <div class="footer-legal">
+        <a href="javascript:void(0)" onclick="openLegal('privacy-policy')">Privacy Policy</a>
+        <a href="javascript:void(0)" onclick="openLegal('terms-of-use')">Terms of Use</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -818,7 +975,8 @@ function showPage(page) {
   if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
   currentPage = page;
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  document.getElementById('nav-' + page).classList.add('active');
+  const navLink = document.getElementById('nav-' + page);
+  if (navLink) navLink.classList.add('active');
   const navSecondary = document.querySelector('.nav-secondary');
   if (page === 'archive' || page === 'premium' || page === 'about') {
     navSecondary.style.display = 'none';
@@ -830,6 +988,26 @@ function showPage(page) {
   } else if (page === 'archive') {
     applyArchiveFilters();
   }
+}
+
+function openArticle() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-article');
+  if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+  currentPage = 'article';
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navSecondary = document.querySelector('.nav-secondary');
+  if (navSecondary) navSecondary.style.display = 'none';
+}
+
+function openLegal(sectionId) {
+  showPage('about');
+  setTimeout(() => {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, 60);
 }
 
 // WAITLIST / NEWSLETTER SIGNUP
