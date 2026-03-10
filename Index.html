@@ -50,7 +50,7 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 .nav-actions { display: flex; align-items: center; gap: 8px; }
 .btn-icon { background: none; border: none; padding: 8px; color: var(--mid); transition: color 0.2s; display: flex; }
 .btn-icon:hover { color: var(--ink); }
-/* BUTTON 7: "Join Waitlist" — update text to "Subscribe" when billing is live */
+/* BUTTON 7: "Join the Newsletter" — update text to "Subscribe" when billing is live */
 .btn-subscribe { background: var(--ink); color: var(--bg); border: none; padding: 9px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; border-radius: 2px; transition: background 0.2s; }
 .btn-subscribe:hover { background: var(--red); }
 .hamburger { display: none; background: none; border: none; color: var(--ink); padding: 8px; }
@@ -346,7 +346,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
 <div class="prelaunch-banner">
   <span class="bdot">●</span>
   SportsLab is currently in development — original studies and contributor applications are coming soon.
-  <a onclick="showPage('premium')">Join the waitlist →</a>
+  <a onclick="showPage('premium')">Join the Newsletter →</a>
 </div>
 
 <!-- TICKER -->
@@ -357,12 +357,12 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     <span><span class="dot">●</span> Covering Soccer · Basketball · NFL · Tennis · Formula 1</span>
     <span><span class="dot">●</span> Original studies and tactical analysis — coming soon</span>
     <span><span class="dot">●</span> Contributor applications opening soon — apply to write for SportsLab</span>
-    <span><span class="dot">●</span> Join the waitlist for early access to premium research</span>
+    <span><span class="dot">●</span> Join the newsletter for early access to premium research</span>
     <span><span class="dot">●</span> SportsLab is building a research-driven sports analytics platform</span>
     <span><span class="dot">●</span> Covering Soccer · Basketball · NFL · Tennis · Formula 1</span>
     <span><span class="dot">●</span> Original studies and tactical analysis — coming soon</span>
     <span><span class="dot">●</span> Contributor applications opening soon — apply to write for SportsLab</span>
-    <span><span class="dot">●</span> Join the waitlist for early access to premium research</span>
+    <span><span class="dot">●</span> Join the newsletter for early access to premium research</span>
   </div>
 </div>
 
@@ -373,7 +373,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     <div class="nav-links">
       <a id="nav-home" onclick="showPage('home')">Home</a>
       <a id="nav-archive" onclick="showPage('archive')">Archive</a>
-      <a id="nav-premium" onclick="showPage('premium')">Subscription</a>
+      <a id="nav-premium" onclick="showPage('premium')">Join</a>
       <a id="nav-about" onclick="showPage('about')">About</a>
     </div>
     <div class="nav-actions">
@@ -384,7 +384,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <!-- BUTTON 7: Change to "Subscribe" when billing is ready -->
-      <button class="btn-subscribe" onclick="showPage('premium')">Subscribe</button>
+      <button class="btn-subscribe" onclick="showPage('premium')">Join the Newsletter</button>
       <button class="hamburger" onclick="toggleMobileMenu()">
         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -413,7 +413,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
   </div>
   <a onclick="showPage('home');toggleMobileMenu()">Home</a>
   <a onclick="showPage('archive');toggleMobileMenu()">Archive</a>
-  <a onclick="showPage('premium');toggleMobileMenu()">Subscription</a>
+  <a onclick="showPage('premium');toggleMobileMenu()">Join</a>
   <a onclick="showPage('about');toggleMobileMenu()">About</a>
 </div>
 
@@ -469,7 +469,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
           <span class="sport-pill">Tennis</span>
           <span class="sport-pill">Formula 1</span>
         </div>
-        <button class="btn-red" onclick="showPage('premium')" style="margin-top:8px;">Get Early Access →</button>
+        <button class="btn-red" onclick="showPage('premium')" style="margin-top:8px;">Join the Newsletter →</button>
       </div>
     </div>
   </div>
@@ -482,11 +482,11 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <a class="see-all" onclick="showPage('archive')">View all →</a>
     </div>
     <div class="articles-grid">
-      <div class="article-card" data-sport="soccer" data-topic="tactics" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span><span class="tag tag-tactics">Tactics</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
-      <div class="article-card" data-sport="basketball" data-topic="data" data-date="2026-03-03"><div class="card-thumb card-thumb-basketball"><div class="card-thumb-bg-text">NBA</div></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="basketball" data-topic="basketball" data-date="2026-03-03"><div class="card-thumb card-thumb-basketball"><div class="card-thumb-bg-text">NBA</div></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
       <div class="article-card" data-sport="nfl" data-topic="scouting" data-date="2026-02-15"><div class="card-thumb card-thumb-nfl"><div class="card-thumb-bg-text">NFL</div></div><div class="card-tags"><span class="tag tag-nfl">NFL</span><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
-      <div class="article-card" data-sport="tennis" data-topic="data" data-date="2026-02-10"><div class="card-thumb card-thumb-tennis"><div class="card-thumb-bg-text">TEN</div></div><div class="card-tags"><span class="tag tag-tennis">Tennis</span><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
-      <div class="article-card" data-sport="all" data-topic="data" data-date="2026-03-07"><div class="card-thumb card-thumb-data"><div class="card-thumb-bg-text">DATA</div></div><div class="card-tags"><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="tennis" data-topic="tennis" data-date="2026-02-10"><div class="card-thumb card-thumb-tennis"><div class="card-thumb-bg-text">TEN</div></div><div class="card-tags"><span class="tag tag-tennis">Tennis</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="all" data-topic="all" data-date="2026-03-07"><div class="card-thumb card-thumb-data"><div class="card-thumb-bg-text">DATA</div></div><div class="card-tags"></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
       <div class="article-card" data-sport="all" data-topic="scouting" data-date="2026-02-20"><div class="card-thumb card-thumb-placeholder"><div class="card-thumb-bg-text">SL</div></div><div class="card-tags"><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
     </div>
   </div>
@@ -495,13 +495,14 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
   <div class="newsletter-banner">
     <div class="newsletter-banner-inner">
       <div>
-        <div class="newsletter-eyebrow">Subscription · Waitlist</div>
-        <div class="newsletter-title">Be the first to know<br>when we launch.</div>
+        <div class="newsletter-eyebrow">Newsletter</div>
+        <div class="newsletter-title">Join the Newsletter</div>
+        <p style="font-size: 14px; color: rgba(255,255,255,0.8); margin: 8px 0 0 0;">Get new articles, original studies, and SportsLab Analytics updates by email.</p>
       </div>
       <div>
         <div class="newsletter-form">
-          <input type="email" placeholder="Your email address" id="bannerEmail" />
-          <button onclick="subscribe('bannerEmail','bannerMsg')">Subscribe →</button>
+          <input type="email" placeholder="Enter your email" id="bannerEmail" />
+          <button onclick="subscribe('bannerEmail','bannerMsg')">Join the Newsletter →</button>
         </div>
         <div class="newsletter-note" id="bannerMsg">No spam. Unsubscribe anytime.</div>
       </div>
@@ -536,10 +537,10 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         </div>
         <!-- Future trending articles go here -->
         <div>
-          <div class="trending-item"><div class="trending-num">01</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-soccer">Soccer</span><span class="tag tag-tactics">Tactics</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
-          <div class="trending-item"><div class="trending-num">02</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-basketball">Basketball</span><span class="tag tag-data">Data</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
+          <div class="trending-item"><div class="trending-num">01</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-soccer">Soccer</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
+          <div class="trending-item"><div class="trending-num">02</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-basketball">Basketball</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
           <div class="trending-item"><div class="trending-num">03</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-nfl">NFL</span><span class="tag tag-scouting">Scouting</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
-          <div class="trending-item"><div class="trending-num">04</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-tennis">Tennis</span><span class="tag tag-data">Data</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
+          <div class="trending-item"><div class="trending-num">04</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-tennis">Tennis</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
         </div>
       </div>
       <div class="two-col-aside">
@@ -552,10 +553,10 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         </div>
         <div class="newsletter-widget">
           <div class="nw-label">Early Access</div>
-          <h3>Join the Waitlist</h3>
-          <p>Be notified when SportsLab launches with original studies and premium content.</p>
+          <h3>Join the Newsletter</h3>
+          <p>Get new articles, original studies, and platform updates by email.</p>
           <input type="email" placeholder="Enter your email" id="sideEmail" />
-          <button onclick="subscribe('sideEmail','sideMsg')">Subscribe →</button>
+          <button onclick="subscribe('sideEmail','sideMsg')">Join the Newsletter →</button>
           <div style="font-size:11px;color:var(--mid);margin-top:6px;" id="sideMsg"></div>
         </div>
       </div>
@@ -589,7 +590,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
           </div>
           <!-- DATE / READ TIME: Replace with real values when article is published -->
           <div class="byline-info">Coming soon</div>
-          <button class="share-btn" onclick="showPage('premium')">Join Waitlist</button>
+          <button class="share-btn" onclick="showPage('premium')">Join the Newsletter</button>
         </div>
 
         <!-- ARTICLE BODY: Replace sections below with real article content -->
@@ -609,10 +610,10 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         </div>
 
         <div style="margin-top:32px;padding:24px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;text-align:center;">
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;">Get Early Access</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;">Be notified when this publishes</h3>
-          <p style="font-size:13px;color:var(--mid);margin-bottom:16px;">Join the waitlist and we'll let you know when original research goes live.</p>
-          <button class="btn-red" onclick="showPage('premium')">Join the Waitlist →</button>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;">Newsletter</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;">Join the Newsletter</h3>
+          <p style="font-size:13px;color:var(--mid);margin-bottom:16px;">Get new articles, original studies, and SportsLab Analytics updates by email.</p>
+          <button class="btn-red" onclick="showPage('premium')">Join the Newsletter →</button>
         </div>
       </article>
       <aside class="two-col-aside">
@@ -628,10 +629,10 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         </div>
         <div class="newsletter-widget">
           <div class="nw-label">Early Access</div>
-          <h3>Join the Waitlist</h3>
+          <h3>Join the Newsletter</h3>
           <p>Be notified when original research and analysis goes live on SportsLab.</p>
           <input type="email" placeholder="Enter your email" id="articleEmail" />
-          <button onclick="subscribe('articleEmail','articleMsg')">Subscribe →</button>
+          <button onclick="subscribe('articleEmail','articleMsg')">Join the Newsletter →</button>
           <div style="font-size:11px;color:var(--mid);margin-top:6px;" id="articleMsg"></div>
         </div>
       </aside>
@@ -667,16 +668,16 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <div style="font-size:32px;margin-bottom:16px;"></div>
       <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:10px;">Studies</div>
       <p style="font-size:14px;color:var(--mid);max-width:420px;margin:0 auto 24px;line-height:1.7;">Original research, tactical breakdowns, data studies, and scouting reports will appear here.</p>
-      <button class="btn-red" onclick="showPage('premium')">Subscribe →</button>
+      <button class="btn-red" onclick="showPage('premium')">Join the Newsletter →</button>
     </div>
     <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:20px;">Archive Preview · Layout Template</div>
     <!-- ARCHIVE GRID: Replace these placeholder cards with real articles when published -->
     <div class="articles-grid">
-      <div class="article-card" data-sport="soccer" data-topic="tactics" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span><span class="tag tag-tactics">Tactics</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
-      <div class="article-card" data-sport="basketball" data-topic="data" data-date="2026-03-03"><div class="card-thumb card-thumb-basketball"><div class="card-thumb-bg-text">NBA</div></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="basketball" data-topic="basketball" data-date="2026-03-03"><div class="card-thumb card-thumb-basketball"><div class="card-thumb-bg-text">NBA</div></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
       <div class="article-card" data-sport="nfl" data-topic="scouting" data-date="2026-02-15"><div class="card-thumb card-thumb-nfl"><div class="card-thumb-bg-text">NFL</div></div><div class="card-tags"><span class="tag tag-nfl">NFL</span><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
-      <div class="article-card" data-sport="tennis" data-topic="data" data-date="2026-02-10"><div class="card-thumb card-thumb-tennis"><div class="card-thumb-bg-text">TEN</div></div><div class="card-tags"><span class="tag tag-tennis">Tennis</span><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
-      <div class="article-card" data-sport="all" data-topic="data" data-date="2026-03-07"><div class="card-thumb card-thumb-data"><div class="card-thumb-bg-text">DATA</div></div><div class="card-tags"><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="tennis" data-topic="tennis" data-date="2026-02-10"><div class="card-thumb card-thumb-tennis"><div class="card-thumb-bg-text">TEN</div></div><div class="card-tags"><span class="tag tag-tennis">Tennis</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="all" data-topic="all" data-date="2026-03-07"><div class="card-thumb card-thumb-data"><div class="card-thumb-bg-text">DATA</div></div><div class="card-tags"></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
       <div class="article-card" data-sport="all" data-topic="scouting" data-date="2026-02-20"><div class="card-thumb card-thumb-placeholder"><div class="card-thumb-bg-text">SL</div></div><div class="card-tags"><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
     </div>
   </div>
@@ -688,33 +689,45 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
 <!-- PREMIUM PAGE: Replace this entire page with real pricing plans when billing is ready -->
 <div class="page" id="page-premium">
   <div class="premium-hero">
-    <div class="premium-hero-label">★ Subscription</div>
-    <h1>Subscription<br>Coming Soon</h1>
-    <p>We are preparing premium research, archive access, and exclusive analysis features for SportsLab subscribers.</p>
-    <p class="secondary-text">Join the subscription to be notified when it opens.</p>
+    <div class="premium-hero-label">★ Join</div>
+    <h1>Join the SportsLab Analytics Newsletter</h1>
+    <p>Get new articles, original studies, and SportsLab Analytics updates by email.</p>
+    <p class="secondary-text">Join the newsletter to receive research-driven sports analysis, tactical breakdowns, and selected platform updates straight to your inbox.</p>
     <!-- WAITLIST FORM: Connect to Mailchimp, ConvertKit, or your email service -->
-    <div class="waitlist-form">
-      <input type="email" placeholder="Your email address" id="premiumEmail" />
-      <button onclick="subscribe('premiumEmail','premiumMsg')">Get Early Access →</button>
+    <div style="max-width:480px;margin:0 auto;">
+      <label for="premiumEmail" style="display:block;font-size:13px;font-weight:600;color:#fff;margin-bottom:10px;">Email address</label>
+      <div class="waitlist-form" style="flex-direction:column;align-items:center;gap:0;">
+        <input type="email" placeholder="Enter your email" id="premiumEmail" style="width:100%;border-radius:2px;" />
+        <button onclick="subscribe('premiumEmail','premiumMsg')" style="width:100%;border-radius:2px;margin-top:10px;">Join the Newsletter</button>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:10px;text-align:center;" id="premiumMsg"></div>
+      <p style="font-size:12px;color:#fff;margin-top:12px;text-align:center;font-family:'DM Mono',monospace;">No spam. Only thoughtful sports analysis and important updates.</p>
     </div>
-    <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:10px;" id="premiumMsg"></div>
-    <p style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:6px;font-family:'DM Mono',monospace;">No spam. Unsubscribe anytime.</p>
   </div>
-  <!-- WHAT'S COMING: Update or remove individual feature cards as plans are confirmed -->
-  <div class="premium-features">
-    <div style="text-align:center;margin-bottom:8px;">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;">What's Coming</div>
-      <h2 style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--ink);margin-bottom:10px;">What Subscription will include</h2>
-      <!-- PRICING NOTE: Add actual plan prices here when ready -->
-      <p style="color:var(--mid);font-size:14px;max-width:480px;margin:0 auto;">Pricing plans and feature tiers will be announced at launch. Join the subscription for pricing.</p>
-    </div>
-    <div class="premium-features-grid">
-      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Full Archive Access</div><div class="pf-desc">Access the complete library of research studies, tactical breakdowns, and data analyses — including all past publications.</div></div>
-      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Data Models & Tools</div><div class="pf-desc">Interactive shot maps, heat maps, passing networks, and predictive models built from real match data across major leagues.</div></div>
-      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Early Access & Alerts</div><div class="pf-desc">Get notified before each new study publishes. Subscribers receive research briefings before public release.</div></div>
-      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Match Predictions</div><div class="pf-desc">Data-driven match predictions with probability models, confidence ratings, and full analytical reasoning behind each call.</div></div>
-      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">PDF Downloads</div><div class="pf-desc">Download any research study as a formatted PDF for offline reading, sharing, or reference in your own work.</div></div>
-      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Analyst Q&As</div><div class="pf-desc">Exclusive access to live Q&A sessions and written responses from SportsLab analysts and contributing researchers.</div></div>
+  <!-- WHAT YOU'LL GET -->
+  <div style="background:var(--dark3);padding:64px 32px;">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:40px;">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);">What you'll get</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:700px;margin:0 auto;">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:28px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">Original Articles</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">New sports analysis and commentary from SportsLab and future contributors.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:28px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">Research Studies</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">Deeper tactical breakdowns, data studies, and long-form sports intelligence.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:28px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">Early Updates</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">Be first to know when new features, archive releases, and site updates go live.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:28px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">Announcements</div>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">Important platform news, contributor openings, and selected SportsLab updates.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div><!-- /page-premium -->
@@ -739,9 +752,9 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     </div>
     <div class="about-cta">
       <h2>Launching soon</h2>
-      <p>Subscribe and be notified when original research goes live and contributor applications open.</p>
+      <p>Join the newsletter and be notified when original research goes live and contributor applications open.</p>
       <div class="about-cta-btns">
-        <button class="btn-red" onclick="showPage('premium')">Subscribe →</button>
+        <button class="btn-red" onclick="showPage('premium')">Join the Newsletter →</button>
         <button class="btn-white" onclick="showPage('archive')">Preview the Archive</button>
       </div>
     </div>
@@ -776,7 +789,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <div class="footer-col">
         <div class="footer-col-title">Platform</div>
         <a onclick="showPage('archive')">Archive</a>
-        <a onclick="showPage('premium')">Subscription</a>
+        <a onclick="showPage('premium')">Join</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
@@ -807,7 +820,7 @@ function showPage(page) {
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   document.getElementById('nav-' + page).classList.add('active');
   const navSecondary = document.querySelector('.nav-secondary');
-  if (page === 'archive') {
+  if (page === 'archive' || page === 'premium' || page === 'about') {
     navSecondary.style.display = 'none';
   } else {
     navSecondary.style.display = 'flex';
