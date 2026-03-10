@@ -187,7 +187,7 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 .archive-filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding-bottom: 20px; }
 .filter-chip { font-size: 12px; font-weight: 600; padding: 7px 16px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--mid); }
 .filter-chip.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.search-wrap { width: 100%; max-width: 480px; position: relative; }
+.search-wrap { width: auto; max-width: 200px; position: relative; }
 .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--mid); }
 .search-wrap input { width: 100%; padding: 10px 14px 10px 40px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 4px; font-size: 13px; font-family: 'DM Sans', sans-serif; outline: none; color: var(--mid); }
 .archive-inner { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
@@ -333,7 +333,8 @@ footer { background: var(--dark); color: #fff; margin-top: 64px; }
   .archive-header-inner { padding: 0 20px; }
   .nav-secondary { padding: 0 20px; }
 }
-body.dark-mode .filter-chip { background: var(--bg2); border-color: #333; }
+.nav-links a.active { font-weight: bold; color: var(--ink); }
+.nav-secondary a.active { font-weight: bold; color: var(--ink); border-bottom-color: var(--red); }
 body.dark-mode .author-card, body.dark-mode .newsletter-widget, body.dark-mode .value-card, body.dark-mode .aside-author, body.dark-mode .pf-card { background: var(--bg2); }
 body.dark-mode .search-wrap input { background: var(--bg2); }
 </style>
@@ -370,10 +371,10 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
   <div class="nav-top">
     <a class="logo" onclick="showPage('home')">Sports<span>Lab</span><span class="logo-tag">Analytics</span></a>
     <div class="nav-links">
-      <a onclick="showPage('home')">Home</a>
-      <a onclick="showPage('archive')">Archive</a>
-      <a onclick="showPage('premium')" class="nav-premium">Subscription</a>
-      <a onclick="showPage('about')">About</a>
+      <a id="nav-home" onclick="showPage('home')">Home</a>
+      <a id="nav-archive" onclick="showPage('archive')">Archive</a>
+      <a id="nav-premium" onclick="showPage('premium')">Subscription</a>
+      <a id="nav-about" onclick="showPage('about')">About</a>
     </div>
     <div class="nav-actions">
       <button class="btn-icon" onclick="toggleSearch()" title="Search">
@@ -390,13 +391,14 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     </div>
   </div>
   <div class="nav-secondary">
-    <a onclick="filterBySport('all')">All</a>
-    <a onclick="filterBySport('soccer')">Soccer</a>
-    <a onclick="filterBySport('basketball')">Basketball</a>
-    <a onclick="filterBySport('nfl')">NFL</a>
-    <a onclick="filterBySport('tennis')">Tennis</a>
-    <a onclick="filterBySport('all')">Scouting</a>
-    <a onclick="filterBySport('all')">Predictions</a>
+    <a onclick="filterBySport('all')" data-sport="all">All</a>
+    <a onclick="filterBySport('soccer')" data-sport="soccer">Soccer</a>
+    <a onclick="filterBySport('basketball')" data-sport="basketball">Basketball</a>
+    <a onclick="filterBySport('nfl')" data-sport="nfl">NFL</a>
+    <a onclick="filterBySport('tennis')" data-sport="tennis">Tennis</a>
+    <a onclick="filterBySport('scouting')" data-sport="scouting">Scouting</a>
+    <a onclick="filterBySport('predictions')" data-sport="predictions">Predictions</a>
+    <a onclick="filterBySport('more')" data-sport="more">More</a>
   </div>
 </nav>
 
@@ -655,20 +657,14 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <button class="filter-chip" onclick="filterBySport('basketball')">Basketball</button>
         <button class="filter-chip" onclick="filterBySport('nfl')">NFL</button>
         <button class="filter-chip" onclick="filterBySport('tennis')">Tennis</button>
-      </div>
-      <div class="archive-filters" style="padding-top:0;">
-        <button class="filter-chip active" onclick="filterTopic('all')">All Topics</button>
-        <button class="filter-chip" onclick="filterTopic('tactics')">Tactics</button>
-        <button class="filter-chip" onclick="filterTopic('data')">Data</button>
-        <button class="filter-chip" onclick="filterTopic('scouting')">Scouting</button>
-        <button class="filter-chip" onclick="filterTopic('predictions')">Predictions</button>
+        <button class="filter-chip" onclick="filterBySport('other')">Other Sports</button>
       </div>
     </div>
   </div>
   <div class="archive-inner">
     <!-- Future real articles go here -->
     <div style="text-align:center;padding:64px 20px;border:2px dashed var(--border);border-radius:6px;margin-bottom:40px;">
-      <div style="font-size:32px;margin-bottom:16px;">📋</div>
+      <div style="font-size:32px;margin-bottom:16px;"></div>
       <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:10px;">Studies</div>
       <p style="font-size:14px;color:var(--mid);max-width:420px;margin:0 auto 24px;line-height:1.7;">Original research, tactical breakdowns, data studies, and scouting reports will appear here.</p>
       <button class="btn-red" onclick="showPage('premium')">Subscribe →</button>
@@ -713,12 +709,12 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <p style="color:var(--mid);font-size:14px;max-width:480px;margin:0 auto;">Pricing plans and feature tiers will be announced at launch. Join the subscription for pricing.</p>
     </div>
     <div class="premium-features-grid">
-      <div class="pf-card"><div class="pf-icon">📚</div><div class="pf-title">Full Archive Access</div><div class="pf-desc">Access the complete library of research studies, tactical breakdowns, and data analyses — including all past publications.</div></div>
-      <div class="pf-card"><div class="pf-icon">📊</div><div class="pf-title">Data Models & Tools</div><div class="pf-desc">Interactive shot maps, heat maps, passing networks, and predictive models built from real match data across major leagues.</div></div>
-      <div class="pf-card"><div class="pf-icon">🔔</div><div class="pf-title">Early Access & Alerts</div><div class="pf-desc">Get notified before each new study publishes. Subscribers receive research briefings before public release.</div></div>
-      <div class="pf-card"><div class="pf-icon">🎯</div><div class="pf-title">Match Predictions</div><div class="pf-desc">Data-driven match predictions with probability models, confidence ratings, and full analytical reasoning behind each call.</div></div>
-      <div class="pf-card"><div class="pf-icon">📄</div><div class="pf-title">PDF Downloads</div><div class="pf-desc">Download any research study as a formatted PDF for offline reading, sharing, or reference in your own work.</div></div>
-      <div class="pf-card"><div class="pf-icon">👥</div><div class="pf-title">Analyst Q&As</div><div class="pf-desc">Exclusive access to live Q&A sessions and written responses from SportsLab analysts and contributing researchers.</div></div>
+      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Full Archive Access</div><div class="pf-desc">Access the complete library of research studies, tactical breakdowns, and data analyses — including all past publications.</div></div>
+      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Data Models & Tools</div><div class="pf-desc">Interactive shot maps, heat maps, passing networks, and predictive models built from real match data across major leagues.</div></div>
+      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Early Access & Alerts</div><div class="pf-desc">Get notified before each new study publishes. Subscribers receive research briefings before public release.</div></div>
+      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Match Predictions</div><div class="pf-desc">Data-driven match predictions with probability models, confidence ratings, and full analytical reasoning behind each call.</div></div>
+      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">PDF Downloads</div><div class="pf-desc">Download any research study as a formatted PDF for offline reading, sharing, or reference in your own work.</div></div>
+      <div class="pf-card"><div class="pf-icon"></div><div class="pf-title">Analyst Q&As</div><div class="pf-desc">Exclusive access to live Q&A sessions and written responses from SportsLab analysts and contributing researchers.</div></div>
     </div>
   </div>
 </div><!-- /page-premium -->
@@ -736,10 +732,10 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     <p>Every article published on SportsLab will go through an editorial review process to ensure it meets our standards for analytical rigor, data transparency, and clear writing. We cite our sources, explain our methodology, and flag uncertainty where it exists.</p>
     <p>SportsLab will open the platform for qualified analysts to publish their research alongside our editorial team — creating a hub for sports intelligence that rivals academic journals in depth, but reads like the best sports journalism.</p>
     <div class="values-grid">
-      <div class="value-card"><div class="value-icon">📊</div><div class="value-title">Data-First</div><div class="value-desc">Every claim is supported by evidence. We lead with data and build the narrative from what the numbers tell us.</div></div>
-      <div class="value-card"><div class="value-icon">🎯</div><div class="value-title">Honest Analysis</div><div class="value-desc">We are clear about what we know, what we don't, and where the data runs out. No false certainty.</div></div>
-      <div class="value-card"><div class="value-icon">📚</div><div class="value-title">Research Depth</div><div class="value-desc">We publish long-form studies designed to reward careful reading and repeated reference — not quick takes.</div></div>
-      <div class="value-card"><div class="value-icon">👥</div><div class="value-title">Analyst Community</div><div class="value-desc">We are building a platform where the best sports minds can publish, grow an audience, and earn from their work.</div></div>
+      <div class="value-card"><div class="value-icon"></div><div class="value-title">Data-First</div><div class="value-desc">Every claim is supported by evidence. We lead with data and build the narrative from what the numbers tell us.</div></div>
+      <div class="value-card"><div class="value-icon"></div><div class="value-title">Honest Analysis</div><div class="value-desc">We are clear about what we know, what we don't, and where the data runs out. No false certainty.</div></div>
+      <div class="value-card"><div class="value-icon"></div><div class="value-title">Research Depth</div><div class="value-desc">We publish long-form studies designed to reward careful reading and repeated reference — not quick takes.</div></div>
+      <div class="value-card"><div class="value-icon"></div><div class="value-title">Analyst Community</div><div class="value-desc">We are building a platform where the best sports minds can publish, grow an audience, and earn from their work.</div></div>
     </div>
     <div class="about-cta">
       <h2>Launching soon</h2>
@@ -775,11 +771,10 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <a onclick="showPage('archive')">NFL</a>
         <a onclick="showPage('archive')">Tennis</a>
         <a onclick="showPage('archive')">Formula 1</a>
+        <a onclick="showPage('archive')">More</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Platform</div>
-        <a onclick="showPage('archive')">Archive</a>
-        <a onclick="showPage('premium')">Subscription</a>
         <a onclick="showPage('archive')">Archive</a>
         <a onclick="showPage('premium')">Subscription</a>
       </div>
@@ -809,6 +804,14 @@ function showPage(page) {
   const target = document.getElementById('page-' + page);
   if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
   currentPage = page;
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('nav-' + page).classList.add('active');
+  const navSecondary = document.querySelector('.nav-secondary');
+  if (page === 'archive') {
+    navSecondary.style.display = 'none';
+  } else {
+    navSecondary.style.display = 'flex';
+  }
   if (page === 'home') {
     applyHomeFilters();
   } else if (page === 'archive') {
@@ -861,6 +864,8 @@ let currentSearch = '';
 
 function filterBySport(sport) {
   currentSport = sport;
+  document.querySelectorAll('.nav-secondary a').forEach(a => a.classList.remove('active'));
+  document.querySelector(`.nav-secondary a[data-sport="${sport}"]`).classList.add('active');
   if (currentPage === 'home') {
     applyHomeFilters();
   } else if (currentPage === 'archive') {
@@ -892,9 +897,19 @@ function applyHomeFilters() {
   cards.forEach(card => {
     const date = new Date(card.dataset.date);
     const sport = card.dataset.sport;
-    const matchesSport = currentSport === 'all' || sport === currentSport || sport === 'all';
+    const topic = card.dataset.topic;
+    let matchesFilter = false;
+    if (currentSport === 'all') {
+      matchesFilter = true;
+    } else if (currentSport === 'scouting') {
+      matchesFilter = topic === 'scouting';
+    } else if (currentSport === 'predictions') {
+      matchesFilter = true; // show all for predictions
+    } else {
+      matchesFilter = sport === currentSport || sport === 'all';
+    }
     const isRecent = date >= recentDate;
-    card.style.display = matchesSport && isRecent ? 'block' : 'none';
+    card.style.display = matchesFilter && isRecent ? 'block' : 'none';
   });
 }
 
@@ -905,16 +920,27 @@ function applyArchiveFilters() {
     const topic = card.dataset.topic;
     const title = card.querySelector('.card-title').textContent.toLowerCase();
     const excerpt = card.querySelector('.card-excerpt').textContent.toLowerCase();
-    const matchesSport = currentSport === 'all' || sport === currentSport || sport === 'all';
+    let matchesFilter = false;
+    if (currentSport === 'all') {
+      matchesFilter = true;
+    } else if (currentSport === 'scouting') {
+      matchesFilter = topic === 'scouting';
+    } else if (currentSport === 'predictions') {
+      matchesFilter = true;
+    } else {
+      matchesFilter = sport === currentSport || sport === 'all';
+    }
     const matchesTopic = currentTopic === 'all' || topic === currentTopic || topic === 'all';
     const matchesSearch = !currentSearch || title.includes(currentSearch) || excerpt.includes(currentSearch);
-    card.style.display = matchesSport && matchesTopic && matchesSearch ? 'block' : 'none';
+    card.style.display = matchesFilter && matchesTopic && matchesSearch ? 'block' : 'none';
   });
 }
 
 // Initialize
 window.onload = () => {
   currentPage = 'home';
+  document.getElementById('nav-home').classList.add('active');
+  document.querySelector('.nav-secondary a[data-sport="all"]').classList.add('active');
   applyHomeFilters();
 };
 </script>
