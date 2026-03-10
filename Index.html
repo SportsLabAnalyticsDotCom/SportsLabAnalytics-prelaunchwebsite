@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SportsLab — A research-driven platform for sports analysis, tactical studies, and data insights. Launching soon.">
+<title>SportsLab — Sports Intelligence & Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+:root {
+  --bg: #faf9f6; --bg2: #f0ede6; --ink: #0f0f0f; --ink2: #3a3a3a;
+  --mid: #6b6b6b; --border: #e2ddd6; --red: #dc2626; --red-dark: #b91c1c;
+  --white: #ffffff; --dark: #111111; --dark2: #1a1a1a; --dark3: #242424; --gold: #f5c842;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+body.dark-mode { --bg: #0f0f0f; --bg2: #1a1a1a; --ink: #f0ede6; --ink2: #c8c4bc; --mid: #8a8a8a; --border: #2a2a2a; --white: #1e1e1e; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+
+/* PRE-LAUNCH BANNER */
+.prelaunch-banner {
+  background: var(--ink); color: #fff; text-align: center;
+  padding: 9px 20px; font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.05em; display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.prelaunch-banner .bdot { color: var(--gold); font-size: 8px; }
+.prelaunch-banner a { color: var(--gold); font-weight: 600; text-decoration: underline; cursor: pointer; }
+
+/* TICKER */
+.ticker { background: var(--dark); overflow: hidden; padding: 6px 0; border-bottom: 1px solid #222; }
+.ticker-inner { display: flex; white-space: nowrap; animation: tick 50s linear infinite; width: max-content; }
+.ticker-inner span { padding: 0 36px; font-family: 'DM Mono', monospace; font-size: 11px; color: #888; }
+.ticker-inner .dot { color: var(--red); margin-right: 6px; }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 2px solid var(--ink); transition: background 0.3s; }
+.nav-top { max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--ink); display: flex; align-items: baseline; cursor: pointer; }
+.logo span { color: var(--red); }
+.logo-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--mid); margin-left: 8px; text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 0; }
+.nav-links a { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); padding: 8px 14px; border-radius: 2px; transition: color 0.2s; cursor: pointer; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.nav-premium { background: var(--red); color: #fff; }
+.nav-links a.nav-premium:hover { background: var(--red-dark); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-icon { background: none; border: none; padding: 8px; color: var(--mid); transition: color 0.2s; display: flex; }
+.btn-icon:hover { color: var(--ink); }
+/* BUTTON 7: "Join Waitlist" — update text to "Subscribe" when billing is live */
+.btn-subscribe { background: var(--ink); color: var(--bg); border: none; padding: 9px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; border-radius: 2px; transition: background 0.2s; }
+.btn-subscribe:hover { background: var(--red); }
+.hamburger { display: none; background: none; border: none; color: var(--ink); padding: 8px; }
+.nav-secondary { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 0; border-top: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+.nav-secondary::-webkit-scrollbar { display: none; }
+.nav-secondary a { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--mid); padding: 9px 16px 9px 0; margin-right: 8px; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; cursor: pointer; }
+.nav-secondary a:hover { color: var(--ink); border-bottom-color: var(--red); }
+
+/* SEARCH */
+.search-bar { display: none; background: var(--bg2); border-bottom: 1px solid var(--border); }
+.search-bar.open { display: block; }
+.search-bar input { width: 100%; padding: 14px 32px; background: transparent; border: none; outline: none; font-size: 15px; color: var(--ink); font-family: 'DM Sans', sans-serif; }
+.search-bar input::placeholder { color: var(--mid); }
+
+/* MOBILE MENU */
+.mobile-menu { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 300; padding: 24px; flex-direction: column; gap: 2px; overflow-y: auto; }
+.mobile-menu.open { display: flex; }
+.mobile-menu-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.mobile-menu a { display: block; font-size: 20px; font-family: 'Playfair Display', serif; font-weight: 700; padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--ink); cursor: pointer; }
+.mobile-menu a:hover { color: var(--red); }
+
+/* PAGE ROUTER */
+.page { display: none; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.page.active { animation: fadeIn 0.25s ease; }
+
+/* HERO */
+.hero { border-bottom: 2px solid var(--ink); }
+.hero-inner { max-width: 1280px; margin: 0 auto; padding: 48px 32px; display: grid; grid-template-columns: 1fr 360px; gap: 0; }
+.hero-main { padding-right: 48px; border-right: 2px solid var(--ink); }
+.hero-sidebar { padding-left: 40px; display: flex; flex-direction: column; }
+.tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 1px; }
+.tag-soccer { background: #14532d; color: #86efac; }
+.tag-basketball { background: #7f1d1d; color: #fca5a5; }
+.tag-nfl { background: #1e3a5f; color: #93c5fd; }
+.tag-tennis { background: #713f12; color: #fde68a; }
+.tag-data { background: #1e3a5f; color: #93c5fd; }
+.tag-tactics { background: #3b0764; color: #d8b4fe; }
+.tag-scouting { background: #1c1917; color: #d6d3d1; }
+.tag-soon { background: var(--bg2); color: var(--mid); border: 1px solid var(--border); }
+.tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+.tag-time { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); }
+.hero-title { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; line-height: 1.07; letter-spacing: -1px; margin-bottom: 16px; color: var(--ink); }
+.hero-excerpt { font-size: 16px; color: var(--mid); line-height: 1.7; max-width: 580px; margin-bottom: 24px; }
+.hero-meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--bg2); border: 2px solid var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.sidebar-story { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.sidebar-story:last-child { border-bottom: none; }
+.sidebar-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid); margin-bottom: 6px; }
+.sidebar-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; line-height: 1.35; color: var(--mid); font-style: italic; margin-bottom: 5px; }
+.sidebar-meta { font-size: 11px; color: var(--border); }
+
+/* LAUNCHING SOON STRIP */
+.stats-strip { background: var(--dark); }
+.stats-strip-inner { max-width: 1280px; margin: 0 auto; padding: 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.launch-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.launch-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+.launch-desc { font-size: 13px; color: #666; max-width: 480px; line-height: 1.65; }
+.launch-cta-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.launch-sports { display: flex; gap: 8px; flex-wrap: wrap; }
+.sport-pill { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; color: rgba(255,255,255,0.4); }
+
+/* SECTIONS */
+.section { max-width: 1280px; margin: 0 auto; padding: 56px 32px; }
+.section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+.section-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--ink); }
+.section-title em { color: var(--red); font-style: normal; }
+.see-all { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); transition: color 0.2s; cursor: pointer; }
+.see-all:hover { color: var(--red); }
+
+/* ARTICLE CARDS */
+.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+.article-card { cursor: default; }
+.card-thumb { width: 100%; aspect-ratio: 16/9; border-radius: 2px; margin-bottom: 14px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 14px; }
+.card-thumb-soccer { background: linear-gradient(135deg, #052e16, #14532d); }
+.card-thumb-basketball { background: linear-gradient(135deg, #450a0a, #7f1d1d); }
+.card-thumb-nfl { background: linear-gradient(135deg, #030712, #1e3a5f); }
+.card-thumb-tennis { background: linear-gradient(135deg, #1c1917, #44403c); }
+.card-thumb-data { background: linear-gradient(135deg, #0f172a, #1e3a5f); }
+.card-thumb-placeholder { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); }
+.card-thumb-bg-text { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; color: rgba(255,255,255,0.06); position: absolute; bottom: -8px; right: 8px; line-height: 1; }
+.coming-soon-badge { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 1px; border: 1px solid rgba(255,255,255,0.12); }
+.card-tags { margin-bottom: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; line-height: 1.3; color: var(--mid); margin-bottom: 8px; font-style: italic; }
+.card-excerpt { font-size: 13px; color: var(--mid); line-height: 1.65; margin-bottom: 12px; opacity: 0.7; }
+.card-soon-btn { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--border); padding: 5px 12px; border-radius: 1px; }
+
+/* TRENDING */
+.trending-item { display: flex; gap: 20px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.trending-item:last-child { border-bottom: none; }
+.trending-num { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 900; color: var(--border); line-height: 1; width: 48px; flex-shrink: 0; text-align: right; }
+.trending-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--mid); line-height: 1.35; margin-bottom: 5px; font-style: italic; }
+.trending-sub { font-size: 12px; color: var(--border); }
+
+/* TWO COL */
+.two-col { display: grid; grid-template-columns: 1fr 340px; gap: 56px; }
+.two-col-aside { display: flex; flex-direction: column; gap: 32px; }
+
+/* NEWSLETTER */
+.newsletter-banner { background: var(--red); padding: 56px 32px; }
+.newsletter-banner-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.newsletter-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+.newsletter-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #fff; line-height: 1.1; }
+.newsletter-form { display: flex; flex-shrink: 0; }
+.newsletter-form input { width: 260px; padding: 13px 18px; background: #fff; border: none; outline: none; font-size: 14px; font-family: 'DM Sans', sans-serif; border-radius: 2px 0 0 2px; }
+.newsletter-form button { padding: 13px 20px; background: var(--dark); color: #fff; border: none; font-size: 13px; font-weight: 700; border-radius: 0 2px 2px 0; transition: background 0.2s; }
+.newsletter-form button:hover { background: #333; }
+.newsletter-note { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+.newsletter-widget { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 22px; }
+.nw-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+.newsletter-widget h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.newsletter-widget p { font-size: 12px; color: var(--mid); line-height: 1.6; margin-bottom: 14px; }
+.newsletter-widget input { width: 100%; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; font-size: 13px; font-family: 'DM Sans', sans-serif; outline: none; color: var(--ink); margin-bottom: 8px; }
+.newsletter-widget input:focus { border-color: var(--red); }
+.newsletter-widget button { width: 100%; padding: 10px; background: var(--red); color: #fff; border: none; border-radius: 2px; font-size: 13px; font-weight: 700; transition: background 0.2s; }
+.newsletter-widget button:hover { background: var(--red-dark); }
+
+/* PREDICTIONS SECTION PLACEHOLDER */
+.predictions-section { background: var(--dark); padding: 56px 0; }
+.predictions-section .section { padding-top: 0; padding-bottom: 0; }
+.pred-placeholder-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+.pred-card-ph { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); padding: 28px; }
+.pred-ph-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 12px; }
+.pred-ph-title { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; font-weight: 700; color: rgba(255,255,255,0.2); margin-bottom: 16px; line-height: 1.35; }
+.pred-ph-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-bottom: 8px; }
+.pred-ph-soon { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.18); margin-top: 16px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ARCHIVE */
+.archive-header { background: var(--bg2); border-bottom: 2px solid var(--ink); padding: 48px 0 0; }
+.archive-header-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.archive-header h1 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: var(--ink); margin-bottom: 8px; }
+.archive-header p { font-size: 15px; color: var(--mid); margin-bottom: 28px; }
+.archive-filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding-bottom: 20px; }
+.filter-chip { font-size: 12px; font-weight: 600; padding: 7px 16px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--mid); }
+.filter-chip.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.search-wrap { width: 100%; max-width: 480px; position: relative; }
+.search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--mid); }
+.search-wrap input { width: 100%; padding: 10px 14px 10px 40px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 4px; font-size: 13px; font-family: 'DM Sans', sans-serif; outline: none; color: var(--mid); }
+.archive-inner { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
+
+/* AUTHORS */
+.authors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.author-card { border: 1.5px solid var(--border); border-radius: 6px; padding: 24px; background: var(--bg); }
+.author-card.contributor-cta { border-color: var(--red); border-style: dashed; cursor: pointer; transition: background 0.2s; }
+.author-card.contributor-cta:hover { background: var(--bg2); }
+.author-avatar-lg { width: 56px; height: 56px; border-radius: 50%; background: var(--bg2); border: 2px dashed var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.author-card-sport { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--border); margin-bottom: 4px; }
+.author-card-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--mid); margin-bottom: 2px; font-style: italic; }
+.author-card-title { font-size: 12px; color: var(--border); }
+.author-card-bio { font-size: 12px; color: var(--mid); line-height: 1.65; margin-bottom: 16px; }
+.author-card-stats { display: flex; gap: 20px; padding-top: 14px; border-top: 1px solid var(--border); }
+.author-stat { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid); }
+.author-stat strong { color: var(--ink); display: block; font-size: 15px; margin-bottom: 1px; }
+
+/* ARTICLE TEMPLATE */
+.article-page { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-bottom: 24px; }
+.breadcrumb a { color: var(--mid); cursor: pointer; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { color: var(--border); }
+.article-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
+.article-lead { font-size: 17px; color: var(--mid); line-height: 1.7; border-left: 4px solid var(--border); padding-left: 20px; margin-bottom: 24px; }
+.article-byline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+.byline-author { display: flex; align-items: center; gap: 12px; }
+.byline-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.byline-role { font-size: 11px; color: var(--mid); font-family: 'DM Mono', monospace; }
+.byline-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); }
+.share-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.2s; }
+.share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.art-section { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 28px; margin-bottom: 16px; }
+.art-section h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--mid); margin-bottom: 10px; font-style: italic; }
+.art-section p { font-size: 14px; color: var(--mid); line-height: 1.7; }
+.chart-ph { background: var(--dark); border-radius: 6px; padding: 40px 20px; text-align: center; margin: 16px 0; }
+.chart-ph-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #444; margin-bottom: 8px; }
+.chart-ph-title { font-family: 'Playfair Display', serif; font-size: 15px; color: #333; font-style: italic; }
+.article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); }
+.article-tag { font-family: 'DM Mono', monospace; font-size: 11px; padding: 5px 12px; background: var(--bg2); border: 1px solid var(--border); color: var(--mid); border-radius: 2px; }
+.aside-author { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 20px; }
+.aside-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-bottom: 4px; }
+
+/* PREMIUM */
+.premium-hero { background: var(--dark); padding: 80px 32px; text-align: center; }
+.premium-hero-label { display: inline-flex; align-items: center; gap: 6px; background: rgba(245,200,66,0.12); color: var(--gold); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+.premium-hero h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 16px; }
+.premium-hero p { font-size: 17px; color: #888; max-width: 500px; margin: 0 auto 8px; line-height: 1.7; }
+.premium-hero .secondary-text { font-size: 14px; color: #555; max-width: 380px; margin: 0 auto 32px; }
+.waitlist-form { display: flex; justify-content: center; }
+.waitlist-form input { width: 280px; padding: 13px 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); outline: none; font-size: 14px; font-family: 'DM Sans', sans-serif; color: #fff; border-radius: 2px 0 0 2px; }
+.waitlist-form input::placeholder { color: rgba(255,255,255,0.3); }
+.waitlist-form button { padding: 13px 22px; background: var(--red); color: #fff; border: none; font-size: 13px; font-weight: 700; border-radius: 0 2px 2px 0; transition: background 0.2s; }
+.waitlist-form button:hover { background: var(--red-dark); }
+.premium-features { max-width: 1280px; margin: 0 auto; padding: 64px 32px; }
+.premium-features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+.pf-card { border: 1.5px solid var(--border); border-radius: 6px; padding: 28px; background: var(--bg); }
+.pf-icon { font-size: 26px; margin-bottom: 14px; }
+.pf-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.pf-desc { font-size: 13px; color: var(--mid); line-height: 1.65; margin-bottom: 14px; }
+.pf-badge { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--border); padding: 3px 8px; border-radius: 1px; display: inline-block; }
+
+/* ABOUT */
+.about-hero { background: var(--bg2); border-bottom: 2px solid var(--ink); padding: 80px 32px; text-align: center; }
+.about-hero h1 { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: var(--ink); line-height: 1.1; margin-bottom: 14px; }
+.about-hero h1 span { color: var(--red); }
+.about-hero p { font-size: 17px; color: var(--mid); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+.about-body { max-width: 800px; margin: 0 auto; padding: 64px 32px; }
+.about-pull { border-left: 4px solid var(--red); padding: 14px 24px; background: var(--bg2); margin: 32px 0; border-radius: 0 4px 4px 0; }
+.about-pull p { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; font-weight: 700; color: var(--ink); margin: 0; }
+.about-body p { font-size: 15.5px; color: var(--mid); line-height: 1.8; margin-bottom: 18px; }
+.values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 40px 0; }
+.value-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 20px; }
+.value-icon { font-size: 20px; margin-bottom: 10px; }
+.value-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.value-desc { font-size: 12px; color: var(--mid); line-height: 1.65; }
+.about-cta { background: var(--dark); border-radius: 8px; padding: 48px 32px; text-align: center; margin-top: 48px; }
+.about-cta h2 { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 12px; }
+.about-cta p { font-size: 14px; color: #888; margin-bottom: 24px; max-width: 380px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+.about-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-red { background: var(--red); color: #fff; border: none; padding: 12px 28px; font-size: 13px; font-weight: 700; border-radius: 2px; transition: background 0.2s; cursor: pointer; }
+.btn-red:hover { background: var(--red-dark); }
+.btn-white { background: #fff; color: var(--dark); border: none; padding: 12px 28px; font-size: 13px; font-weight: 700; border-radius: 2px; transition: background 0.2s; cursor: pointer; }
+.btn-white:hover { background: #e5e5e5; }
+
+/* FOOTER */
+footer { background: var(--dark); color: #fff; margin-top: 64px; }
+.footer-inner { max-width: 1280px; margin: 0 auto; padding: 60px 32px 32px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+.footer-logo span { color: var(--red); }
+.footer-tagline { font-size: 13px; color: #555; line-height: 1.65; margin-bottom: 20px; }
+.footer-socials { display: flex; gap: 10px; }
+.footer-social { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #555; transition: all 0.2s; cursor: pointer; }
+.footer-social:hover { border-color: #fff; color: #fff; }
+.footer-col-title { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #444; margin-bottom: 16px; }
+.footer-col a { display: block; font-size: 13px; color: #666; margin-bottom: 9px; transition: color 0.2s; cursor: pointer; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-family: 'DM Mono', monospace; font-size: 10px; color: #333; }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 11px; color: #333; cursor: pointer; }
+.footer-legal a:hover { color: #888; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .articles-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-main { padding-right: 0; border-right: none; border-bottom: 2px solid var(--ink); padding-bottom: 40px; margin-bottom: 32px; }
+  .hero-sidebar { padding-left: 0; flex-direction: row; flex-wrap: wrap; }
+  .sidebar-story { flex: 0 0 50%; padding-right: 20px; }
+  .two-col { grid-template-columns: 1fr; }
+  .two-col-aside { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .authors-grid { grid-template-columns: repeat(2, 1fr); }
+  .premium-features-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .logo-tag { display: none; }
+  .hero-inner, .section, .newsletter-banner { padding-left: 20px; padding-right: 20px; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: 34px; }
+  .newsletter-banner-inner { flex-direction: column; }
+  .newsletter-form { width: 100%; }
+  .newsletter-form input { flex: 1; min-width: 0; width: auto; }
+  .pred-placeholder-grid { grid-template-columns: 1fr; }
+  .sidebar-story { flex: 0 0 100%; }
+  .stats-strip-inner { flex-direction: column; align-items: flex-start; }
+  .launch-cta-wrap { align-items: flex-start; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .authors-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .article-title { font-size: 28px; }
+  .premium-hero h1 { font-size: 36px; }
+  .about-hero h1 { font-size: 36px; }
+  .premium-features-grid { grid-template-columns: 1fr; }
+  .waitlist-form { flex-direction: column; align-items: center; }
+  .waitlist-form input { width: 100%; max-width: 320px; border-radius: 2px; }
+  .waitlist-form button { border-radius: 2px; }
+  .archive-header-inner { padding: 0 20px; }
+  .nav-secondary { padding: 0 20px; }
+}
+body.dark-mode .filter-chip { background: var(--bg2); border-color: #333; }
+body.dark-mode .author-card, body.dark-mode .newsletter-widget, body.dark-mode .value-card, body.dark-mode .aside-author, body.dark-mode .pf-card { background: var(--bg2); }
+body.dark-mode .search-wrap input { background: var(--bg2); }
+</style>
+</head>
+<body>
+
+<!-- PRE-LAUNCH ANNOUNCEMENT BANNER -->
+<!-- BANNER: Remove or update this when the platform officially launches -->
+<div class="prelaunch-banner">
+  <span class="bdot">●</span>
+  SportsLab is currently in development — original studies and contributor applications are coming soon.
+  <a onclick="showPage('premium')">Join the waitlist →</a>
+</div>
+
+<!-- TICKER -->
+<!-- TICKER: Replace with live scores or real news headlines when available -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span><span class="dot">●</span> SportsLab is building a research-driven sports analytics platform</span>
+    <span><span class="dot">●</span> Covering Soccer · Basketball · NFL · Tennis · Formula 1</span>
+    <span><span class="dot">●</span> Original studies and tactical analysis — coming soon</span>
+    <span><span class="dot">●</span> Contributor applications opening soon — apply to write for SportsLab</span>
+    <span><span class="dot">●</span> Join the waitlist for early access to premium research</span>
+    <span><span class="dot">●</span> SportsLab is building a research-driven sports analytics platform</span>
+    <span><span class="dot">●</span> Covering Soccer · Basketball · NFL · Tennis · Formula 1</span>
+    <span><span class="dot">●</span> Original studies and tactical analysis — coming soon</span>
+    <span><span class="dot">●</span> Contributor applications opening soon — apply to write for SportsLab</span>
+    <span><span class="dot">●</span> Join the waitlist for early access to premium research</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-top">
+    <a class="logo" onclick="showPage('home')">Sports<span>Lab</span><span class="logo-tag">Analytics</span></a>
+    <div class="nav-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('archive')">Archive</a>
+      <a onclick="showPage('premium')" class="nav-premium">Subscription</a>
+      <a onclick="showPage('about')">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" onclick="toggleSearch()" title="Search">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="btn-icon" onclick="toggleDark()" id="darkBtn" title="Toggle dark mode">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <!-- BUTTON 7: Change to "Subscribe" when billing is ready -->
+      <button class="btn-subscribe" onclick="showPage('premium')">Subscribe</button>
+      <button class="hamburger" onclick="toggleMobileMenu()">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="nav-secondary">
+    <a onclick="filterBySport('all')">All</a>
+    <a onclick="filterBySport('soccer')">Soccer</a>
+    <a onclick="filterBySport('basketball')">Basketball</a>
+    <a onclick="filterBySport('nfl')">NFL</a>
+    <a onclick="filterBySport('tennis')">Tennis</a>
+    <a onclick="filterBySport('all')">Scouting</a>
+    <a onclick="filterBySport('all')">Predictions</a>
+  </div>
+</nav>
+
+<div class="search-bar" id="searchBar">
+  <input type="text" placeholder="Search coming soon..." id="globalSearch" />
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-top">
+    <span class="logo">Sports<span>Lab</span></span>
+    <button onclick="toggleMobileMenu()" style="background:none;border:none;font-size:24px;color:var(--ink);cursor:pointer;">✕</button>
+  </div>
+  <a onclick="showPage('home');toggleMobileMenu()">Home</a>
+  <a onclick="showPage('archive');toggleMobileMenu()">Archive</a>
+  <a onclick="showPage('premium');toggleMobileMenu()">Subscription</a>
+  <a onclick="showPage('about');toggleMobileMenu()">About</a>
+</div>
+
+<!-- ══════════════════════ PAGE: HOME ══════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO — Replace with your first real featured article when ready -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-main">
+        <div class="tags-row">
+          <span class="tag tag-soon">Preview</span>
+          <span class="tag-time">SportsLab · Pre-Launch</span>
+        </div>
+        <!-- HERO TITLE: Replace with your first real article headline -->
+        <h1 class="hero-title">Original Research<br>Coming Soon</h1>
+        <!-- HERO EXCERPT: Replace with your first real article excerpt -->
+        <p class="hero-excerpt">This layout previews how future studies and analysis pieces will appear on SportsLab. Our first original research is in preparation — covering soccer, basketball, NFL, tennis, and more.</p>
+        <div class="hero-meta">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="avatar">SL</div>
+            <!-- HERO AUTHOR: Replace with real author name and role -->
+            <div style="font-size:13px;font-weight:600;color:var(--ink);">SportsLab Editorial</div>
+          </div>
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--mid);">Contributor profile coming soon</span>
+          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--mid);">Preview soon</span>
+        </div>
+      </div>
+      <div class="hero-sidebar">
+        <!-- SIDEBAR STORIES: Replace each with a real article title when published -->
+        <div class="sidebar-story"><div class="sidebar-num">02 · Soccer</div><div class="sidebar-title">Research study</div><div class="sidebar-meta">Preview</div></div>
+        <div class="sidebar-story"><div class="sidebar-num">03 · Basketball</div><div class="sidebar-title">Research study</div><div class="sidebar-meta">Preview</div></div>
+        <div class="sidebar-story"><div class="sidebar-num">04 · NFL</div><div class="sidebar-title">Research study</div><div class="sidebar-meta">Preview</div></div>
+        <div class="sidebar-story"><div class="sidebar-num">05 · Tennis</div><div class="sidebar-title">Research study</div><div class="sidebar-meta">Preview</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAUNCHING SOON STRIP -->
+  <!-- STATS STRIP: Replace this entire block with real platform stats (articles, readers, accuracy) when available -->
+  <div class="stats-strip">
+    <div class="stats-strip-inner">
+      <div>
+        <div class="launch-label">▸ Launching Soon</div>
+        <div class="launch-title">SportsLab is preparing to launch.</div>
+        <p class="launch-desc">We are building a research-driven platform for sports analysis, tactical studies, and data insights — covering the sports and topics that matter most to serious fans.</p>
+      </div>
+      <div class="launch-cta-wrap">
+        <div class="launch-sports">
+          <span class="sport-pill">Soccer</span>
+          <span class="sport-pill">Basketball</span>
+          <span class="sport-pill">NFL</span>
+          <span class="sport-pill">Tennis</span>
+          <span class="sport-pill">Formula 1</span>
+        </div>
+        <button class="btn-red" onclick="showPage('premium')" style="margin-top:8px;">Get Early Access →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LATEST ANALYSIS CARDS -->
+  <!-- Future real articles go here — replace each article-card with real article data -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">Latest <em>News</em></h2>
+      <a class="see-all" onclick="showPage('archive')">View all →</a>
+    </div>
+    <div class="articles-grid">
+      <div class="article-card" data-sport="soccer" data-topic="tactics" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span><span class="tag tag-tactics">Tactics</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="basketball" data-topic="data" data-date="2026-03-03"><div class="card-thumb card-thumb-basketball"><div class="card-thumb-bg-text">NBA</div></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="nfl" data-topic="scouting" data-date="2026-02-15"><div class="card-thumb card-thumb-nfl"><div class="card-thumb-bg-text">NFL</div></div><div class="card-tags"><span class="tag tag-nfl">NFL</span><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="tennis" data-topic="data" data-date="2026-02-10"><div class="card-thumb card-thumb-tennis"><div class="card-thumb-bg-text">TEN</div></div><div class="card-tags"><span class="tag tag-tennis">Tennis</span><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="all" data-topic="data" data-date="2026-03-07"><div class="card-thumb card-thumb-data"><div class="card-thumb-bg-text">DATA</div></div><div class="card-tags"><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+      <div class="article-card" data-sport="all" data-topic="scouting" data-date="2026-02-20"><div class="card-thumb card-thumb-placeholder"><div class="card-thumb-bg-text">SL</div></div><div class="card-tags"><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies produced by SportsLab analysts.</div></div>
+    </div>
+  </div>
+
+  <!-- WAITLIST BANNER -->
+  <div class="newsletter-banner">
+    <div class="newsletter-banner-inner">
+      <div>
+        <div class="newsletter-eyebrow">Subscription · Waitlist</div>
+        <div class="newsletter-title">Be the first to know<br>when we launch.</div>
+      </div>
+      <div>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="bannerEmail" />
+          <button onclick="subscribe('bannerEmail','bannerMsg')">Subscribe →</button>
+        </div>
+        <div class="newsletter-note" id="bannerMsg">No spam. Unsubscribe anytime.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREDICTIONS SECTION PLACEHOLDER -->
+  <!-- PREDICTIONS: Replace placeholder cards with real predictions when the model is live -->
+  <div class="predictions-section">
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title" style="color:#fff;">Match <em style="color:var(--gold)">Predictions</em></h2>
+        <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,0.2);">Coming soon</span>
+      </div>
+      <div class="pred-placeholder-grid">
+        <div class="pred-card-ph"><div class="pred-ph-label">Soccer · UCL</div><div class="pred-ph-title">Match prediction and data analysis coming soon</div><div class="pred-ph-bar" style="width:60%"></div><div class="pred-ph-bar" style="width:40%"></div><div class="pred-ph-soon">Prediction model launching soon</div></div>
+        <div class="pred-card-ph"><div class="pred-ph-label">Basketball · NBA</div><div class="pred-ph-title">Match prediction and data analysis coming soon</div><div class="pred-ph-bar" style="width:75%"></div><div class="pred-ph-bar" style="width:30%"></div><div class="pred-ph-soon">Prediction model launching soon</div></div>
+        <div class="pred-card-ph"><div class="pred-ph-label">American Football · NFL</div><div class="pred-ph-title">Match prediction and data analysis coming soon</div><div class="pred-ph-bar" style="width:55%"></div><div class="pred-ph-bar" style="width:45%"></div><div class="pred-ph-soon">Prediction model launching soon</div></div>
+        <div class="pred-card-ph"><div class="pred-ph-label">Tennis · Grand Slam</div><div class="pred-ph-title">Match prediction and data analysis coming soon</div><div class="pred-ph-bar" style="width:80%"></div><div class="pred-ph-bar" style="width:35%"></div><div class="pred-ph-soon">Prediction model launching soon</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRENDING + SIDEBAR -->
+  <div class="section">
+    <div class="two-col">
+      <div>
+        <!-- TRENDING ARTICLES: Replace each item with a real article when published -->
+        <div class="section-header">
+          <h2 class="section-title">Upcoming <em>Studies</em></h2>
+          <a class="see-all" onclick="showPage('archive')">Archive →</a>
+        </div>
+        <!-- Future trending articles go here -->
+        <div>
+          <div class="trending-item"><div class="trending-num">01</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-soccer">Soccer</span><span class="tag tag-tactics">Tactics</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
+          <div class="trending-item"><div class="trending-num">02</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-basketball">Basketball</span><span class="tag tag-data">Data</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
+          <div class="trending-item"><div class="trending-num">03</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-nfl">NFL</span><span class="tag tag-scouting">Scouting</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
+          <div class="trending-item"><div class="trending-num">04</div><div><div style="display:flex;gap:6px;margin-bottom:6px;"><span class="tag tag-tennis">Tennis</span><span class="tag tag-data">Data</span></div><div class="trending-title">New research will be published here</div><div class="trending-sub">SportsLab Editorial</div></div></div>
+        </div>
+      </div>
+      <div class="two-col-aside">
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);">About SportsLab</div>
+          <!-- ABOUT BLURB: Customise this short description to match your exact mission -->
+          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.3;">Where data meets the beautiful game.</h3>
+          <p style="font-size:13px;color:var(--mid);line-height:1.7;margin-bottom:10px;">SportsLab is a research-first sports analytics platform in development. We are building a home for data-driven analysis, tactical breakdowns, and original sports research.</p>
+          <a onclick="showPage('about')" style="font-size:13px;font-weight:700;color:var(--red);cursor:pointer;">Our mission →</a>
+        </div>
+        <div class="newsletter-widget">
+          <div class="nw-label">Early Access</div>
+          <h3>Join the Waitlist</h3>
+          <p>Be notified when SportsLab launches with original studies and premium content.</p>
+          <input type="email" placeholder="Enter your email" id="sideEmail" />
+          <button onclick="subscribe('sideEmail','sideMsg')">Subscribe →</button>
+          <div style="font-size:11px;color:var(--mid);margin-top:6px;" id="sideMsg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-home -->
+
+<!-- ══════════════════════ PAGE: ARTICLE TEMPLATE ══════════════════════ -->
+<!-- ARTICLE PAGE: This is a layout preview — replace all placeholder content with a real article -->
+<div class="page" id="page-article">
+  <div class="article-page">
+    <div class="two-col">
+      <article>
+        <div class="breadcrumb">
+          <a onclick="showPage('home')">Home</a><span>›</span>
+          <a onclick="showPage('archive')">Archive</a><span>›</span>
+          <!-- BREADCRUMB: Update this dynamically when a real article is loaded -->
+          <span>Original Research Coming Soon</span>
+        </div>
+        <div class="tags-row"><span class="tag tag-soon">Layout Preview</span></div>
+        <!-- ARTICLE TITLE: Replace with real article headline -->
+        <h1 class="article-title">Original Research Coming Soon</h1>
+        <!-- ARTICLE LEAD: Replace with real article subheadline or excerpt -->
+        <p class="article-lead">This layout previews how future studies and analysis pieces will appear on SportsLab. Original research, tactical breakdowns, and data studies are in preparation.</p>
+        <div class="article-byline">
+          <div class="byline-author">
+            <!-- AUTHOR: Replace with real author avatar, name, and role -->
+            <div class="avatar">SL</div>
+            <div><div class="byline-name">SportsLab Editorial</div><div class="byline-role">Contributor profile coming soon</div></div>
+          </div>
+          <!-- DATE / READ TIME: Replace with real values when article is published -->
+          <div class="byline-info">Coming soon</div>
+          <button class="share-btn" onclick="showPage('premium')">Join Waitlist</button>
+        </div>
+
+        <!-- ARTICLE BODY: Replace sections below with real article content -->
+        <div>
+          <div class="art-section"><h2>Introduction</h2><p>This section will contain the opening of the original research study. Content is in preparation by SportsLab analysts and contributors.</p></div>
+          <div class="chart-ph"><div class="chart-ph-label">Figure 1 — Data Visualization</div><div class="chart-ph-title">Shot map, heat map, or passing network will appear here</div></div>
+          <div class="art-section"><h2>Methodology</h2><p>This section will explain the data sources, analytical methods, and statistical models used in the study. All SportsLab research will include transparent methodology notes.</p></div>
+          <div class="chart-ph"><div class="chart-ph-label">Figure 2 — Statistical Chart</div><div class="chart-ph-title">Bar charts, scatter plots, and trend visualizations will appear here</div></div>
+          <div class="art-section"><h2>Findings</h2><p>Key findings will be presented here, supported by data and evidence. SportsLab research will be honest about uncertainty and clear about conclusions.</p></div>
+        </div>
+
+        <!-- ARTICLE TAGS: Replace with real article tags -->
+        <div class="article-tags">
+          <span class="article-tag">#coming-soon</span>
+          <span class="article-tag">#sports-analytics</span>
+          <span class="article-tag">#sportslab</span>
+        </div>
+
+        <div style="margin-top:32px;padding:24px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;text-align:center;">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;">Get Early Access</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;">Be notified when this publishes</h3>
+          <p style="font-size:13px;color:var(--mid);margin-bottom:16px;">Join the waitlist and we'll let you know when original research goes live.</p>
+          <button class="btn-red" onclick="showPage('premium')">Join the Waitlist →</button>
+        </div>
+      </article>
+      <aside class="two-col-aside">
+        <div class="aside-author">
+          <div class="aside-label">Author</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+            <!-- ASIDE AUTHOR: Replace with real author data -->
+            <div class="avatar" style="width:48px;height:48px;font-size:15px;">SL</div>
+            <div><div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--mid);">SportsLab Editorial</div><div style="font-size:11px;color:var(--border);">Contributor profile coming soon</div></div>
+          </div>
+          <p style="font-size:12px;color:var(--mid);line-height:1.65;margin-bottom:12px;">Author profiles are being set up. Analyst bios and articles will appear here when contributors are onboarded.</p>
+          <a style="font-size:12px;font-weight:700;color:var(--mid);cursor:pointer;" onclick="showPage('authors')">View all authors →</a>
+        </div>
+        <div class="newsletter-widget">
+          <div class="nw-label">Early Access</div>
+          <h3>Join the Waitlist</h3>
+          <p>Be notified when original research and analysis goes live on SportsLab.</p>
+          <input type="email" placeholder="Enter your email" id="articleEmail" />
+          <button onclick="subscribe('articleEmail','articleMsg')">Subscribe →</button>
+          <div style="font-size:11px;color:var(--mid);margin-top:6px;" id="articleMsg"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div><!-- /page-article -->
+
+<!-- ══════════════════════ PAGE: ARCHIVE ══════════════════════ -->
+<div class="page" id="page-archive">
+  <div class="archive-header">
+    <div class="archive-header-inner">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;">Research Archive</div>
+      <h1>All <em style="color:var(--red);font-style:normal;">Studies & Analysis</em></h1>
+      <p>Original studies and research will be published here. The archive will grow as analysts and contributors publish their work.</p>
+      <!-- FILTERS: These will be functional when real articles are added -->
+      <div class="archive-filters">
+        <div class="search-wrap">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" placeholder="Search..." oninput="filterSearch(this.value)" />
+        </div>
+        <button class="filter-chip active" onclick="filterBySport('all')">All Sports</button>
+        <button class="filter-chip" onclick="filterBySport('soccer')">Soccer</button>
+        <button class="filter-chip" onclick="filterBySport('basketball')">Basketball</button>
+        <button class="filter-chip" onclick="filterBySport('nfl')">NFL</button>
+        <button class="filter-chip" onclick="filterBySport('tennis')">Tennis</button>
+      </div>
+      <div class="archive-filters" style="padding-top:0;">
+        <button class="filter-chip active" onclick="filterTopic('all')">All Topics</button>
+        <button class="filter-chip" onclick="filterTopic('tactics')">Tactics</button>
+        <button class="filter-chip" onclick="filterTopic('data')">Data</button>
+        <button class="filter-chip" onclick="filterTopic('scouting')">Scouting</button>
+        <button class="filter-chip" onclick="filterTopic('predictions')">Predictions</button>
+      </div>
+    </div>
+  </div>
+  <div class="archive-inner">
+    <!-- Future real articles go here -->
+    <div style="text-align:center;padding:64px 20px;border:2px dashed var(--border);border-radius:6px;margin-bottom:40px;">
+      <div style="font-size:32px;margin-bottom:16px;">📋</div>
+      <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:10px;">Studies</div>
+      <p style="font-size:14px;color:var(--mid);max-width:420px;margin:0 auto 24px;line-height:1.7;">Original research, tactical breakdowns, data studies, and scouting reports will appear here.</p>
+      <button class="btn-red" onclick="showPage('premium')">Subscribe →</button>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:20px;">Archive Preview · Layout Template</div>
+    <!-- ARCHIVE GRID: Replace these placeholder cards with real articles when published -->
+    <div class="articles-grid">
+      <div class="article-card" data-sport="soccer" data-topic="tactics" data-date="2026-03-05"><div class="card-thumb card-thumb-soccer"><div class="card-thumb-bg-text">SOC</div></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span><span class="tag tag-tactics">Tactics</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="basketball" data-topic="data" data-date="2026-03-03"><div class="card-thumb card-thumb-basketball"><div class="card-thumb-bg-text">NBA</div></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="nfl" data-topic="scouting" data-date="2026-02-15"><div class="card-thumb card-thumb-nfl"><div class="card-thumb-bg-text">NFL</div></div><div class="card-tags"><span class="tag tag-nfl">NFL</span><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="tennis" data-topic="data" data-date="2026-02-10"><div class="card-thumb card-thumb-tennis"><div class="card-thumb-bg-text">TEN</div></div><div class="card-tags"><span class="tag tag-tennis">Tennis</span><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="all" data-topic="data" data-date="2026-03-07"><div class="card-thumb card-thumb-data"><div class="card-thumb-bg-text">DATA</div></div><div class="card-tags"><span class="tag tag-data">Data</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+      <div class="article-card" data-sport="all" data-topic="scouting" data-date="2026-02-20"><div class="card-thumb card-thumb-placeholder"><div class="card-thumb-bg-text">SL</div></div><div class="card-tags"><span class="tag tag-scouting">Scouting</span></div><div class="card-title">Research study</div><div class="card-excerpt">This section will feature original sports analysis and data studies.</div></div>
+    </div>
+  </div>
+</div><!-- /page-archive -->
+
+
+
+<!-- ══════════════════════ PAGE: PREMIUM ══════════════════════ -->
+<!-- PREMIUM PAGE: Replace this entire page with real pricing plans when billing is ready -->
+<div class="page" id="page-premium">
+  <div class="premium-hero">
+    <div class="premium-hero-label">★ Subscription</div>
+    <h1>Subscription<br>Coming Soon</h1>
+    <p>We are preparing premium research, archive access, and exclusive analysis features for SportsLab subscribers.</p>
+    <p class="secondary-text">Join the subscription to be notified when it opens.</p>
+    <!-- WAITLIST FORM: Connect to Mailchimp, ConvertKit, or your email service -->
+    <div class="waitlist-form">
+      <input type="email" placeholder="Your email address" id="premiumEmail" />
+      <button onclick="subscribe('premiumEmail','premiumMsg')">Get Early Access →</button>
+    </div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:10px;" id="premiumMsg"></div>
+    <p style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:6px;font-family:'DM Mono',monospace;">No spam. Unsubscribe anytime.</p>
+  </div>
+  <!-- WHAT'S COMING: Update or remove individual feature cards as plans are confirmed -->
+  <div class="premium-features">
+    <div style="text-align:center;margin-bottom:8px;">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;">What's Coming</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--ink);margin-bottom:10px;">What Subscription will include</h2>
+      <!-- PRICING NOTE: Add actual plan prices here when ready -->
+      <p style="color:var(--mid);font-size:14px;max-width:480px;margin:0 auto;">Pricing plans and feature tiers will be announced at launch. Join the subscription for pricing.</p>
+    </div>
+    <div class="premium-features-grid">
+      <div class="pf-card"><div class="pf-icon">📚</div><div class="pf-title">Full Archive Access</div><div class="pf-desc">Access the complete library of research studies, tactical breakdowns, and data analyses — including all past publications.</div></div>
+      <div class="pf-card"><div class="pf-icon">📊</div><div class="pf-title">Data Models & Tools</div><div class="pf-desc">Interactive shot maps, heat maps, passing networks, and predictive models built from real match data across major leagues.</div></div>
+      <div class="pf-card"><div class="pf-icon">🔔</div><div class="pf-title">Early Access & Alerts</div><div class="pf-desc">Get notified before each new study publishes. Subscribers receive research briefings before public release.</div></div>
+      <div class="pf-card"><div class="pf-icon">🎯</div><div class="pf-title">Match Predictions</div><div class="pf-desc">Data-driven match predictions with probability models, confidence ratings, and full analytical reasoning behind each call.</div></div>
+      <div class="pf-card"><div class="pf-icon">📄</div><div class="pf-title">PDF Downloads</div><div class="pf-desc">Download any research study as a formatted PDF for offline reading, sharing, or reference in your own work.</div></div>
+      <div class="pf-card"><div class="pf-icon">👥</div><div class="pf-title">Analyst Q&As</div><div class="pf-desc">Exclusive access to live Q&A sessions and written responses from SportsLab analysts and contributing researchers.</div></div>
+    </div>
+  </div>
+</div><!-- /page-premium -->
+
+<!-- ══════════════════════ PAGE: ABOUT ══════════════════════ -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <h1>Sports understood<br><span>through data</span></h1>
+    <p>SportsLab is a research-first sports analytics platform in development. We believe the best sports writing is rigorous, data-backed, and honest about uncertainty.</p>
+  </div>
+  <div class="about-body">
+    <div class="about-pull"><p>"Most sports media tells you what happened. We tell you why — and what it means."</p></div>
+    <!-- ABOUT BODY: Update with your real founding story and mission when ready -->
+    <p>SportsLab was founded on the belief that sports fans deserve more than scorelines and hot takes. We are building a platform for analysts who lead with evidence — who treat every match, every season, every transfer window as an opportunity to learn something genuinely new about how sport works.</p>
+    <p>Every article published on SportsLab will go through an editorial review process to ensure it meets our standards for analytical rigor, data transparency, and clear writing. We cite our sources, explain our methodology, and flag uncertainty where it exists.</p>
+    <p>SportsLab will open the platform for qualified analysts to publish their research alongside our editorial team — creating a hub for sports intelligence that rivals academic journals in depth, but reads like the best sports journalism.</p>
+    <div class="values-grid">
+      <div class="value-card"><div class="value-icon">📊</div><div class="value-title">Data-First</div><div class="value-desc">Every claim is supported by evidence. We lead with data and build the narrative from what the numbers tell us.</div></div>
+      <div class="value-card"><div class="value-icon">🎯</div><div class="value-title">Honest Analysis</div><div class="value-desc">We are clear about what we know, what we don't, and where the data runs out. No false certainty.</div></div>
+      <div class="value-card"><div class="value-icon">📚</div><div class="value-title">Research Depth</div><div class="value-desc">We publish long-form studies designed to reward careful reading and repeated reference — not quick takes.</div></div>
+      <div class="value-card"><div class="value-icon">👥</div><div class="value-title">Analyst Community</div><div class="value-desc">We are building a platform where the best sports minds can publish, grow an audience, and earn from their work.</div></div>
+    </div>
+    <div class="about-cta">
+      <h2>Launching soon</h2>
+      <p>Subscribe and be notified when original research goes live and contributor applications open.</p>
+      <div class="about-cta-btns">
+        <button class="btn-red" onclick="showPage('premium')">Subscribe →</button>
+        <button class="btn-white" onclick="showPage('archive')">Preview the Archive</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-about -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Sports<span>Lab</span></div>
+        <!-- FOOTER TAGLINE: Update once you have a finalized platform description -->
+        <p class="footer-tagline">Sports intelligence for the serious fan. Research-driven analysis, tactical breakdowns, and data studies. Launching soon.</p>
+        <div class="footer-socials">
+          <!-- SOCIAL LINKS: Replace with real profile links when accounts are set up -->
+          <div class="footer-social">𝕏</div>
+          <div class="footer-social">in</div>
+          <div class="footer-social">▶</div>
+          <div class="footer-social">@</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Coverage</div>
+        <a onclick="showPage('archive')">Soccer</a>
+        <a onclick="showPage('archive')">Basketball</a>
+        <a onclick="showPage('archive')">NFL</a>
+        <a onclick="showPage('archive')">Tennis</a>
+        <a onclick="showPage('archive')">Formula 1</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a onclick="showPage('archive')">Archive</a>
+        <a onclick="showPage('premium')">Subscription</a>
+        <a onclick="showPage('archive')">Archive</a>
+        <a onclick="showPage('premium')">Subscription</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('about')">Contribute</a>
+        <!-- FOOTER LINKS: Add real URLs for contact, privacy, and terms pages -->
+        <a>Contact</a>
+        <a>Privacy Policy</a>
+        <a>Terms of Use</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <!-- Update copyright year as needed -->
+      <span class="footer-copy">© 2026 SportsLab · All rights reserved · Pre-Launch</span>
+      <div class="footer-legal"><a>Privacy Policy</a><a>Terms of Use</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// PAGE ROUTING
+let currentPage = 'home';
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+  currentPage = page;
+  if (page === 'home') {
+    applyHomeFilters();
+  } else if (page === 'archive') {
+    applyArchiveFilters();
+  }
+}
+
+// WAITLIST / NEWSLETTER SIGNUP
+// TODO: Connect this to a real email service (Mailchimp, ConvertKit, Beehiiv, etc.)
+function subscribe(inputId, msgId) {
+  const val = document.getElementById(inputId)?.value;
+  const msg = document.getElementById(msgId);
+  if (!msg) return;
+  if (val && val.includes('@')) {
+    msg.textContent = "✓ You're on the list! We'll notify you at launch.";
+    msg.style.color = '#22c55e';
+    const input = document.getElementById(inputId);
+    if (input) input.value = '';
+  } else {
+    msg.textContent = 'Please enter a valid email address.';
+    msg.style.color = 'var(--red)';
+  }
+}
+
+// DARK MODE
+function toggleDark() {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  document.getElementById('darkBtn').innerHTML = isDark
+    ? '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+    : '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+}
+
+// SEARCH TOGGLE
+function toggleSearch() {
+  const bar = document.getElementById('searchBar');
+  bar.classList.toggle('open');
+  if (bar.classList.contains('open')) document.getElementById('globalSearch').focus();
+}
+
+// MOBILE MENU
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ARCHIVE FILTERS
+let currentSport = 'all';
+let currentTopic = 'all';
+let currentSearch = '';
+
+function filterBySport(sport) {
+  currentSport = sport;
+  if (currentPage === 'home') {
+    applyHomeFilters();
+  } else if (currentPage === 'archive') {
+    applyArchiveFilters();
+  }
+}
+
+function filterTopic(topic) {
+  currentTopic = topic;
+  updateFilters();
+  applyArchiveFilters();
+}
+
+function filterSearch(query) {
+  currentSearch = query.toLowerCase();
+  applyArchiveFilters();
+}
+
+function updateFilters() {
+  document.querySelectorAll('.archive-filters .filter-chip').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.archive-filters button[onclick="filterBySport('${currentSport}')"]`).classList.add('active');
+  document.querySelector(`.archive-filters button[onclick="filterTopic('${currentTopic}')"]`).classList.add('active');
+}
+
+function applyHomeFilters() {
+  const cards = document.querySelectorAll('#page-home .articles-grid .article-card');
+  const recentDate = new Date();
+  recentDate.setDate(recentDate.getDate() - 14); // 2 weeks ago
+  cards.forEach(card => {
+    const date = new Date(card.dataset.date);
+    const sport = card.dataset.sport;
+    const matchesSport = currentSport === 'all' || sport === currentSport || sport === 'all';
+    const isRecent = date >= recentDate;
+    card.style.display = matchesSport && isRecent ? 'block' : 'none';
+  });
+}
+
+function applyArchiveFilters() {
+  const cards = document.querySelectorAll('#page-archive .articles-grid .article-card');
+  cards.forEach(card => {
+    const sport = card.dataset.sport;
+    const topic = card.dataset.topic;
+    const title = card.querySelector('.card-title').textContent.toLowerCase();
+    const excerpt = card.querySelector('.card-excerpt').textContent.toLowerCase();
+    const matchesSport = currentSport === 'all' || sport === currentSport || sport === 'all';
+    const matchesTopic = currentTopic === 'all' || topic === currentTopic || topic === 'all';
+    const matchesSearch = !currentSearch || title.includes(currentSearch) || excerpt.includes(currentSearch);
+    card.style.display = matchesSport && matchesTopic && matchesSearch ? 'block' : 'none';
+  });
+}
+
+// Initialize
+window.onload = () => {
+  currentPage = 'home';
+  applyHomeFilters();
+};
+</script>
+</body>
+</html>
