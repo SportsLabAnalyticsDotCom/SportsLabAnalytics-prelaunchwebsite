@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SportsLab Analytics - Back Navigation Solution</title>
+<style>
+/* Back Navigation Styling */
+.back-nav {
+  position: relative;
+  margin: 0 0 24px 0;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border, #e2ddd6);
+}
+
+.back-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.back-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid var(--border, #e2ddd6);
+  border-radius: 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid, #6b6b6b);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: var(--red, #dc2626);
+  color: #fff;
+  border-color: var(--red, #dc2626);
+}
+
+.back-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-link {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid, #6b6b6b);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--red, #dc2626);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .back-nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .nav-links {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- SOLUTION: BACK NAVIGATION HTML -->
+<!-- Place this right after <div class="article-page"> in your article files -->
+<div class="back-nav">
+  <div class="back-nav-inner">
+    <div class="back-nav-left">
+      <a href="#" class="back-btn" id="smartBackBtn">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back
+      </a>
+    </div>
+    
+    <div class="nav-links">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../archive.html" class="nav-link">Archive</a>
+      <a href="../" class="nav-link">Articles</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTION: JAVASCRIPT -->
+<!-- Place this right before </body> in your article files -->
+<script>
+// Smart Back Navigation for Static SportsLab Site
+document.addEventListener('DOMContentLoaded', function() {
+  const backBtn = document.getElementById('smartBackBtn');
+  
+  if (backBtn) {
+    backBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Check if there's browser history and the previous page was from our site
+      if (window.history.length > 1) {
+        // Try to go back - this will work if user came from another page on our site
+        window.history.back();
+        
+        // Fallback: if back doesn't work after a short delay, redirect to home
+        setTimeout(function() {
+          // Check if we're still on the same page (back didn't work)
+          if (document.referrer === '' || !document.referrer.includes(window.location.hostname)) {
+            window.location.href = '../index.html';
+          }
+        }, 100);
+      } else {
+        // No history or came from external source, go to home
+        window.location.href = '../index.html';
+      }
+    });
+  }
+});
+</script>
+
+</body>
+</html>

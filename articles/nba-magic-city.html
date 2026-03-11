@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NBA cancels Atlanta Hawks' planned Magic City promotion — SportsLab Analytics">
+<title>NBA cancels Atlanta Hawks' planned Magic City promotion — SportsLab Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+:root {
+  --bg: #faf9f6; --bg2: #f0ede6; --ink: #0f0f0f; --ink2: #3a3a3a;
+  --mid: #6b6b6b; --border: #e2ddd6; --red: #dc2626; --red-dark: #b91c1c;
+  --white: #ffffff; --dark: #111111; --dark2: #1a1a1a; --dark3: #242424; --gold: #f5c842;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+body.dark-mode { --bg: #0f0f0f; --bg2: #1a1a1a; --ink: #f0ede6; --ink2: #c8c4bc; --mid: #8a8a8a; --border: #2a2a2a; --white: #1e1e1e; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 2px solid var(--ink); transition: background 0.3s; }
+.nav-top { max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--ink); display: flex; align-items: baseline; cursor: pointer; }
+.logo span { color: var(--red); }
+.logo-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--mid); margin-left: 8px; text-transform: uppercase; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-icon { background: none; border: none; padding: 8px; color: var(--mid); transition: color 0.2s; display: flex; }
+.btn-icon:hover { color: var(--ink); }
+
+/* ARTICLE TEMPLATE */
+.article-page { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-bottom: 24px; }
+.breadcrumb a { color: var(--mid); cursor: pointer; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { color: var(--border); }
+.article-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
+.article-lead { font-size: 17px; color: var(--mid); line-height: 1.7; border-left: 4px solid var(--border); padding-left: 20px; margin-bottom: 24px; }
+.article-byline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+.byline-author { display: flex; align-items: center; gap: 12px; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--bg2); border: 2px solid var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+.byline-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.byline-role { font-size: 11px; color: var(--mid); font-family: 'DM Mono', monospace; }
+.byline-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); display: flex; gap: 16px; }
+.share-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.2s; }
+.share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.art-section { padding: 0 0 18px 0; margin-bottom: 12px; }
+.art-section h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 10px; font-style: italic; }
+.art-section p { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 16px; }
+.art-section ul { margin-left: 20px; margin-bottom: 16px; }
+.art-section li { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 4px; }
+.art-section img { width: 100%; border-radius: 4px; margin: 20px 0; }
+.article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); }
+.article-tag { font-family: 'DM Mono', monospace; font-size: 11px; padding: 5px 12px; background: var(--bg2); border: 1px solid var(--border); color: var(--mid); border-radius: 2px; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .article-page { padding: 20px; }
+  .article-title { font-size: 28px; }
+  .byline-info { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-top">
+    <a class="logo" href="../index.html">Sports<span>Lab</span><span class="logo-tag">Analytics</span></a>
+    <div class="nav-actions">
+      <button class="btn-icon" onclick="window.history.back()" title="Back">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ARTICLE PAGE -->
+<div class="article-page">
+  
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../index.html">← Back to SportsLab</a>
+    <span>/</span>
+    <span>Basketball</span>
+  </div>
+  
+  <!-- CATEGORY -->
+  <div class="article-category">Basketball</div>
+  
+  <!-- TITLE -->
+  <h1 class="article-title">NBA cancels Atlanta Hawks' planned Magic City promotion</h1>
+  
+  <!-- LEAD -->
+  <p class="article-lead">The NBA has stepped in and cancelled the Atlanta Hawks' plans for a Magic City promotion night on March 16.</p>
+  
+  <!-- BYLINE -->
+  <div class="article-byline">
+    <div class="byline-author">
+      <div class="avatar">KH</div>
+      <div>
+        <div class="byline-name">Kurt Helin</div>
+        <div class="byline-role">Contributor</div>
+      </div>
+    </div>
+    <div class="byline-info">
+      <span>March 9th 2026</span>
+      <span>1 minute</span>
+    </div>
+    <button class="share-btn">Share</button>
+  </div>
+  
+  <!-- ARTICLE BODY -->
+  <div class="art-section">
+    <h2>The Controversial Promotion</h2>
+    <p>The Hawks described Magic City as an "iconic cultural institution" — and it is that, having been around for 40 years — but Magic City is better known as a legendary strip club, one that has been central to the city's hip-hop scene for decades.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>NBA's Intervention</h2>
+    <p>"When we became aware of the Atlanta Hawks' scheduled promotion, we reached out to Hawks leadership to better understand their plans and rationale," NBA Commissioner Adam Silver said. "While we appreciate the team's perspective and their desire to move forward, we have heard significant concerns from a broad array of league stakeholders, including fans, partners and employees. I believe canceling this promotion is the right decision for the broader NBA community."</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Hawks' Response</h2>
+    <p>"While we are very disappointed in the NBA's decision to cancel our Magic City Night promotion, we fully respect their decision," the Hawks said in a statement. "As a franchise, we remain committed to celebrating the best of Atlanta — with authenticity — in ways that continue to unite and bring us all together."</p>
+  </div>
+
+  <div class="art-section">
+    <h2>What Atlanta Wanted to Celebrate</h2>
+    <p>What Atlanta wanted to celebrate was the unity that the Magic City brings to some in Atlanta. It is a place where T.I., Migos, Jermaine Dupri, 2 Chainz, Killer Mike, Big Boi, Future and many others got a big break by having their music played at the club. It is also famed for its lemon-pepper wings, which were going to be served at the game.</p>
+    <p>However, there was pushback from some players publicly, and other league stakeholders privately.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>What's Still Happening</h2>
+    <p>Some of that will still be available at the March 16 game, including wings, the team announced. Also, Legendary rapper and 'King of the South' T.I. will perform at halftime as previously scheduled.</p>
+  </div>
+  
+  <!-- TAGS -->
+  <div class="article-tags">
+    <span class="article-tag">#basketball</span>
+    <span class="article-tag">#nba</span>
+    <span class="article-tag">#atlanta-hawks</span>
+    <span class="article-tag">#sports-business</span>
+  </div>
+  
+</div>
+
+</body>
+</html>
