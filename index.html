@@ -148,6 +148,19 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 .archive-inner .card-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; line-height: 1.2; }
 .archive-inner .card-excerpt { font-size: 11px; line-height: 1.4; margin-bottom: 6px; opacity: 0.8; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
+/* FEATURED HERO ARTICLE */
+.featured-hero { max-width: 1280px; margin: 0 auto; padding: 40px 32px; border-bottom: 1px solid var(--border); }
+.featured-hero-content { display: grid; grid-template-columns: 1fr 450px; gap: 50px; align-items: start; }
+.featured-hero-left { min-width: 0; }
+.featured-hero-right { width: 450px; height: 450px; border-radius: 4px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; }
+.featured-hero-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; line-height: 1.2; color: var(--ink); margin-bottom: 16px; }
+.featured-hero-summary { font-size: 18px; color: var(--mid); line-height: 1.6; margin-bottom: 24px; }
+.featured-hero-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.featured-hero-author { display: flex; align-items: center; gap: 12px; }
+.featured-hero-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.featured-hero-role { font-size: 11px; color: var(--mid); font-family: 'DM Mono', monospace; }
+.featured-hero-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); }
+
 /* TRENDING */
 .trending-item { display: flex; gap: 20px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--border); }
 .trending-item:last-child { border-bottom: none; }
@@ -490,6 +503,37 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
           <span class="sport-pill">Formula 1</span>
         </div>
         <button class="btn-red" onclick="showPage('premium')" style="margin-top:8px;">Join the Newsletter →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED HERO ARTICLE -->
+  <div class="section">
+    <div class="featured-hero">
+      <div class="featured-hero-content">
+        <div class="featured-hero-left">
+          <div class="tags-row">
+            <span class="tag tag-soccer">Soccer</span>
+            <span class="tag-time">Analysis</span>
+          </div>
+          <h1 class="featured-hero-title">Largest sponsorship deals in soccer</h1>
+          <p class="featured-hero-summary">A short look at the biggest sponsorship deals in soccer and why modern sponsorship goes far beyond simple logo placement.</p>
+          <div class="featured-hero-meta">
+            <div class="featured-hero-author">
+              <div class="avatar">JF</div>
+              <div>
+                <div class="featured-hero-name">Joao Freitas</div>
+                <div class="featured-hero-role">Contributor</div>
+              </div>
+            </div>
+            <div class="featured-hero-info">March 3, 2026 · Less than a minute</div>
+            <button class="btn-red" onclick="openArticle()" style="margin-left:auto;">Read Analysis →</button>
+          </div>
+        </div>
+        <div class="featured-hero-right">
+          <img src="images/world-cup-sponsors.png" alt="Largest sponsorship deals in soccer" style="width:100%;height:100%;object-fit:cover;border-radius:4px;">
+          <img src="images/highestpaidathletes.png" alt="Highest paid athletes" style="width:100%;height:100%;object-fit:cover;border-radius:4px;">
+        </div>
       </div>
     </div>
   </div>
