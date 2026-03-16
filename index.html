@@ -175,7 +175,8 @@ body.dark-mode .section { background: var(--bg); }
 .featured-hero { max-width: 1280px; margin: 0 auto; padding: 48px 32px 56px; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); }
 .featured-hero-content { display: grid; grid-template-columns: 1fr 480px; gap: 60px; align-items: center; }
 .featured-hero-left { min-width: 0; }
-.featured-hero-right { width: 480px; height: 480px; border-radius: 8px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.featured-hero-right { width: 480px; height: 480px; border-radius: 8px; overflow: hidden; }
+.featured-hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .featured-hero-title { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; line-height: 1.2; color: var(--ink); margin-bottom: 20px; letter-spacing: -1px; }
 .featured-hero-summary { font-size: 19px; color: var(--mid); line-height: 1.6; margin-bottom: 28px; font-weight: 400; }
 .featured-hero-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
@@ -403,7 +404,18 @@ footer { background: var(--dark); color: #fff; margin-top: 80px; }
 .footer-legal a { font-size: 12px; color: #666; cursor: pointer; transition: color 0.3s; }
 .footer-legal a:hover { color: #999; }
 
-/* ENHANCED MOBILE RESPONSIVE */
+/* TABLET STYLES */
+@media (max-width: 1024px) {
+  .featured-hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .featured-hero-right { 
+    width: 100%; 
+    max-width: 400px; 
+    height: auto; 
+    aspect-ratio: 16/9;
+    margin: 0 auto;
+  }
+  .featured-hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+}
 @media (max-width: 768px) {
   /* NAVIGATION */
   .nav-top { padding: 0 20px; height: 56px; }
@@ -438,7 +450,18 @@ footer { background: var(--dark); color: #fff; margin-top: 80px; }
   /* FEATURED HERO */
   .featured-hero { padding: 32px 20px; }
   .featured-hero-content { grid-template-columns: 1fr; gap: 32px; }
-  .featured-hero-right { display: none; }
+  .featured-hero-right { 
+    width: 100%; 
+    max-width: 400px; 
+    height: auto; 
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 12px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+  }
   .featured-hero-title { font-size: 28px; }
   
   /* SECTIONS */
@@ -792,7 +815,6 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         </div>
         <div class="featured-hero-right">
           <img src="images/world-cup-sponsors.png" alt="Largest sponsorship deals in soccer" style="width:100%;height:100%;object-fit:cover;border-radius:4px;">
-          <img src="images/highestpaidathletes.png" alt="Highest paid athletes" style="width:100%;height:100%;object-fit:cover;border-radius:4px;">
         </div>
       </div>
     </div>
@@ -937,6 +959,9 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <img src="images/world-cup-sponsors.png" alt="Largest sponsorship deals in soccer" style="width:100%;border-radius:4px;margin:12px 0 20px 0;object-fit:cover;max-height:420px;">
         <h1 class="article-title">Largest sponsorship deals in soccer</h1>
         <p class="article-lead">A quick look at the biggest sponsorship deals in soccer, the commercial power of global events, and why sponsorship is now about far more than logo placement.</p>
+        <div style="margin:24px 0;">
+          <img src="images/highestpaidathletes.png" alt="Highest paid athletes comparison" style="width:100%;max-height:300px;object-fit:cover;border-radius:4px;margin-bottom:16px;">
+        </div>
         <div class="article-byline">
           <div class="byline-author">
             <div class="avatar">JF</div>
