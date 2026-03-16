@@ -27,20 +27,24 @@ button { cursor: pointer; font-family: inherit; }
 /* PRE-LAUNCH BANNER */
 .prelaunch-banner {
   background: var(--ink); color: #fff; text-align: center;
-  padding: 9px 20px; font-family: 'DM Mono', monospace; font-size: 11px;
-  letter-spacing: 0.05em; display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 8px 24px; font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.08em; display: flex; align-items: center; justify-content: center; gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.prelaunch-banner .bdot { color: var(--gold); font-size: 8px; }
+.prelaunch-banner .bdot { 
+  color: var(--gold); font-size: 7px; 
+  display: inline-block; transform: translateY(-1px);
+}
 .prelaunch-banner a { color: var(--gold); font-weight: 600; text-decoration: underline; cursor: pointer; }
 body.dark-mode .prelaunch-banner { background: var(--dark); color: #fff; }
 body.dark-mode .prelaunch-banner .bdot { color: var(--gold); }
 body.dark-mode .prelaunch-banner a { color: var(--gold); }
 
 /* TICKER */
-.ticker { background: var(--dark); overflow: hidden; padding: 6px 0; border-bottom: 1px solid var(--border); }
-.ticker-inner { display: flex; white-space: nowrap; animation: tick 50s linear infinite; width: max-content; }
-.ticker-inner span { padding: 0 36px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); }
-.ticker-inner .dot { color: var(--red); margin-right: 6px; }
+.ticker { background: var(--dark); overflow: hidden; padding: 5px 0; border-bottom: 1px solid var(--border); }
+.ticker-inner { display: flex; white-space: nowrap; animation: tick 35s linear infinite; width: max-content; }
+.ticker-inner span { padding: 0 32px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid); }
+.ticker-inner .dot { color: var(--red); margin-right: 6px; display: inline-block; transform: translateY(-1px); }
 body.dark-mode .ticker { background: var(--dark2); border-bottom: 1px solid var(--border); }
 body.dark-mode .ticker-inner span { color: var(--mid); }
 @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -60,8 +64,8 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 .nav-actions { display: flex; align-items: center; gap: 8px; }
 .btn-icon { background: none; border: none; padding: 8px; color: var(--mid); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; cursor: pointer; }
 .btn-icon:hover { color: var(--ink); transform: scale(1.1); }
-/* BUTTON 7: "Join the Newsletter" — update text to "Subscribe" when billing is live */
-.btn-subscribe { background: var(--ink); color: var(--bg); border: none; padding: 9px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; border-radius: 2px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+/* BUTTON 7: "Get Updates" — newsletter signup */
+.btn-subscribe { background: var(--ink); color: var(--bg); border: none; padding: 10px 22px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; border-radius: 2px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; white-space: nowrap; }
 .btn-subscribe:hover { background: var(--red); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 .hamburger { display: none; background: none; border: none; color: var(--ink); padding: 8px; }
 .nav-secondary { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 0; border-top: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
@@ -70,10 +74,10 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 .nav-secondary a:hover { color: var(--ink); border-bottom-color: var(--red); }
 
 /* SEARCH */
-.search-bar { display: none; background: var(--bg2); border-bottom: 1px solid var(--border); }
-.search-bar.open { display: block; }
-.search-bar input { width: 100%; padding: 14px 32px; background: transparent; border: none; outline: none; font-size: 15px; color: var(--ink); font-family: 'DM Sans', sans-serif; }
-.search-bar input::placeholder { color: var(--mid); }
+.search-bar { display: none; background: var(--bg2); border-bottom: 1px solid var(--border); opacity: 0; transform: translateY(-10px); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.search-bar.open { display: block; opacity: 1; transform: translateY(0); }
+.search-bar input { width: 100%; padding: 16px 32px; background: transparent; border: none; outline: none; font-size: 15px; color: var(--ink); font-family: 'DM Sans', sans-serif; }
+.search-bar input::placeholder { color: var(--mid); opacity: 0.6; }
 
 /* MOBILE MENU */
 .mobile-menu { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 300; padding: 24px; flex-direction: column; gap: 2px; overflow-y: auto; }
@@ -165,7 +169,7 @@ body.dark-mode .section { background: var(--bg); }
 .archive-inner .card-thumb-bg-text { font-size: 24px; bottom: -4px; right: 4px; }
 .archive-inner .card-tags { margin-bottom: 6px; }
 .archive-inner .card-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; line-height: 1.2; }
-.archive-inner .card-excerpt { font-size: 11px; line-height: 1.4; margin-bottom: 6px; opacity: 0.8; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.archive-inner .card-excerpt { font-size: 11px; line-height: 1.4; margin-bottom: 6px; opacity: 0.8; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-clamp: 2; }
 
 /* FEATURED HERO ARTICLE */
 .featured-hero { max-width: 1280px; margin: 0 auto; padding: 48px 32px 56px; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); }
@@ -299,37 +303,37 @@ body.dark-mode .article-page { background: var(--bg); }
 .pf-card { border: 1.5px solid var(--border); border-radius: 6px; padding: 28px; background: var(--bg); }
 .pf-icon { font-size: 26px; margin-bottom: 14px; }
 
-/* CONTRIBUTE PAGE */
-.contribute-hero { background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); padding: 80px 32px 60px; text-align: center; border-bottom: 2px solid var(--ink); }
-.contribute-label { display: inline-flex; align-items: center; gap: 6px; background: rgba(220, 38, 38, 0.08); color: var(--red); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
-.contribute-hero h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: var(--ink); line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
-.contribute-hero p { font-size: 18px; color: var(--mid); max-width: 600px; margin: 0 auto 32px; line-height: 1.7; font-weight: 400; }
-.contribute-content { max-width: 1280px; margin: 0 auto; padding: 64px 32px; }
-.contribute-intro { text-align: center; margin-bottom: 64px; }
-.contribute-intro h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.5px; }
-.contribute-intro p { font-size: 17px; color: var(--mid); max-width: 680px; margin: 0 auto 24px; line-height: 1.7; }
+/* CONTRIBUTE PAGE INTRO */
+.contribute-hero { background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); padding: 88px 32px 72px; text-align: center; border-bottom: 2px solid var(--ink); }
+.contribute-label { display: inline-flex; align-items: center; gap: 6px; background: rgba(220, 38, 38, 0.08); color: var(--red); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
+.contribute-hero h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: var(--ink); line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px; }
+.contribute-hero p { font-size: 18px; color: var(--mid); max-width: 620px; margin: 0 auto 40px; line-height: 1.7; font-weight: 400; }
+.contribute-content { max-width: 1280px; margin: 0 auto; padding: 72px 32px; }
+.contribute-intro { text-align: center; margin-bottom: 72px; }
+.contribute-intro h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--ink); margin-bottom: 20px; letter-spacing: -0.5px; }
+.contribute-intro p { font-size: 17px; color: var(--mid); max-width: 680px; margin: 0 auto 32px; line-height: 1.7; }
 
 /* CONTRIBUTE FORM */
-.contribute-form { max-width: 680px; margin: 0 auto; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 48px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.form-group { margin-bottom: 32px; position: relative; }
-.form-label { display: block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; font-weight: 600; transition: color 0.3s; }
+.contribute-form { max-width: 680px; margin: 0 auto; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 56px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 36px; position: relative; }
+.form-label { display: block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; font-weight: 600; transition: color 0.3s; }
 .form-label .optional { color: var(--mid); font-weight: 400; }
-.form-input, .form-select, .form-textarea { width: 100%; padding: 16px 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--ink); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 18px 22px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--ink); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.06); transform: translateY(-1px); }
 .form-input:hover, .form-select:hover, .form-textarea:hover { border-color: rgba(220, 38, 38, 0.2); }
 .form-input::placeholder, .form-textarea::placeholder { color: var(--mid); opacity: 0.35; transition: opacity 0.3s; }
 .form-input:focus::placeholder, .form-textarea:focus::placeholder { opacity: 0.25; }
-.form-textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-.form-submit { background: var(--ink); color: var(--bg); border: none; padding: 18px 32px; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; border-radius: 6px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; position: relative; overflow: hidden; margin-top: 8px; }
+.form-textarea { resize: vertical; min-height: 150px; line-height: 1.6; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.form-submit { background: var(--ink); color: var(--bg); border: none; padding: 20px 36px; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; border-radius: 6px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; position: relative; overflow: hidden; margin-top: 12px; }
 .form-submit:hover { background: var(--red); transform: translateY(-1px); box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15); }
 .form-submit:active { transform: translateY(0); }
 .form-submit.loading { color: transparent; pointer-events: none; }
 .form-submit.loading::after { content: ''; position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; margin: -10px 0 0 -10px; border: 2px solid var(--bg); border-radius: 50%; border-top-color: transparent; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.form-help { font-size: 12px; color: var(--mid); margin-top: 8px; line-height: 1.6; transition: color 0.3s; }
+.form-help { font-size: 12px; color: var(--mid); margin-top: 10px; line-height: 1.6; transition: color 0.3s; }
 .form-group:hover .form-help { color: var(--ink); }
-.form-message { margin-top: 24px; padding: 18px 22px; border-radius: 6px; font-size: 13px; display: none; animation: messageSlide 0.3s ease-out; }
+.form-message { margin-top: 28px; padding: 18px 22px; border-radius: 6px; font-size: 13px; display: none; animation: messageSlide 0.3s ease-out; }
 @keyframes messageSlide { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 .form-message.success { background: rgba(34, 197, 94, 0.04); color: #16a34a; border: 1px solid rgba(34, 197, 94, 0.15); }
 .form-message.error { background: rgba(220, 38, 38, 0.04); color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.15); }
@@ -405,6 +409,19 @@ footer { background: var(--dark); color: #fff; margin-top: 80px; }
   .nav-top { padding: 0 20px; height: 56px; }
   .logo { font-size: 22px; }
   
+  /* ANNOUNCEMENT BANNER */
+  .prelaunch-banner { padding: 6px 20px; font-size: 9px; gap: 8px; }
+  .prelaunch-banner .bdot { font-size: 6px; }
+  
+  /* TICKER */
+  .ticker { padding: 4px 0; }
+  .ticker-inner { animation: tick 25s linear infinite; }
+  .ticker-inner span { padding: 0 24px; font-size: 9px; }
+  .ticker-inner .dot { margin-right: 4px; }
+  
+  /* MOBILE BUTTONS */
+  .btn-subscribe { padding: 8px 16px; font-size: 11px; }
+  
   /* HERO SECTION */
   .hero-inner { padding: 32px 20px; }
   .hero-title { font-size: 32px; line-height: 1.1; }
@@ -458,13 +475,37 @@ footer { background: var(--dark); color: #fff; margin-top: 80px; }
   .nav-top { padding: 0 16px; height: 52px; }
   .logo { font-size: 20px; }
   
+  /* ANNOUNCEMENT BANNER */
+  .prelaunch-banner { padding: 5px 16px; font-size: 8px; gap: 6px; }
+  .prelaunch-banner .bdot { font-size: 5px; }
+  
+  /* TICKER */
+  .ticker { padding: 3px 0; }
+  .ticker-inner { animation: tick 20s linear infinite; }
+  .ticker-inner span { padding: 0 20px; font-size: 8px; }
+  .ticker-inner .dot { margin-right: 3px; }
+  
+  /* MOBILE BUTTONS */
+  .btn-subscribe { padding: 7px 14px; font-size: 10px; }
+  
+  /* CONTRIBUTE FORM MOBILE */
+  .contribute-form { padding: 32px 24px; }
+  .form-group { margin-bottom: 28px; }
+  .form-input, .form-select, .form-textarea { padding: 14px 18px; font-size: 14px; }
+  .form-textarea { min-height: 120px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .form-submit { padding: 16px 24px; font-size: 13px; }
+  
+  /* EXTRA SMALL HERO */
   .hero-inner { padding: 24px 16px; }
   .hero-title { font-size: 28px; }
   .hero-excerpt { font-size: 14px; }
   
+  /* EXTRA SMALL SECTIONS */
   .section { padding: 32px 16px; }
   .articles-grid { gap: 20px; }
   
+  /* EXTRA SMALL CARDS */
   .card-thumb { aspect-ratio: 16/12; padding: 8px; }
   .card-title { font-size: 15px; }
   .card-excerpt { font-size: 13px; }
@@ -1266,7 +1307,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
 <div class="page" id="page-premium">
   <div class="premium-hero">
     <div class="premium-hero-label">★ Updates</div>
-    <h1>Get SportsLab Article Updates</h1>
+    <h1>Get SportsLab Updates</h1>
     <p>Receive new articles, original studies, and research updates by email.</p>
     <p class="secondary-text">Join our newsletter to get research-driven sports analysis, tactical breakdowns, and selected platform updates delivered to your inbox.</p>
     <!-- WAITLIST FORM: Connect to Mailchimp, ConvertKit, or your email service -->
@@ -1274,7 +1315,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <label for="premiumEmail" style="display:block;font-size:13px;font-weight:600;color:#fff;margin-bottom:10px;">Email address</label>
       <div class="waitlist-form" style="flex-direction:column;align-items:center;gap:0;">
         <input type="email" placeholder="Enter your email" id="premiumEmail" style="width:100%;border-radius:2px;" />
-        <button onclick="subscribe('premiumEmail','premiumMsg')" style="width:100%;border-radius:2px;margin-top:10px;">Get Updates</button>
+        <button onclick="subscribe('premiumEmail','premiumMsg')" style="width:100%;border-radius:2px;margin-top:10px;">Subscribe to Updates</button>
       </div>
       <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:10px;text-align:center;" id="premiumMsg"></div>
       <p style="font-size:12px;color:#fff;margin-top:12px;text-align:center;font-family:'DM Mono',monospace;">No spam. Only thoughtful sports analysis and important updates.</p>
@@ -1328,9 +1369,9 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     </div>
     <div class="about-cta">
       <h2>Launching soon</h2>
-      <p>Join the newsletter and be notified when original research goes live and contributor applications open.</p>
+      <p>Subscribe to our newsletter and be notified when original research goes live and contributor applications open.</p>
       <div class="about-cta-btns">
-        <button class="btn-red" onclick="showPage('premium')">Join the Newsletter →</button>
+        <button class="btn-red" onclick="showPage('premium')">Subscribe to Newsletter →</button>
         <button class="btn-white" onclick="showPage('archive')">Preview the Archive</button>
       </div>
     </div>
@@ -1443,7 +1484,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
   
   <div class="contribute-content">
     <div class="contribute-intro">
-      <h2>Join our community of contributors</h2>
+      <h2>Join our contributor community</h2>
       <p>SportsLab is building a home for thoughtful sports analysis and original research. We work with writers, analysts, and researchers who bring unique perspectives to the world of sports.</p>
     </div>
     
@@ -1564,7 +1605,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <div class="footer-col">
         <div class="footer-col-title">Platform</div>
         <a onclick="showPage('archive')">Archive</a>
-        <a onclick="showPage('premium')">Join</a>
+        <a onclick="showPage('premium')">Subscribe</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
