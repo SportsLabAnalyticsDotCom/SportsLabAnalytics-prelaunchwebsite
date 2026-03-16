@@ -31,30 +31,31 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 .btn-icon:hover { color: var(--ink); }
 
 /* ARTICLE TEMPLATE */
-.article-page { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
-.breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-bottom: 24px; }
-.breadcrumb a { color: var(--mid); cursor: pointer; }
+.article-page { max-width: 1280px; margin: 0 auto; padding: 48px 32px 64px; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-bottom: 28px; transition: color 0.3s; }
+.breadcrumb a { color: var(--mid); cursor: pointer; transition: color 0.3s; }
 .breadcrumb a:hover { color: var(--red); }
 .breadcrumb span { color: var(--border); }
-.article-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
-.article-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
-.article-lead { font-size: 17px; color: var(--mid); line-height: 1.7; border-left: 4px solid var(--border); padding-left: 20px; margin-bottom: 24px; }
-.article-byline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 36px; }
-.byline-author { display: flex; align-items: center; gap: 12px; }
-.avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--bg2); border: 2px solid var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
-.byline-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+.article-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; font-weight: 600; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 20px; letter-spacing: -1px; }
+.article-lead { font-size: 18px; color: var(--mid); line-height: 1.7; border-left: 4px solid var(--red); padding-left: 24px; margin-bottom: 32px; font-weight: 400; }
+.article-byline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+.byline-author { display: flex; align-items: center; gap: 14px; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--bg2); border: 2px solid var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; transition: all 0.3s; }
+.byline-name { font-size: 15px; font-weight: 600; color: var(--ink); }
 .byline-role { font-size: 11px; color: var(--mid); font-family: 'DM Mono', monospace; }
 .byline-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); display: flex; gap: 16px; }
-.share-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.2s; }
-.share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
-.art-section { padding: 0 0 18px 0; margin-bottom: 12px; }
-.art-section h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 10px; font-style: italic; }
-.art-section p { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 16px; }
-.art-section ul { margin-left: 20px; margin-bottom: 16px; }
-.art-section li { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 4px; }
-.art-section img { width: 100%; border-radius: 4px; margin: 20px 0; }
-.article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); }
-.article-tag { font-family: 'DM Mono', monospace; font-size: 11px; padding: 5px 12px; background: var(--bg2); border: 1px solid var(--border); color: var(--mid); border-radius: 2px; }
+.share-btn { padding: 8px 16px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+.share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); transform: translateY(-1px); }
+.art-section { padding: 0 0 32px 0; margin-bottom: 24px; }
+.art-section h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 16px; font-style: italic; letter-spacing: -0.5px; }
+.art-section p { font-size: 16px; color: var(--mid); line-height: 1.7; margin-bottom: 20px; }
+.art-section ul { margin-left: 24px; margin-bottom: 20px; }
+.art-section li { font-size: 16px; color: var(--mid); line-height: 1.7; margin-bottom: 8px; }
+.art-section img { width: 100%; border-radius: 8px; margin: 24px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.article-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+.article-tag { font-family: 'DM Mono', monospace; font-size: 11px; padding: 6px 14px; background: var(--bg2); border: 1px solid var(--border); color: var(--mid); border-radius: 2px; transition: all 0.3s; cursor: pointer; }
+.article-tag:hover { background: var(--bg); border-color: var(--red); color: var(--red); }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -70,11 +71,6 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 <nav>
   <div class="nav-top">
     <a class="logo" href="../index.html">Sports<span>Lab</span><span class="logo-tag">Analytics</span></a>
-    <div class="nav-actions">
-      <button class="btn-icon" onclick="window.history.back()" title="Back">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      </button>
-    </div>
   </div>
 </nav>
 
@@ -136,9 +132,6 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
     </ul>
     <p>These deals are about long-term security for clubs and enduring visibility for brands, creating partnerships that extend far beyond the shirt.</p>
   </div>
-  
-  <!-- SUPPORTING IMAGE -->
-  <img src="../images/premier-league-sponsors.png" alt="Athlete sponsorship examples" style="width:100%;border-radius:4px;margin:20px 0;object-fit:cover;max-height:420px;">
   
   <div class="art-section">
     <h2>The power of the athletes</h2>
