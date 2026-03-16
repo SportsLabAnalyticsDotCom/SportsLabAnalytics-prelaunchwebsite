@@ -563,6 +563,21 @@ footer { background: var(--dark); color: #fff; margin-top: 80px; }
   .newsletter-widget h3 { font-size: 16px; margin-bottom: 8px; }
   .newsletter-widget input { padding: 12px 14px; }
   .newsletter-widget button { padding: 12px; }
+  
+  /* SEARCH RESULTS PAGE STYLES */
+.page-search #searchBar {
+  display: none;
+}
+
+/* SEARCH RESULTS MOBILE */
+  .archive-header h1 { font-size: 28px !important; }
+  .archive-header p { font-size: 14px !important; }
+  .archive-inner > div:first-child { font-size: 24px !important; }
+  .archive-inner > p { font-size: 14px !important; margin: 0 auto 24px !important; }
+  #noResultsMessage { padding: 60px 20px !important; }
+  #noResultsMessage div:first-child { font-size: 28px !important; }
+  #noResultsMessage p { font-size: 15px !important; }
+  #noResultsMessage button { font-size: 13px !important; padding: 10px 20px !important; }
 }
 .nav-links a.active { font-weight: bold; color: var(--ink); }
 .nav-secondary a.active { font-weight: bold; color: var(--ink); border-bottom-color: var(--red); }
@@ -635,7 +650,10 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
 </nav>
 
 <div class="search-bar" id="searchBar">
-  <input type="text" placeholder="Search coming soon..." id="globalSearch" />
+  <form onsubmit="performSearch(event)">
+    <input type="text" placeholder="Search articles..." id="globalSearch" />
+    <button type="submit" style="display: none;">Search</button>
+  </form>
 </div>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -1490,6 +1508,35 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
   </div>
 </div><!-- /page-contribute -->
 
+<!-- ════════════════════ PAGE: SEARCH RESULTS ══════════════════════ -->
+<div class="page" id="page-search">
+  <div class="archive-header">
+    <div class="archive-header-inner">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;">Search Results</div>
+      <h1 style="font-size:36px;margin-bottom:12px;">Results for "<span id="searchQuery" style="color:var(--red);font-style:normal;"></span>"</h1>
+      <p id="searchResultsCount" style="font-size:15px;color:var(--mid);max-width:500px;margin:0 auto;line-height:1.6;"></p>
+    </div>
+  </div>
+  <div class="section archive-inner" style="padding-top:48px;">
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--ink);margin-bottom:16px;">Articles</div>
+    <p id="searchInstructions" style="font-size:15px;color:var(--mid);max-width:500px;margin:0 auto 32px;line-height:1.6;">Search through article titles, excerpts, and sports categories.</p>
+    <!-- SEARCH RESULTS GRID: Results will be populated here by JavaScript -->
+    <div class="articles-grid" id="searchResultsGrid" style="margin-top:32px;">
+      <!-- Results will be dynamically inserted here -->
+    </div>
+    <div id="noResultsMessage" style="text-align:center;padding:80px 20px;display:none;">
+      <div style="max-width:450px;margin:0 auto;">
+        <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--mid);margin-bottom:20px;line-height:1.2;">No results found</div>
+        <p style="font-size:16px;color:var(--mid);line-height:1.6;margin-bottom:32px;">We couldn't find any articles matching "<span id="noResultsQuery" style="color:var(--red);font-style:italic;"></span>". Try different keywords or browse our archive.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-red" onclick="showPage('archive')" style="margin:0;font-size:14px;padding:12px 24px;">Browse Archive</button>
+          <button class="btn-subscribe" onclick="showPage('premium')" style="margin:0;font-size:14px;padding:12px 24px;">Get Updates</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1557,6 +1604,33 @@ function showPage(page) {
   } else {
     navSecondary.style.display = 'flex';
   }
+  
+  // Handle search bar visibility and state
+  const searchBar = document.getElementById('searchBar');
+  const globalSearch = document.getElementById('globalSearch');
+  
+  if (page === 'search') {
+    // Hide search bar on search results page and clear input
+    if (searchBar) {
+      searchBar.style.display = 'none';
+    }
+    if (globalSearch) {
+      globalSearch.value = '';
+    }
+  } else {
+    // Show search bar on all other pages
+    if (searchBar) {
+      searchBar.style.display = 'block';
+      // Close search when navigating away from search page
+      if (searchBar.classList.contains('open')) {
+        searchBar.classList.remove('open');
+        if (globalSearch) {
+          globalSearch.blur();
+        }
+      }
+    }
+  }
+  
   if (page === 'home') {
     applyHomeFilters();
   } else if (page === 'archive') {
@@ -1889,6 +1963,220 @@ function toggleSearch() {
   bar.classList.toggle('open');
   if (bar.classList.contains('open')) document.getElementById('globalSearch').focus();
 }
+
+// SEARCH FUNCTIONALITY
+function performSearch(event) {
+  event.preventDefault();
+  const query = document.getElementById('globalSearch').value.trim();
+  
+  // Handle empty query gracefully
+  if (!query) {
+    // Clear search and return to home
+    document.getElementById('globalSearch').value = '';
+    showPage('home');
+    return false;
+  }
+  
+  // Update URL and navigate to search results
+  const newUrl = window.location.origin + window.location.pathname + '?q=' + encodeURIComponent(query);
+  window.history.pushState({}, '', newUrl);
+  showSearchResults(query);
+  return false;
+}
+
+function showSearchResults(query) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  
+  // Show search results page
+  const searchPage = document.getElementById('page-search');
+  if (searchPage) {
+    searchPage.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+  
+  // Update search query display
+  const queryDisplay = document.getElementById('searchQuery');
+  if (queryDisplay) {
+    queryDisplay.textContent = query;
+  }
+  
+  // Perform search with actual site content
+  performActualSearch(query);
+}
+
+function performActualSearch(query) {
+  // Ignore empty searches
+  const trimmedQuery = query.trim();
+  if (!trimmedQuery) {
+    return [];
+  }
+  
+  // Extract actual site content from DOM
+  const siteArticles = extractSiteArticles();
+  
+  // Filter articles based on query with case-insensitive matching
+  const results = siteArticles.filter(article => {
+    const title = (article.title || '').toLowerCase();
+    const excerpt = (article.excerpt || '').toLowerCase();
+    const sport = (article.sport || '').toLowerCase();
+    const category = (article.category || '').toLowerCase();
+    const tags = (article.tags || []).map(tag => tag.toLowerCase()).join(' ');
+    
+    const searchQuery = trimmedQuery.toLowerCase();
+    
+    return title.includes(searchQuery) || 
+           excerpt.includes(searchQuery) || 
+           sport.includes(searchQuery) || 
+           category.includes(searchQuery) || 
+           tags.includes(searchQuery);
+  });
+  
+  // Display results
+  displaySearchResults(results, trimmedQuery);
+}
+
+function extractSiteArticles() {
+  // Static article data extracted from the site content
+  const articles = [
+    {
+      title: 'Newcastle Investment',
+      excerpt: 'Newcastle United wasn\'t a risky investment in 2021. It was an undervalued one.',
+      sport: 'soccer',
+      tags: ['Soccer'],
+      category: 'soccer',
+      image: 'images/newcastle.png',
+      onclick: 'openNewcastleArticle()'
+    },
+    {
+      title: 'Largest sponsorship deals in soccer',
+      excerpt: 'A short look at the biggest sponsorship deals in soccer and why modern sponsorship goes far beyond simple logo placement.',
+      sport: 'soccer',
+      tags: ['Soccer'],
+      category: 'soccer',
+      image: 'images/world-cup-sponsors.png',
+      onclick: 'openArticle()'
+    },
+    {
+      title: 'NBA cancels Atlanta Hawks\' planned Magic City promotion',
+      excerpt: 'The NBA has stepped in and cancelled the Atlanta Hawks\' plans for a Magic City promotion night on March 16.',
+      sport: 'basketball',
+      tags: ['Basketball'],
+      category: 'basketball',
+      image: 'images/atalanta.png',
+      onclick: 'openNbaHawksArticle()'
+    },
+    {
+      title: 'Ravens Nix Trade For Raiders OLB Maxx Crosby',
+      excerpt: 'The Maxx Crosby deal is off, according to the Raiders.',
+      sport: 'nfl',
+      tags: ['NFL'],
+      category: 'nfl',
+      image: 'images/crosby.png',
+      onclick: 'openMaxxCrosbyArticle()'
+    },
+    {
+      title: 'Novak Djokovic \'not happy\' as Emma Raducanu sent home from Indian Wells',
+      excerpt: 'A Recap of the latest news from the Indian Wells Open as it continues to take centre stage in the United States.',
+      sport: 'tennis',
+      tags: ['Tennis'],
+      category: 'tennis',
+      image: 'images/tennis.png',
+      onclick: 'openTennisArticle()'
+    }
+  ];
+  
+  return articles;
+}
+
+function displaySearchResults(results, query) {
+  const resultsGrid = document.getElementById('searchResultsGrid');
+  const resultsCount = document.getElementById('searchResultsCount');
+  const noResultsMessage = document.getElementById('noResultsMessage');
+  const noResultsQuery = document.getElementById('noResultsQuery');
+  const searchInstructions = document.getElementById('searchInstructions');
+  
+  if (resultsGrid) {
+    resultsGrid.innerHTML = '';
+  }
+  
+  if (results.length > 0) {
+    // Update count
+    if (resultsCount) {
+      resultsCount.textContent = `Found ${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"`;
+    }
+    
+    // Hide no results message and show instructions
+    if (noResultsMessage) {
+      noResultsMessage.style.display = 'none';
+    }
+    if (searchInstructions) {
+      searchInstructions.style.display = 'block';
+    }
+    
+    // Create result cards
+    results.forEach(article => {
+      const card = createSearchResultCard(article);
+      if (resultsGrid) {
+        resultsGrid.appendChild(card);
+      }
+    });
+  } else {
+    // Show no results message
+    if (resultsCount) {
+      resultsCount.textContent = `No results found for "${query}"`;
+    }
+    if (noResultsMessage) {
+      noResultsMessage.style.display = 'block';
+    }
+    if (noResultsQuery) {
+      noResultsQuery.textContent = query;
+    }
+    if (searchInstructions) {
+      searchInstructions.style.display = 'none';
+    }
+  }
+}
+
+function createSearchResultCard(article) {
+  const card = document.createElement('div');
+  card.className = 'article-card';
+  card.setAttribute('onclick', article.onclick || 'void(0)');
+  card.style.cursor = 'pointer';
+  
+  const imageHtml = article.image ? 
+    `<img src="${article.image}" alt="${article.title}" style="width:100%;height:100%;object-fit:cover;display:block;">` :
+    `<div class="card-thumb-bg-text">${article.sport.toUpperCase()}</div>`;
+  
+  card.innerHTML = `
+    <div class="card-thumb card-thumb-${article.sport}" style="padding:0;overflow:hidden;">
+      ${imageHtml}
+    </div>
+    <div class="card-tags">
+      <span class="tag tag-${article.sport}">${article.sport}</span>
+    </div>
+    <div class="card-title">${article.title}</div>
+    <div class="card-excerpt">${article.excerpt}</div>
+  `;
+  return card;
+}
+
+// Handle URL parameters on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get('q') || urlParams.get('search');
+  
+  if (searchQuery) {
+    // Set search input value
+    const searchInput = document.getElementById('globalSearch');
+    if (searchInput) {
+      searchInput.value = searchQuery;
+    }
+    
+    // Show search results
+    showSearchResults(searchQuery);
+  }
+});
 
 // MOBILE MENU
 function toggleMobileMenu() {
