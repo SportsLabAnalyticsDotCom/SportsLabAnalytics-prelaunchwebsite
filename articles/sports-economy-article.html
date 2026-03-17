@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Future of the Sport Economy for Global Health and Sustainability - SportsLab Analytics">
+<title>The Future of the Sport Economy for Global Health and Sustainability — SportsLab Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+:root {
+  --bg: #faf9f6; --bg2: #f0ede6; --ink: #0f0f0f; --ink2: #3a3a3a;
+  --mid: #6b6b6b; --border: #e2ddd6; --red: #dc2626; --red-dark: #b91c1c;
+  --white: #ffffff; --dark: #111111; --dark2: #1a1a1a; --dark3: #242424; --gold: #f5c842;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+body.dark-mode { --bg: #0f0f0f; --bg2: #1a1a1a; --ink: #f0ede6; --ink2: #c8c4bc; --mid: #8a8a8a; --border: #2a2a2a; --white: #1e1e1e; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 2px solid var(--ink); transition: background 0.3s; }
+.nav-top { max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--ink); display: flex; align-items: baseline; cursor: pointer; }
+.logo span { color: var(--red); }
+.logo-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--mid); margin-left: 8px; text-transform: uppercase; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-icon { background: none; border: none; padding: 8px; color: var(--mid); transition: color 0.2s; display: flex; }
+.btn-icon:hover { color: var(--ink); }
+
+/* ARTICLE TEMPLATE */
+.article-page { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-bottom: 24px; }
+.breadcrumb a { color: var(--mid); cursor: pointer; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { color: var(--border); }
+.article-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
+.article-lead { font-size: 17px; color: var(--mid); line-height: 1.7; border-left: 4px solid var(--border); padding-left: 20px; margin-bottom: 24px; }
+.article-byline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+.byline-author { display: flex; align-items: center; gap: 12px; }
+.avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--bg2); border: 2px solid var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+.byline-name { font-size: 15px; font-weight: 600; color: var(--ink); }
+.byline-role { font-size: 11px; color: var(--mid); font-family: 'DM Mono', monospace; }
+.byline-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); display: flex; gap: 16px; }
+.share-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.2s; }
+.share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.art-section { margin-bottom: 32px; }
+.art-section h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+.art-section p { font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+.art-section ul { margin-left: 20px; margin-bottom: 16px; }
+.art-section li { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 4px; }
+.art-section strong { font-weight: 600; }
+.article-tags { margin-top: 24px; padding: 16px; background: var(--bg2); border-radius: 4px; }
+.tag { display: inline-block; padding: 4px 8px; background: var(--border); border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--mid); text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="article-page">
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a onclick="window.location.href='../index.html'">Home</a><span>›</span>
+    <a onclick="window.location.href='../index.html'">Archive</a><span>›</span>
+    <span>The Future of the Sport Economy for Global Health and Sustainability</span>
+  </div>
+
+  <!-- CATEGORY -->
+  <div class="article-category">Sports Economics</div>
+
+  <!-- TITLE -->
+  <h1 class="article-title">The Future of the Sport Economy for Global Health and Sustainability</h1>
+
+  <!-- LEAD -->
+  <p class="article-lead">How the global sports economy can drive public health, resilience, and environmental sustainability through coordinated action and transformative partnerships</p>
+
+  <!-- COVER IMAGE -->
+  <img src="../images/sustainabilitysports.png" alt="The Future of the Sport Economy for Global Health and Sustainability - World Economic Forum report on sports industry growth and sustainability" style="width:100%;border-radius:4px;margin:12px 0 20px 0;object-fit:cover;max-height:420px;">
+
+  <!-- BYLINE -->
+  <div class="article-byline">
+    <div class="byline-author">
+      <div class="avatar">SD</div>
+      <div>
+        <a href="https://www.linkedin.com/in/sbhtndvcgl/" target="_blank" style="color:inherit;text-decoration:none;cursor:pointer;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='inherit'" class="byline-name">Sebahattin Devecioğlu</a>
+        <div class="byline-role">Contributor</div>
+      </div>
+    </div>
+    <div class="byline-info">
+      <span>January 21, 2026</span>
+      <span>7 min read</span>
+    </div>
+    <button class="share-btn" onclick="window.location.href='../index.html'">Share</button>
+  </div>
+
+  <!-- ARTICLE CONTENT -->
+  <div class="art-section">
+    <h2>The Future of the Sport Economy for Global Health and Sustainability</h2>
+    
+    <p>The sports economy, a massive market worth $2.3 trillion, plays a critical role in both public health and environmental sustainability. The Sports for People and Planet report, published by the World Economic Forum, predicts the sector could reach $8.8 trillion by 2050, while calling for urgent action against risks such as the climate crisis and physical inactivity. This transformation, which will shape the future of prosperity, encompasses not only financial returns but also thriving natural ecosystems.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Highlights</h2>
+    <p>Analysis of the growth potential and environmental risks of the sports economy.</p>
+    <ul>
+      <li>The sports economy is expected to reach $8.8 trillion by 2050.</li>
+      <li>Climate change and inaction could lead to massive revenue losses of up to 18% for the sector.</li>
+      <li>Extreme weather conditions have directly disrupted one-fifth of sporting events in the last 20 years.</li>
+      <li>Designing cities with a focus on sports can improve external factors that affect 80% of public health.</li>
+      <li>The sector emits more carbon emissions each year than all other European countries except Germany.</li>
+    </ul>
+  </div>
+
+  <div class="art-section">
+    <h2>The World Economic Forum's Report</h2>
+    <p>The World Economic Forum, in collaboration with Oliver Wyman, has published a report entitled "Sport for People and the Planet," which measures the size of the sport economy and outlines how it can enhance resilience by addressing both physical inactivity and the climate and nature crisis. The report highlights the urgent social and economic need for coordinated public-private sector action to secure the long-term resilience of the sector, presenting transformative, multi-stakeholder pathways and innovative case studies to demonstrate how sport can actively shape a future where well-being is defined not only by financial returns but also by healthier societies and thriving natural ecosystems. This approach ensures that the future of sport remains competitive and inspiring, while also being sustainable and inclusive for people and the planet.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Growth Projections and Risks</h2>
+    <p>According to the Sport for People and the Planet report, the $2.3 trillion global sports economy is experiencing strong growth, and annual revenues are projected to reach $8.8 trillion by 2050. However, this trend is increasingly at risk due to rising physical inactivity and growing environmental challenges. These factors could lead to a decrease in annual revenue of up to $1.6 trillion by the middle of the century, undermining the broader impact of the sector.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>What comes to mind when you think of sports?</h2>
+    <p>What comes to mind when you think of sports? The FIFA World Cup, or amateur matches played by children in your local park? According to the World Economic Forum's new report, Sport for People and Planet, published on January 15, 2026, both are equally part of the $2.3 trillion sports economy. This vast sector spans from global events and consumer brands to adventure tourism and active lifestyles, creating jobs, supporting growth, and promoting healthier living.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>The Economics of Sports</h2>
+    <p>The sports sector, a major driver of the global economy, generates $2.3 trillion in annual revenue, representing approximately 2% of global GDP. Current estimates project the sector, which also includes related industries such as broadcasting and streaming, nutrition, and wearable technologies, to reach $3.7 trillion by 2030 (at a compound annual growth rate of 10%) and $8.8 trillion by 2050.</p>
+    <p><strong>Trends shaping the growth of the sports economy:</strong></p>
+    <ul>
+      <li>The emergence of sport as an asset class.</li>
+      <li>With women's sports becoming mainstream, revenues tripled between 2022 and 2025, reaching $2.35 billion.</li>
+      <li>Rebalancing sports growth with developing economies.</li>
+      <li>Sports tourism, the fastest growing sector within the tourism industry, is gaining momentum.</li>
+    </ul>
+  </div>
+
+  <div class="art-section">
+    <h2>Fundamental Challenges</h2>
+    <p>However, the economics of sport faces two fundamental and interconnected challenges that it can also help to solve:</p>
+    <p><strong>1. Increased physical inactivity</strong></p>
+    <p>According to the World Health Organization, in 2024 approximately one-third of adults did not get the recommended 150 minutes of moderate-intensity exercise per week. Meanwhile, a 2021 survey conducted by IPSOS for the World Economic Forum revealed that more than half of people (58%) want to do more sports, but are limited by time, cost, weather conditions, and lack of access to facilities.</p>
+    <p><strong>2. Climate change and sports activities</strong></p>
+    <p>Extreme weather events, air and water pollution, and other physical climate risks affect everything from event planning and athlete health to sports infrastructure and the natural environment. Meanwhile, essential ecosystem services, such as freshwater resources vital to sports equipment manufacturing and sports tourism, are under increasing pressure.</p>
+    <ul>
+      <li>One in five stadiums in the United Kingdom will be affected by river flooding by 2050.</li>
+      <li>Ten countries with enough snow to host the Winter Olympics by 2040.</li>
+      <li>At the World Athletics Championships in Qatar, 40% of the women's marathon runners did not finish the race.</li>
+      <li>During the 2023 Canadian wildfires, 3 US league games had to be canceled.</li>
+      <li>The industry itself contributes to climate change, releasing an estimated 450 million tons of emissions annually; this figure is higher than that of all European countries except Germany.</li>
+    </ul>
+  </div>
+
+  <div class="art-section">
+    <h2>Paths to Prosperity</h2>
+    <p>The World Economic Forum's Sport for People and Planet report identifies three key pathways for the sport economy to advance economic, social, and environmental well-being through multi-stakeholder partnerships. There are already examples of this being implemented; for instance, the UN's Sport for Climate Action and Sport for Nature frameworks for professional and participatory sports organizations set guidelines to accelerate action and establish reporting standards. However, a more holistic approach is also possible.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>1. Leading the way in resource management</h2>
+    <p>By 2025, humans are consuming Earth's natural resources at 1.8 times the rate at which Earth regenerates. Growth of the sports economy can only be achieved within the planet's limitations. The sector is closely linked to four key value chains (food, energy, infrastructure, and fashion) that account for 90% of human-induced pressure on nature and biodiversity loss.</p>
+    <p>By 2030, we face a 40% deficit in global freshwater resources, a deficit that will only grow larger due to the effects of the climate crisis. This will not only impact local communities' access to safe drinking water but also restrict participation in water sports and challenge the ability of the sporting goods industry to continue production.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>2. Placing sports at the heart of cities</h2>
+    <p>Our physical environment has a significant impact on shaping our quality of life and lifespan. According to the report, approximately 80% of the factors affecting public health lie outside the healthcare system. By 2050, urban areas will be home to approximately 70% of the world's population; this means that the design of urban areas will be critical to human well-being and the development of a resilient sports economy.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>3. To accelerate purpose-oriented capital flows</h2>
+    <p>According to the report, purpose-driven investments and corporate sponsorships can open up new avenues for growth by enabling the sports economy to deliver health, environmental, and financial benefits to communities. In regions facing increasing climate and natural risks, investors can collaborate with governments to transform sports infrastructure into centers of community resilience.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Conclusion</h2>
+    <p>Bold leadership, partnerships, and empowered governance can help the sports economy strengthen the socio-environmental systems it depends on, increase profitability and participation, and reduce its environmental footprint. The transformation of the sports economy represents not just a business opportunity, but a crucial pathway toward a more sustainable, healthier, and resilient global society.</p>
+  </div>
+
+  <!-- ARTICLE TAGS -->
+  <div class="article-tags">
+    <span class="tag">Sports Economics</span>
+    <span class="tag">Sustainability</span>
+    <span class="tag">Global Health</span>
+    <span class="tag">Climate Action</span>
+    <span class="tag">WEF</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-top">
+    <div class="logo">Sports<span>Lab</span><span class="logo-tag">Analytics</span></div>
+    <div class="nav-actions">
+      <button class="btn-icon" onclick="window.location.href='../index.html'">← Back</button>
+    </div>
+  </div>
+</nav>
+</body>
+</html>

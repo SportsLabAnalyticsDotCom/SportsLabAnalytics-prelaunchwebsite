@@ -739,26 +739,26 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     <div class="hero-inner">
       <div class="hero-main">
         <div class="tags-row">
-          <span class="tag tag-soccer">Soccer</span>
+          <span class="tag tag-data">Sports Economics</span>
           <span class="tag-time">Featured Analysis</span>
         </div>
         <!-- HERO TITLE: Featured Analysis -->
-        <h1 class="hero-title">Newcastle Investment<br>Analysis</h1>
+        <h1 class="hero-title">The Future of the Sport<br>Economy for Global Health</h1>
         <!-- HERO EXCERPT: Featured Analysis -->
-        <p class="hero-excerpt">How Newcastle United's ownership transformed the club's financial trajectory and competitive outlook. A closer look at the economics, strategy, and trends shaping modern sport.</p>
+        <p class="hero-excerpt">How the global sports economy can drive public health, resilience, and environmental sustainability through coordinated action and transformative partnerships.</p>
         <div class="hero-meta">
           <div style="display:flex;align-items:center;gap:10px;">
-            <div class="avatar">JF</div>
+            <div class="avatar">SD</div>
             <!-- HERO AUTHOR: Real author -->
-            <div style="font-size:13px;font-weight:600;color:var(--ink);">Joao Freitas</div>
+            <div style="font-size:13px;font-weight:600;color:var(--ink);">Sebahattin Devecioğlu</div>
           </div>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--mid);">March 1st 2026</span>
-          <button class="btn-red" onclick="openNewcastleArticle()" style="margin-left:auto;">Read Full Analysis →</button>
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--mid);">January 21st 2026</span>
+          <button class="btn-red" onclick="openSportsEconomyArticle()" style="margin-left:auto;">Read Full Analysis →</button>
         </div>
       </div>
       <div class="hero-sidebar">
         <!-- SIDEBAR STORIES: Replace each with a real article title when published -->
-        <div class="sidebar-story" onclick="openNewcastleArticle()" style="cursor:pointer;"><div class="sidebar-num">02 · Soccer</div><div class="sidebar-title">Newcastle Investment Analysis</div><div class="sidebar-meta">March 1st · Joao Freitas</div></div>
+        <div class="sidebar-story" onclick="openSportsEconomyArticle()" style="cursor:pointer;"><div class="sidebar-num">01 · Sports Economics</div><div class="sidebar-title">The Future of the Sport Economy for Global Health and Sustainability</div><div class="sidebar-meta">January 21st · Sebahattin Devecioğlu</div></div>
         <div class="sidebar-story" onclick="openArticle()" style="cursor:pointer;"><div class="sidebar-num">03 · Soccer</div><div class="sidebar-title">Sponsorship Deals Study</div><div class="sidebar-meta">March 3rd · Joao Freitas</div></div>
         <div class="sidebar-story" onclick="openSuperBowlLXArticle()" style="cursor:pointer;"><div class="sidebar-num">04 · NFL</div><div class="sidebar-title">Super Bowl LX: Economic Impact & Mars Mindset</div><div class="sidebar-meta">March 8th · Sebahattin Devecioğlu</div></div>
         <div class="sidebar-story" onclick="openNbaHawksArticle()" style="cursor:pointer;"><div class="sidebar-num">06 · Basketball</div><div class="sidebar-title">NBA cancels Hawks' Magic City promotion</div><div class="sidebar-meta">March 9th · Kurt Helin</div></div>
@@ -1331,8 +1331,9 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <div style="font-size:32px;margin-bottom:16px;"></div>
       <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:10px;">Studies</div>
       <p style="font-size:14px;color:var(--mid);max-width:420px;margin:0 auto 24px;line-height:1.7;">Original research, tactical breakdowns, data studies, and scouting reports will appear here.</p>
-      <!-- ARCHIVE GRID: Move articles inside the Studies box -->
+      <!-- ARCHIVE GRID: Move articles inside Studies box -->
       <div class="articles-grid" style="margin-top:32px;">
+        <div class="article-card" data-sport="general" data-topic="sports-economics" data-date="2026-01-21" onclick="openSportsEconomyArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-data" style="padding:0;overflow:hidden;"><img src="images/sustainabilitysports.png" alt="The Future of the Sport Economy for Global Health and Sustainability" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-data">Sports Economics</span></div><div class="card-title">The Future of the Sport Economy for Global Health and Sustainability</div><div class="card-excerpt">How the global sports economy can drive public health, resilience, and environmental sustainability</div></div>
         <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-01" onclick="openNewcastleArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-soccer" style="padding:0;overflow:hidden;"><img src="images/newcastle.png" alt="Newcastle Investment" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Newcastle Investment</div><div class="card-excerpt">Newcastle United wasn't a risky investment in 2021. It was an undervalued one.</div></div>
         <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-03" onclick="openArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-soccer" style="padding:0;overflow:hidden;"><img src="images/world-cup-sponsors.png" alt="Largest sponsorship deals in soccer" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Largest sponsorship deals in soccer</div><div class="card-excerpt">A short look at the biggest sponsorship deals in soccer and why modern sponsorship goes far beyond simple logo placement.</div></div>
         <div class="article-card" data-sport="basketball" data-topic="basketball" data-date="2026-03-09" data-category="basketball" onclick="openNbaHawksArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-basketball" style="padding:0;overflow:hidden;"><img src="images/atalanta.png" alt="NBA cancels Atlanta Hawks' planned Magic City promotion" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span></div><div class="card-title">NBA cancels Atlanta Hawks' planned Magic City promotion</div><div class="card-excerpt">The NBA has stepped in and cancelled the Atlanta Hawks' plans for a Magic City promotion night on March 16.</div></div>
@@ -1655,6 +1656,148 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
   </div>
 </div>
 
+<!-- ════════════════════ PAGE: SPORTS ECONOMY ARTICLE ══════════════════════ -->
+<div class="page" id="page-sports-economy-article">
+  <div class="article-page">
+    <div class="two-col">
+      <article>
+        <div class="breadcrumb">
+          <a onclick="showPage('home')">Home</a><span>›</span>
+          <a onclick="showPage('archive')">Archive</a><span>›</span>
+          <span>The Future of the Sport Economy for Global Health and Sustainability</span>
+        </div>
+        <div class="tags-row"><span class="tag tag-data">Sports Economics</span></div>
+        <h1 class="article-title">The Future of the Sport Economy for Global Health and Sustainability</h1>
+        <p class="article-lead">How the global sports economy can drive public health, resilience, and environmental sustainability</p>
+        <div style="margin:24px 0;">
+          <img src="images/sustainabilitysports.png" alt="The Future of the Sport Economy for Global Health and Sustainability - World Economic Forum report on sports industry growth and sustainability" style="width:100%;max-height:300px;object-fit:cover;border-radius:4px;margin-bottom:16px;">
+        </div>
+        <div class="article-byline">
+          <div class="byline-author">
+            <div class="avatar">SD</div>
+            <div><div class="byline-name">Sebahattin Devecioğlu</div><div class="byline-role">Contributor</div></div>
+          </div>
+          <div class="byline-info">January 21, 2026 · 7 min read</div>
+          <button class="share-btn" onclick="showPage('premium')">Join Newsletter</button>
+        </div>
+
+        <div class="art-section">
+          <h2>The Future of the Sport Economy for Global Health and Sustainability</h2>
+          <p>The sports economy, a massive market worth $2.3 trillion, plays a critical role in both public health and environmental sustainability. The Sports for People and Planet report, published by the World Economic Forum, predicts the sector could reach $8.8 trillion by 2050, while calling for urgent action against risks such as the climate crisis and physical inactivity. This transformation, which will shape the future of prosperity, encompasses not only financial returns but also thriving natural ecosystems.</p>
+        </div>
+
+        <div class="art-section">
+          <h2>Highlights</h2>
+          <p>Analysis of the growth potential and environmental risks of the sports economy.</p>
+          <ul style="margin-left: 20px; margin-bottom: 16px; color: var(--mid);">
+            <li>The sports economy is expected to reach $8.8 trillion by 2050.</li>
+            <li>Climate change and inaction could lead to massive revenue losses of up to 18% for the sector.</li>
+            <li>Extreme weather conditions have directly disrupted one-fifth of sporting events in the last 20 years.</li>
+            <li>Designing cities with a focus on sports can improve external factors that affect 80% of public health.</li>
+            <li>The sector emits more carbon emissions each year than all other European countries except Germany.</li>
+          </ul>
+        </div>
+
+        <div class="art-section">
+          <h2>The World Economic Forum's Report</h2>
+          <p>The World Economic Forum, in collaboration with Oliver Wyman, has published a report entitled "Sport for People and the Planet," which measures the size of the sport economy and outlines how it can enhance resilience by addressing both physical inactivity and the climate and nature crisis. The report highlights the urgent social and economic need for coordinated public-private sector action to secure the long-term resilience of the sector, presenting transformative, multi-stakeholder pathways and innovative case studies to demonstrate how sport can actively shape a future where well-being is defined not only by financial returns but also by healthier societies and thriving natural ecosystems. This approach ensures that the future of sport remains competitive and inspiring, while also being sustainable and inclusive for people and the planet.</p>
+        </div>
+
+        <div class="art-section">
+          <h2>Growth Projections and Risks</h2>
+          <p>According to the Sport for People and the Planet report, the $2.3 trillion global sports economy is experiencing strong growth, and annual revenues are projected to reach $8.8 trillion by 2050. However, this trend is increasingly at risk due to rising physical inactivity and growing environmental challenges. These factors could lead to a decrease in annual revenue of up to $1.6 trillion by the middle of the century, undermining the broader impact of the sector.</p>
+        </div>
+
+        <div class="art-section">
+          <h2>What comes to mind when you think of sports?</h2>
+          <p>What comes to mind when you think of sports? The FIFA World Cup, or amateur matches played by children in your local park? According to the World Economic Forum's new report, Sport for People and Planet, published on January 15, 2026, both are equally part of the $2.3 trillion sports economy. This vast sector spans from global events and consumer brands to adventure tourism and active lifestyles, creating jobs, supporting growth, and promoting healthier living.</p>
+        </div>
+
+        <div class="art-section">
+          <h2>The Economics of Sports</h2>
+          <p>The sports sector, a major driver of the global economy, generates $2.3 trillion in annual revenue, representing approximately 2% of global GDP. Current estimates project the sector, which also includes related industries such as broadcasting and streaming, nutrition, and wearable technologies, to reach $3.7 trillion by 2030 (at a compound annual growth rate of 10%) and $8.8 trillion by 2050.</p>
+          <p><strong>Trends shaping the growth of the sports economy:</strong></p>
+          <ul style="margin-left: 20px; margin-bottom: 16px; color: var(--mid);">
+            <li>The emergence of sport as an asset class.</li>
+            <li>With women's sports becoming mainstream, revenues tripled between 2022 and 2025, reaching $2.35 billion.</li>
+            <li>Rebalancing sports growth with developing economies.</li>
+            <li>Sports tourism, the fastest growing sector within the tourism industry, is gaining momentum.</li>
+          </ul>
+        </div>
+
+        <div class="art-section">
+          <h2>Fundamental Challenges</h2>
+          <p>However, the economics of sport faces two fundamental and interconnected challenges that it can also help to solve:</p>
+          <p><strong>1. Increased physical inactivity</strong></p>
+          <p>According to the World Health Organization, in 2024 approximately one-third of adults did not get the recommended 150 minutes of moderate-intensity exercise per week. Meanwhile, a 2021 survey conducted by IPSOS for the World Economic Forum revealed that more than half of people (58%) want to do more sports, but are limited by time, cost, weather conditions, and lack of access to facilities.</p>
+          <p><strong>2. Climate change and sports activities</strong></p>
+          <p>Extreme weather events, air and water pollution, and other physical climate risks affect everything from event planning and athlete health to sports infrastructure and the natural environment. Meanwhile, essential ecosystem services, such as freshwater resources vital to sports equipment manufacturing and sports tourism, are under increasing pressure.</p>
+          <ul style="margin-left: 20px; margin-bottom: 16px; color: var(--mid);">
+            <li>One in five stadiums in the United Kingdom will be affected by river flooding by 2050.</li>
+            <li>Ten countries with enough snow to host the Winter Olympics by 2040.</li>
+            <li>At the World Athletics Championships in Qatar, 40% of the women's marathon runners did not finish the race.</li>
+            <li>During the 2023 Canadian wildfires, 3 US league games had to be canceled.</li>
+            <li>The industry itself contributes to climate change, releasing an estimated 450 million tons of emissions annually; this figure is higher than that of all European countries except Germany.</li>
+          </ul>
+        </div>
+
+        <div class="art-section">
+          <h2>Paths to Prosperity</h2>
+          <p>The World Economic Forum's Sport for People and Planet report identifies three key pathways for the sport economy to advance economic, social, and environmental well-being through multi-stakeholder partnerships. There are already examples of this being implemented; for instance, the UN's Sport for Climate Action and Sport for Nature frameworks for professional and participatory sports organizations set guidelines to accelerate action and establish reporting standards. However, a more holistic approach is also possible.</p>
+        </div>
+
+        <div class="art-section">
+          <h2>1. Leading the way in resource management</h2>
+          <p>By 2025, humans are consuming Earth's natural resources at 1.8 times the rate at which Earth regenerates. Growth of the sports economy can only be achieved within the planet's limitations. The sector is closely linked to four key value chains (food, energy, infrastructure, and fashion) that account for 90% of human-induced pressure on nature and biodiversity loss.</p>
+          <p>By 2030, we face a 40% deficit in global freshwater resources, a deficit that will only grow larger due to the effects of the climate crisis. This will not only impact local communities' access to safe drinking water but also restrict participation in water sports and challenge the ability of the sporting goods industry to continue production.</p>
+        </div>
+
+        <div class="art-section">
+          <h2>2. Placing sports at the heart of cities</h2>
+          <p>Our physical environment has a significant impact on shaping our quality of life and lifespan. According to the report, approximately 80% of the factors affecting public health lie outside the healthcare system. By 2050, urban areas will be home to approximately 70% of the world's population; this means that the design of urban areas will be critical to human well-being and the development of a resilient sports economy.</p>
+        </div>
+
+        <div class="art-section">
+          <h2>3. To accelerate purpose-oriented capital flows</h2>
+          <p>According to the report, purpose-driven investments and corporate sponsorships can open up new avenues for growth by enabling the sports economy to deliver health, environmental, and financial benefits to communities. In regions facing increasing climate and natural risks, investors can collaborate with governments to transform sports infrastructure into centers of community resilience.</p>
+        </div>
+
+        <div class="art-section">
+          <h2>Conclusion</h2>
+          <p>Bold leadership, partnerships, and empowered governance can help the sports economy strengthen the socio-environmental systems it depends on, increase profitability and participation, and reduce its environmental footprint. The transformation of the sports economy represents not just a business opportunity, but a crucial pathway toward a more sustainable, healthier, and resilient global society.</p>
+        </div>
+
+        <div class="article-tags">
+          <span class="article-tag">#SportsEconomics</span>
+          <span class="article-tag">#Sustainability</span>
+          <span class="article-tag">#GlobalHealth</span>
+          <span class="article-tag">#ClimateAction</span>
+          <span class="article-tag">#WEF</span>
+        </div>
+      </article>
+      <aside class="two-col-aside">
+        <div class="aside-author">
+          <div class="aside-label">Author</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+            <div class="avatar" style="width:48px;height:48px;font-size:16px;">SD</div>
+            <div><div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--mid);">Sebahattin Devecioğlu</div><div style="font-size:11px;color:var(--border);">Contributor</div></div>
+          </div>
+          <p style="font-size:12px;color:var(--mid);line-height:1.65;margin-bottom:12px;">Professor specializing in sports economics and sustainability research.</p>
+          <a style="font-size:12px;font-weight:700;color:var(--mid);cursor:pointer;" onclick="showPage('authors')">View all authors →</a>
+        </div>
+        <div class="newsletter-widget">
+          <div class="nw-label">Early Access</div>
+          <h3>Get Article Updates</h3>
+          <p>Be notified when original research and analysis goes live on SportsLab.</p>
+          <input type="email" placeholder="Enter your email" id="sportsEconomyEmail" />
+          <button onclick="subscribe('sportsEconomyEmail','sportsEconomyMsg')">Get Updates →</button>
+          <div style="font-size:11px;color:var(--mid);margin-top:6px;" id="sportsEconomyMsg"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div><!-- /page-sports-economy-article -->
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1790,6 +1933,10 @@ function openSoccerShoesSalesArticle() {
 
 function openSportsLeaguesGenZArticle() {
   window.location.href = 'articles/sports-leagues-gen-z-gen-alpha.html';
+}
+
+function openSportsEconomyArticle() {
+  window.location.href = 'articles/sports-economy-article.html';
 }
 
 function openLegal(sectionId) {
