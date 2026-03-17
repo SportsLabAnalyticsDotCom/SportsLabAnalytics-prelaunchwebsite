@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Largest sponsorship deals in soccer — SportsLab Analytics">
+<title>Largest sponsorship deals in soccer — SportsLab Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+:root {
+  --bg: #faf9f6; --bg2: #f0ede6; --ink: #0f0f0f; --ink2: #3a3a3a;
+  --mid: #6b6b6b; --border: #e2ddd6; --red: #dc2626; --red-dark: #b91c1c;
+  --white: #ffffff; --dark: #111111; --dark2: #1a1a1a; --dark3: #242424; --gold: #f5c842;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+body.dark-mode { --bg: #0f0f0f; --bg2: #1a1a1a; --ink: #f0ede6; --ink2: #c8c4bc; --mid: #8a8a8a; --border: #2a2a2a; --white: #1e1e1e; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 2px solid var(--ink); transition: background 0.3s; }
+.nav-top { max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--ink); display: flex; align-items: baseline; cursor: pointer; }
+.logo span { color: var(--red); }
+.logo-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--mid); margin-left: 8px; text-transform: uppercase; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-icon { background: none; border: none; padding: 8px; color: var(--mid); transition: color 0.2s; display: flex; }
+.btn-icon:hover { color: var(--ink); }
+
+/* ARTICLE TEMPLATE */
+.article-page { max-width: 1280px; margin: 0 auto; padding: 48px 32px 64px; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-bottom: 28px; transition: color 0.3s; }
+.breadcrumb a { color: var(--mid); cursor: pointer; transition: color 0.3s; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { color: var(--border); }
+.article-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; font-weight: 600; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 20px; letter-spacing: -1px; }
+.article-lead { font-size: 18px; color: var(--mid); line-height: 1.7; border-left: 4px solid var(--red); padding-left: 24px; margin-bottom: 32px; font-weight: 400; }
+.article-byline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+.byline-author { display: flex; align-items: center; gap: 14px; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--bg2); border: 2px solid var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; transition: all 0.3s; }
+.byline-name { font-size: 15px; font-weight: 600; color: var(--ink); }
+.byline-role { font-size: 11px; color: var(--mid); font-family: 'DM Mono', monospace; }
+.byline-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); display: flex; gap: 16px; }
+.share-btn { padding: 8px 16px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+.share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); transform: translateY(-1px); }
+.art-section { padding: 0 0 32px 0; margin-bottom: 24px; }
+.art-section h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 16px; font-style: italic; letter-spacing: -0.5px; }
+.art-section p { font-size: 16px; color: var(--mid); line-height: 1.7; margin-bottom: 20px; }
+.art-section ul { margin-left: 24px; margin-bottom: 20px; }
+.art-section li { font-size: 16px; color: var(--mid); line-height: 1.7; margin-bottom: 8px; }
+.art-section img { width: 100%; border-radius: 8px; margin: 24px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.article-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+.article-tag { font-family: 'DM Mono', monospace; font-size: 11px; padding: 6px 14px; background: var(--bg2); border: 1px solid var(--border); color: var(--mid); border-radius: 2px; transition: all 0.3s; cursor: pointer; }
+.article-tag:hover { background: var(--bg); border-color: var(--red); color: var(--red); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .article-page { padding: 20px; }
+  .article-title { font-size: 28px; }
+  .byline-info { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-top">
+    <a class="logo" href="../index.html">Sports<span>Lab</span><span class="logo-tag">Analytics</span></a>
+  </div>
+</nav>
+
+<!-- ARTICLE PAGE -->
+<div class="article-page">
+  
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../index.html">← Back to SportsLab</a>
+    <span>/</span>
+    <span>Soccer</span>
+  </div>
+  
+  <!-- CATEGORY -->
+  <div class="article-category">Soccer</div>
+  
+  <!-- TITLE -->
+  <h1 class="article-title">Largest sponsorship deals in soccer</h1>
+  
+  <!-- LEAD -->
+  <p class="article-lead">A quick look at the biggest sponsorship deals in soccer, commercial power of global events, and why sponsorship is now about far more than logo placement.</p>
+  
+  <!-- COVER IMAGE -->
+  <img src="../images/world-cup-sponsors.png" alt="Largest sponsorship deals in soccer" style="width:100%;border-radius:4px;margin:12px 0 20px 0;object-fit:cover;max-height:420px;">
+  
+  <!-- BYLINE -->
+  <div class="article-byline">
+    <div class="byline-author">
+      <div class="avatar">JF</div>
+      <div>
+        <a href="https://www.linkedin.com/in/joão-freitas-9b397b2aa/" target="_blank" style="color:inherit;text-decoration:none;cursor:pointer;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='inherit'" class="byline-name">Joao Freitas</a>
+        <div class="byline-role">Contributor</div>
+      </div>
+    </div>
+    <div class="byline-info">
+      <span>March 3rd 2026</span>
+      <span>Less than a minute</span>
+    </div>
+    <button class="share-btn">Share</button>
+  </div>
+  
+  <!-- ARTICLE BODY -->
+  <div class="art-section">
+    <h2>Introduction</h2>
+    <p>As a marketing student, I'm naturally interested in viewing sports not only as a form of entertainment, but also as a global business system. I'm also interested in the way partnerships work and how they add value to both sides.</p>
+    <p>How companies get global visibility and positioning, how teams get financial security and grow into the future.</p>
+    <p>The sponsorship market is estimated at a figure above $8B by 2032. Football is a significant driver of this market.</p>
+  </div>
+  
+  <div class="art-section">
+    <h2>Some of the largest sponsorship deals for football clubs</h2>
+    <ul>
+      <li>Puma and Manchester City F.C. – £1B+ over 10 years</li>
+      <li>Nike and FC Barcelona – ~€1.7B over 13 years</li>
+      <li>Emirates and Real Madrid C.F. – €70M per year</li>
+      <li>Spotify and FC Barcelona – ~€70M per year</li>
+      <li>Qatar Airways and Paris Saint Germain F.C. – ~€70M per year</li>
+      <li>Qualcomm Snapdragon and Manchester United F.C. – ~£70M per year</li>
+    </ul>
+    <p>These deals are about long-term security for clubs and enduring visibility for brands, creating partnerships that extend far beyond the shirt.</p>
+  </div>
+  
+  <div class="art-section">
+    <h2>The power of the athletes</h2>
+    <p>Nike has three of the largest sponsorship deals with athletes:</p>
+    <ul>
+      <li>Michael Jordan – ~$1.3B</li>
+      <li>Cristiano Ronaldo – ~$1B</li>
+      <li>LeBron James – ~$1B</li>
+    </ul>
+    <p>In these cases, the athletes themselves become global platforms. The relationship between brand and player is about long-term cultural relevance as much as it is about short-term sales.</p>
+  </div>
+  
+  <div class="art-section">
+    <h2>The Global Event Multiplier</h2>
+    <p>While the biggest commercial spikes may not always occur at club level, they certainly do at global events.</p>
+    <p>The FIFA World Cup may arguably have the strongest sponsorship platform in sports. Global sponsors like Coca-Cola and Visa invest heavily for multi-cycle rights to the World Cup because of the sheer scale of the audience and exposure, particularly with the upcoming World Cup in North America in 2026.</p>
+    <p>The Olympic Games have an exclusive model for their TOP partner sponsors, and global sponsors like Samsung and Toyota have invested heavily in this platform. While this may not have the immediate commercial spike of other events, sponsorship for the Olympics is long-term and about global positioning and brand trust.</p>
+  </div>
+  
+  <div class="art-section">
+    <h2>Modern sponsorship is more than logos</h2>
+    <p>On top of headline deals, there is a wider ecosystem shaping the sponsorship landscape:</p>
+    <ul>
+      <li>66% of clubs across 31 divisions have a betting deal</li>
+      <li>£135M spent on Premier League shirt deals by betting brands alone</li>
+      <li>Clubs increasingly looking for multi-year deals for greater stability</li>
+    </ul>
+    <p>Sponsorship today is no longer just about logo placement. It is about:</p>
+    <ul>
+      <li>Strategic global positioning</li>
+      <li>Cultural relevance</li>
+      <li>Long-term brand equity for both the brand and the club</li>
+    </ul>
+  </div>
+  
+  <!-- TAGS -->
+  <div class="article-tags">
+    <span class="article-tag">#soccer</span>
+    <span class="article-tag">#sponsorship</span>
+    <span class="article-tag">#sports-business</span>
+  </div>
+  
+</div>
+
+</body>
+</html>
