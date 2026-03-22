@@ -171,5 +171,48 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
     </div>
   </div>
 </nav>
+
+<script>
+function shareArticle() {
+  const title = document.title;
+  const text = document.querySelector('meta[name="description"]')?.content || document.title;
+  const url = window.location.href;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: title,
+      text: text,
+      url: url
+    }).then(() => {
+      // Share successful
+    }).catch((error) => {
+      console.log('Share failed:', error);
+      // Fallback to clipboard if share fails
+      copyToClipboard(url);
+    });
+  } else {
+    // Fallback for browsers that don't support Web Share API
+    copyToClipboard(url);
+  }
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      // Show minimal confirmation
+      const btn = document.querySelector('.share-btn');
+      if (btn) {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      }
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+    });
+  }
+}
+</script>
 </body>
 </html>
