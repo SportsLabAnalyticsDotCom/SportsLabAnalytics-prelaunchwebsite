@@ -1348,6 +1348,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-20" data-category="soccer" onclick="openLiverpoolGalatasarayArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-soccer" style="padding:0;overflow:hidden;"><img src="images/liverpoolvsgala.png" alt="Liverpool vs Galatasaray: Sporting & Economic Comparison" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Liverpool vs Galatasaray: Sporting & Economic Comparison</div><div class="card-excerpt">How league economics, media rights, and financial scale shape competitive performance in European football</div></div>
         <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-15" onclick="openSoccerShoesSalesArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-soccer" style="padding:0;overflow:hidden;"><img src="images/soccershoes.png" alt="Soccer Shoes Lead Sales Across All Regions" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">Soccer Shoes Lead Sales Across All Regions</div><div class="card-excerpt">How cleaning and standardizing 25,000 Nike sales records revealed soccer as the top-performing category</div></div>
         <div class="article-card" data-sport="basketball" data-topic="basketball" data-date="2026-03-20" onclick="openSportsLeaguesGenZArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-basketball" style="padding:0;overflow:hidden;"><img src="images/nbabrainrot.png" alt="Sports Leagues Race to Capture Gen Z and Gen Alpha with AI, Influencers and Italian Brainrot" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span></div><div class="card-title">Sports Leagues Race to Capture Gen Z and Gen Alpha with AI, Influencers and Italian Brainrot</div><div class="card-excerpt">How leagues are using social media, streaming, gaming, and generative AI to win over younger fans</div></div>
+        <div class="article-card" data-sport="basketball" data-topic="basketball" data-date="2026-03-24" onclick="openPointsPerMinuteArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-basketball" style="padding:0;overflow:hidden;"><img src="images/Jack1.png" alt="Points per game are easy. Points per minute tell a better story" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-basketball">Basketball</span></div><div class="card-title">Points per game are easy. Points per minute tell a better story</div><div class="card-excerpt">Per-game stats are simple, but they can hide important context. When offensive output is normalized by minutes played, the story around player performance can change dramatically.</div></div>
         <div class="article-card" data-sport="soccer" data-topic="soccer" data-date="2026-03-15" onclick="openGenZPrefersSportArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-soccer" style="padding:0;overflow:hidden;"><img src="images/Andre2.png" alt="77% of Generation Z prefers to watch sport outside of stadium" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="card-tags"><span class="tag tag-soccer">Soccer</span></div><div class="card-title">77% of Generation Z prefers to watch sport outside of stadium</div><div class="card-excerpt">Generation Z is changing the way football is consumed. This article looks at why younger fans are drifting from stadium attendance and what Portuguese clubs must do to reconnect.</div></div>
         <div class="article-card" data-sport="other" data-topic="sports-business" data-date="2026-01-01" onclick="openFerrariWHOOPArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-other" style="padding:0;overflow:hidden;"><img src="images/Bjorn3.png" alt="Ferrari and WHOOP show how right device can unlock a Formula 1 partnership" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div><div class="card-tags"><span class="tag tag-other">Other Sports</span></div><div class="card-title">Ferrari and WHOOP show how right device can unlock a Formula 1 partnership</div><div class="card-excerpt">Scuderia Ferrari HP's partnership with WHOOP shows how a focused wearable product can create commercial value and earn a place in Formula 1's premium sponsorship ecosystem.</div></div>
         <div class="article-card" data-sport="other" data-topic="sports-business" data-date="2026-03-01" onclick="openIndiaSportsEconomyArticle()" style="cursor:pointer;"><div class="card-thumb card-thumb-other" style="padding:0;overflow:hidden;"><img src="images/Roda2.png" alt="India's sports economy has crossed $2B — but bigger opportunity is still being missed" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;"></div><div class="card-tags"><span class="tag tag-other">Other Sports</span></div><div class="card-title">India's sports economy has crossed $2B — but bigger opportunity is still being missed</div><div class="card-excerpt">India's sports economy has crossed $2 billion, but the next phase of growth will depend on brands building sport through stories, culture, and ideas — not just media inventory.</div></div>
@@ -2035,6 +2036,10 @@ function openWTAMercedesArticle() {
 
 function openIndiaSportsEconomyArticle() {
   window.location.href = 'articles/indias-sports-economy-has-crossed-2b.html';
+}
+
+function openPointsPerMinuteArticle() {
+  window.location.href = 'articles/points-per-game-vs-points-per-minute.html';
 }
 
 function openLegal(sectionId) {
@@ -2851,6 +2856,21 @@ const realArticles = [
     readTime: '3 min read',
     image: 'images/Roda2.png',
     onclick: 'openIndiaSportsEconomyArticle()'
+  },
+  {
+    id: 'points-per-game-vs-points-per-minute',
+    title: 'Points per game are easy. Points per minute tell a better story',
+    excerpt: 'Per-game stats are simple, but they can hide important context. When offensive output is normalized by minutes played, the story around player performance can change dramatically.',
+    sport: 'basketball',
+    category: 'Basketball',
+    author: 'Jack Leonard',
+    avatar: 'JL',
+    role: 'Contributor',
+    date: 'March 24, 2026',
+    dateShort: 'March 24',
+    readTime: '3 min read',
+    image: 'images/Jack1.png',
+    onclick: 'openPointsPerMinuteArticle()'
   }
 ];
 
