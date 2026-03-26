@@ -1321,19 +1321,17 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
     <div style="text-align:center;padding:64px 20px;border:2px dashed var(--border);border-radius:6px;margin-bottom:40px;">
       <div style="font-size:32px;margin-bottom:16px;"></div>
       <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:10px;">Studies</div>
-      <p style="font-size:14px;color:var(--mid);max-width:420px;margin:0 auto 24px;line-height:1.7;">Original research, tactical breakdowns, data studies, and scouting reports will appear here.</p>
       <!-- ARCHIVE GRID: Move articles inside Studies box -->
       <div class="articles-grid" id="archiveGrid" style="margin-top:32px;">
         <!-- Articles will be dynamically loaded here -->
       </div>
-      <button class="btn-red" onclick="showPage('premium')" style="margin-top:32px;">Get Updates →</button>
-    </div>
-    
-    <!-- PAGINATION -->
-    <div id="archivePagination" style="display:flex;justify-content:center;align-items:center;gap:16px;margin:32px 0;padding:24px 0;border-top:1px solid var(--border);">
-      <button id="prevPageBtn" onclick="changeArchivePage(-1)" class="btn-red" style="margin:0;padding:8px 16px;font-size:12px;" disabled>← Previous</button>
-      <span id="pageInfo" style="font-family:'DM Mono',monospace;font-size:12px;color:var(--mid);">Page 1 of 2</span>
-      <button id="nextPageBtn" onclick="changeArchivePage(1)" class="btn-red" style="margin:0;padding:8px 16px;font-size:12px;">Next →</button>
+      
+      <!-- PAGINATION -->
+      <div id="archivePagination" style="display:flex;justify-content:center;align-items:center;gap:16px;margin:32px 0;padding:24px 0;border-top:1px solid var(--border);">
+        <button id="prevPageBtn" onclick="changeArchivePage(-1)" class="btn-red" style="margin:0;padding:8px 16px;font-size:12px;" disabled>← Previous</button>
+        <span id="pageInfo" style="font-family:'DM Mono',monospace;font-size:12px;color:var(--mid);">Page 1 of 2</span>
+        <button id="nextPageBtn" onclick="changeArchivePage(1)" class="btn-red" style="margin:0;padding:8px 16px;font-size:12px;">Next →</button>
+      </div>
     </div>
     
     <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:20px;">Archive Preview · Layout Template</div>
