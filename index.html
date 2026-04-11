@@ -628,11 +628,6 @@ footer { background: var(--dark); color: #fff; margin-top: 80px; }
   .newsletter-widget input { padding: 12px 14px; }
   .newsletter-widget button { padding: 12px; }
   
-  /* SEARCH RESULTS PAGE STYLES */
-.page-search #searchBar {
-  display: none;
-}
-
 /* SEARCH RESULTS MOBILE */
   .archive-header h1 { font-size: 28px !important; }
   .archive-header p { font-size: 14px !important; }
@@ -688,9 +683,6 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <a id="nav-about" onclick="showPage('about')">About</a>
     </div>
     <div class="nav-actions">
-      <button class="btn-icon" onclick="toggleSearch()" title="Search">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </button>
       <button class="btn-icon" onclick="toggleDark()" id="darkBtn" title="Toggle dark mode">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
@@ -711,13 +703,6 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
         <a onclick="filterBySport('more')" data-sport="more">More</a>
   </div>
 </nav>
-
-<div class="search-bar" id="searchBar">
-  <form onsubmit="performSearch(event)">
-    <input type="text" placeholder="Search articles..." id="globalSearch" />
-    <button type="submit" style="display: none;">Search</button>
-  </form>
-</div>
 
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-top">
@@ -1854,32 +1839,6 @@ function showPage(page) {
     navSecondary.style.display = 'flex';
   }
   
-  // Handle search bar visibility and state
-  const searchBar = document.getElementById('searchBar');
-  const globalSearch = document.getElementById('globalSearch');
-  
-  if (page === 'search') {
-    // Hide search bar on search results page and clear input
-    if (searchBar) {
-      searchBar.style.display = 'none';
-    }
-    if (globalSearch) {
-      globalSearch.value = '';
-    }
-  } else {
-    // Show search bar on all other pages
-    if (searchBar) {
-      searchBar.style.display = 'block';
-      // Close search when navigating away from search page
-      if (searchBar.classList.contains('open')) {
-        searchBar.classList.remove('open');
-        if (globalSearch) {
-          globalSearch.blur();
-        }
-      }
-    }
-  }
-  
   if (page === 'home') {
     applyHomeFilters();
   } else if (page === 'archive') {
@@ -2333,33 +2292,6 @@ function toggleDark() {
   document.getElementById('darkBtn').innerHTML = isDark
     ? '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
     : '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-}
-
-// SEARCH TOGGLE
-function toggleSearch() {
-  const bar = document.getElementById('searchBar');
-  bar.classList.toggle('open');
-  if (bar.classList.contains('open')) document.getElementById('globalSearch').focus();
-}
-
-// SEARCH FUNCTIONALITY
-function performSearch(event) {
-  event.preventDefault();
-  const query = document.getElementById('globalSearch').value.trim();
-  
-  // Handle empty query gracefully
-  if (!query) {
-    // Clear search and return to home
-    document.getElementById('globalSearch').value = '';
-    showPage('home');
-    return false;
-  }
-  
-  // Update URL and navigate to search results
-  const newUrl = window.location.origin + window.location.pathname + '?q=' + encodeURIComponent(query);
-  window.history.pushState({}, '', newUrl);
-  showSearchResults(query);
-  return false;
 }
 
 function showSearchResults(query) {
@@ -3116,23 +3048,6 @@ function createSearchResultCard(article) {
   `;
   return card;
 }
-
-// Handle URL parameters on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchQuery = urlParams.get('q') || urlParams.get('search');
-  
-  if (searchQuery) {
-    // Set search input value
-    const searchInput = document.getElementById('globalSearch');
-    if (searchInput) {
-      searchInput.value = searchQuery;
-    }
-    
-    // Show search results
-    showSearchResults(searchQuery);
-  }
-});
 
 // MOBILE MENU
 function toggleMobileMenu() {
