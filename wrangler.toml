@@ -9,7 +9,5 @@ compatibility_date = "2024-01-01"
 # wrangler secret put SUPABASE_URL
 # wrangler secret put SUPABASE_ANON_KEY
 
-[site]
-bucket = "./"
-include = ["index.html", "images/*", "articles/*"]
-exclude = ["node_modules", "*.md", "*.docx", "server.py", "start.sh", "*.litcoffee", ".DS_Store"]
+[[assets]]
+binding = "ASSETS"
