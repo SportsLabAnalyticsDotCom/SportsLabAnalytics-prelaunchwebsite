@@ -3272,7 +3272,9 @@ function filterTopic(topic) {
 
 function filterSearch(query) {
   currentSearch = query.toLowerCase();
-  applyArchiveFilters();
+  // Reset to page 1 when search query changes
+  archiveCurrentPage = 1;
+  loadArchivePage();
 }
 
 function updateFilters() {
@@ -3306,13 +3308,32 @@ function applyHomeFilters() {
 
 function getFilteredArchiveArticles() {
   return archiveArticles.filter(article => {
+    // Apply category filter first
+    let matchesCategory = false;
     if (currentSport === 'all') {
-      return true;
+      matchesCategory = true;
     } else if (currentSport === 'other') {
-      return !['soccer', 'basketball', 'nfl', 'tennis'].includes(article.sport);
+      matchesCategory = !['soccer', 'basketball', 'nfl', 'tennis'].includes(article.sport);
     } else {
-      return article.sport === currentSport;
+      matchesCategory = article.sport === currentSport;
     }
+    
+    // If category doesn't match, exclude immediately
+    if (!matchesCategory) return false;
+    
+    // Apply search filter if there's an active search query
+    if (currentSearch && currentSearch.trim() !== '') {
+      const searchLower = currentSearch.toLowerCase();
+      const titleMatch = article.title && article.title.toLowerCase().includes(searchLower);
+      const tagMatch = article.tag && article.tag.toLowerCase().includes(searchLower);
+      const excerptMatch = article.excerpt && article.excerpt.toLowerCase().includes(searchLower);
+      const sportMatch = article.sport && article.sport.toLowerCase().includes(searchLower);
+      const topicMatch = article.topic && article.topic.toLowerCase().includes(searchLower);
+      
+      return titleMatch || tagMatch || excerptMatch || sportMatch || topicMatch;
+    }
+    
+    return true;
   });
 }
 
@@ -3368,12 +3389,31 @@ const archiveArticles = [
 
 function loadArchivePage() {
   const filteredArticles = getFilteredArchiveArticles();
+  
+  // Calculate total pages from filtered results
+  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage) || 1;
+  
+  // Clamp currentPage if it exceeds total pages
+  if (archiveCurrentPage > totalPages) {
+    archiveCurrentPage = totalPages;
+  }
+  if (archiveCurrentPage < 1) {
+    archiveCurrentPage = 1;
+  }
+  
   const startIndex = (archiveCurrentPage - 1) * articlesPerPage;
   const endIndex = startIndex + articlesPerPage;
   const pageArticles = filteredArticles.slice(startIndex, endIndex);
   
   const grid = document.getElementById('archiveGrid');
   grid.innerHTML = '';
+  
+  // Show message if no results found
+  if (pageArticles.length === 0 && filteredArticles.length === 0) {
+    grid.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--mid);"><p>No articles found matching your search.</p></div>';
+    updatePaginationControls();
+    return;
+  }
   
   pageArticles.forEach(article => {
     const articleCard = document.createElement('div');
@@ -3401,20 +3441,25 @@ function loadArchivePage() {
 
 function updatePaginationControls() {
   const filteredArticles = getFilteredArchiveArticles();
-  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage) || 1;
+  const totalPages = Math.max(1, Math.ceil(filteredArticles.length / articlesPerPage));
   const prevBtn = document.getElementById('prevPageBtn');
   const nextBtn = document.getElementById('nextPageBtn');
   const pageInfo = document.getElementById('pageInfo');
   
-  prevBtn.disabled = archiveCurrentPage === 1;
-  nextBtn.disabled = archiveCurrentPage === totalPages || totalPages === 0;
+  // Ensure current page is valid
+  const validCurrentPage = Math.min(Math.max(1, archiveCurrentPage), totalPages);
   
-  pageInfo.textContent = `Page ${archiveCurrentPage} of ${totalPages}`;
+  prevBtn.disabled = validCurrentPage === 1;
+  nextBtn.disabled = validCurrentPage >= totalPages || filteredArticles.length === 0;
+  
+  pageInfo.textContent = filteredArticles.length === 0 
+    ? 'No results' 
+    : `Page ${validCurrentPage} of ${totalPages}`;
 }
 
 function changeArchivePage(direction) {
   const filteredArticles = getFilteredArchiveArticles();
-  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage) || 1;
+  const totalPages = Math.max(1, Math.ceil(filteredArticles.length / articlesPerPage));
   const newPage = archiveCurrentPage + direction;
   
   if (newPage >= 1 && newPage <= totalPages) {
