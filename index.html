@@ -1335,7 +1335,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <label for="premiumEmail" style="display:block;font-size:13px;font-weight:600;color:#fff;margin-bottom:10px;">Email address</label>
       <div class="waitlist-form" style="flex-direction:column;align-items:center;gap:0;">
         <input type="email" placeholder="Enter your email" id="premiumEmail" style="width:100%;border-radius:2px;" />
-        <button onclick="subscribe('premiumEmail','premiumMsg')" style="width:100%;border-radius:2px;margin-top:10px;">Subscribe to Updates</button>
+        <button onclick="subscribeToUpdates('premiumEmail','premiumMsg')" style="width:100%;border-radius:2px;margin-top:10px;">Subscribe to Updates</button>
       </div>
       <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:10px;text-align:center;" id="premiumMsg"></div>
       <p style="font-size:12px;color:#fff;margin-top:12px;text-align:center;font-family:'DM Mono',monospace;">No spam. Only thoughtful sports analysis and important updates.</p>
@@ -2280,6 +2280,59 @@ function subscribe(inputId, msgId) {
     if (input) input.value = '';
   } else {
     msg.textContent = 'Please enter a valid email address.';
+    msg.style.color = 'var(--red)';
+  }
+}
+
+// SUPABASE SUBSCRIPTION - Get Updates Page
+async function subscribeToUpdates(inputId, msgId) {
+  const emailInput = document.getElementById(inputId);
+  const msg = document.getElementById(msgId);
+  const email = emailInput?.value?.trim();
+  
+  if (!msg || !emailInput) return;
+  
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    msg.textContent = 'Please enter a valid email address.';
+    msg.style.color = 'var(--red)';
+    return;
+  }
+  
+  // Show loading state
+  msg.textContent = 'Subscribing...';
+  msg.style.color = 'rgba(255,255,255,0.7)';
+  
+  try {
+    const response = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        source: 'updates-page'
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (response.ok) {
+      msg.textContent = "✓ You're subscribed! Check your inbox for updates.";
+      msg.style.color = '#22c55e';
+      emailInput.value = '';
+    } else {
+      if (data.error?.includes('duplicate') || data.error?.includes('already exists')) {
+        msg.textContent = 'This email is already subscribed.';
+        msg.style.color = '#f59e0b'; // Orange for warning
+      } else {
+        msg.textContent = data.error || 'Subscription failed. Please try again.';
+        msg.style.color = 'var(--red)';
+      }
+    }
+  } catch (error) {
+    msg.textContent = 'Network error. Please check your connection and try again.';
     msg.style.color = 'var(--red)';
   }
 }
