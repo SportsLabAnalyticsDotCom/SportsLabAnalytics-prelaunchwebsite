@@ -907,7 +907,7 @@ body.dark-mode .search-wrap input { background: var(--bg2); }
       <div class="pred-placeholder-grid">
         <div class="pred-card-ph"><div class="pred-ph-label">World Cup 2026</div><div class="pred-ph-title">Portugal</div><div class="pred-ph-text" style="color:var(--mid);">Win probability: 8.3%</div><div class="pred-ph-bar" style="width:8.3%"></div><div class="pred-ph-bar" style="width:91.7%"></div><div class="pred-ph-soon">Portugal has the talent and depth to be a dangerous contender if it builds momentum at the right time.</div></div>
         <div class="pred-card-ph"><div class="pred-ph-label">NBA Championship 2026</div><div class="pred-ph-title">Oklahoma City Thunder</div><div class="pred-ph-text" style="color:var(--mid);">Win probability: 42.6%</div><div class="pred-ph-bar" style="width:42.6%"></div><div class="pred-ph-bar" style="width:57.4%"></div><div class="pred-ph-soon">Oklahoma City looks like the strongest overall title favorite based on its balance, depth, and consistency.</div></div>
-        <div class="pred-card-ph"><div class="pred-ph-label">March Madness 2026</div><div class="pred-ph-title">Arizona Wildcats</div><div class="pred-ph-text" style="color:var(--mid);">Win probability: 37.0%</div><div class="pred-ph-bar" style="width:37%"></div><div class="pred-ph-bar" style="width:63%"></div><div class="pred-ph-soon">Arizona enters as the team to beat, with the profile of a serious championship contender.</div></div>
+        <div class="pred-card-ph"><div class="pred-ph-label">Champions League 2026</div><div class="pred-ph-title">Bayern Munchen</div><div class="pred-ph-text" style="color:var(--mid);">Win probability: 37.0%</div><div class="pred-ph-bar" style="width:37%"></div><div class="pred-ph-bar" style="width:63%"></div><div class="pred-ph-soon">Bayern enters as the team to beat, with the profile of a serious championship contender.</div></div>
         <div class="pred-card-ph"><div class="pred-ph-label">Roland Garros 2026</div><div class="pred-ph-title">Carlos Alcaraz</div><div class="pred-ph-text" style="color:var(--mid);">Win probability: 45.5%</div><div class="pred-ph-bar" style="width:45.5%"></div><div class="pred-ph-bar" style="width:54.5%"></div><div class="pred-ph-soon">Alcaraz remains the standout favorite on clay thanks to his all-around game and proven level on the surface.</div></div>
       </div>
     </div>
@@ -3304,23 +3304,22 @@ function applyHomeFilters() {
   });
 }
 
-function applyArchiveFilters() {
-  const cards = document.querySelectorAll('#page-archive .articles-grid .article-card');
-  cards.forEach(card => {
-    const sport = card.dataset.sport;
-    let matchesFilter = false;
-    
+function getFilteredArchiveArticles() {
+  return archiveArticles.filter(article => {
     if (currentSport === 'all') {
-      matchesFilter = true;
+      return true;
     } else if (currentSport === 'other') {
-      // Show items that are not soccer, basketball, nfl, or tennis
-      matchesFilter = !['soccer', 'basketball', 'nfl', 'tennis'].includes(sport);
+      return !['soccer', 'basketball', 'nfl', 'tennis'].includes(article.sport);
     } else {
-      matchesFilter = sport === currentSport;
+      return article.sport === currentSport;
     }
-    
-    card.style.display = matchesFilter ? 'block' : 'none';
   });
+}
+
+function applyArchiveFilters() {
+  // Reset to page 1 when filtering and reload the archive with filtered results
+  archiveCurrentPage = 1;
+  loadArchivePage();
 }
 
 // Initialize
@@ -3368,9 +3367,10 @@ const archiveArticles = [
 ];
 
 function loadArchivePage() {
+  const filteredArticles = getFilteredArchiveArticles();
   const startIndex = (archiveCurrentPage - 1) * articlesPerPage;
   const endIndex = startIndex + articlesPerPage;
-  const pageArticles = archiveArticles.slice(startIndex, endIndex);
+  const pageArticles = filteredArticles.slice(startIndex, endIndex);
   
   const grid = document.getElementById('archiveGrid');
   grid.innerHTML = '';
@@ -3400,19 +3400,21 @@ function loadArchivePage() {
 }
 
 function updatePaginationControls() {
-  const totalPages = Math.ceil(archiveArticles.length / articlesPerPage);
+  const filteredArticles = getFilteredArchiveArticles();
+  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage) || 1;
   const prevBtn = document.getElementById('prevPageBtn');
   const nextBtn = document.getElementById('nextPageBtn');
   const pageInfo = document.getElementById('pageInfo');
   
   prevBtn.disabled = archiveCurrentPage === 1;
-  nextBtn.disabled = archiveCurrentPage === totalPages;
+  nextBtn.disabled = archiveCurrentPage === totalPages || totalPages === 0;
   
   pageInfo.textContent = `Page ${archiveCurrentPage} of ${totalPages}`;
 }
 
 function changeArchivePage(direction) {
-  const totalPages = Math.ceil(archiveArticles.length / articlesPerPage);
+  const filteredArticles = getFilteredArchiveArticles();
+  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage) || 1;
   const newPage = archiveCurrentPage + direction;
   
   if (newPage >= 1 && newPage <= totalPages) {
