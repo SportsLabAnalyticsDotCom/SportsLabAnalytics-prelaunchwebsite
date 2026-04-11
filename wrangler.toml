@@ -9,9 +9,6 @@ compatibility_date = "2024-01-01"
 # wrangler secret put SUPABASE_URL
 # wrangler secret put SUPABASE_ANON_KEY
 
-[[kv_namespaces]]
-# Add if you need KV storage
-
 [site]
 bucket = "./"
 include = ["index.html", "images/*", "articles/*"]
