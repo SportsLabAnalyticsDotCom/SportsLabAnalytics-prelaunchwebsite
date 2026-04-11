@@ -2801,16 +2801,44 @@ const realArticles = [
 
 // Generate homepage content dynamically from real articles
 function getHomepageContent(sport) {
-  const filteredArticles = sport === 'all' 
+  // Filter articles by sport category
+  let filteredArticles = sport === 'all' 
     ? realArticles 
     : realArticles.filter(article => article.sport === sport);
+  
+  // Remove duplicates using article id as unique key
+  const seenIds = new Set();
+  filteredArticles = filteredArticles.filter(article => {
+    if (seenIds.has(article.id)) {
+      return false;
+    }
+    seenIds.add(article.id);
+    return true;
+  });
   
   if (filteredArticles.length === 0) {
     return null;
   }
   
-  // Use the first article as hero, or return null if no articles
+  // Use the first article as hero
   const heroArticle = filteredArticles[0];
+  
+  // Sidebar uses articles 1-5 (skipping the hero at index 0)
+  const sidebarArticles = filteredArticles.slice(1, 6);
+  
+  // Featured hero uses article at index 2 (different from hero and sidebar start)
+  // or falls back to sidebarArticles[1] if available, or heroArticle as last resort
+  let featuredArticle;
+  if (filteredArticles.length > 2) {
+    featuredArticle = filteredArticles[2]; // Use index 2 (3rd unique article)
+  } else if (sidebarArticles.length > 1) {
+    featuredArticle = sidebarArticles[1]; // Use 2nd sidebar article
+  } else if (sidebarArticles.length > 0) {
+    featuredArticle = sidebarArticles[0]; // Use 1st sidebar article
+  } else {
+    featuredArticle = heroArticle; // Fallback to hero (only 1 article available)
+  }
+  
   const content = {
     hero: {
       tag: heroArticle.category,
@@ -2823,37 +2851,24 @@ function getHomepageContent(sport) {
       avatar: heroArticle.avatar,
       onclick: heroArticle.onclick
     },
-    sidebar: filteredArticles.slice(0, 5).map((article, index) => ({
+    sidebar: sidebarArticles.map((article, index) => ({
       num: `${String(index + 2).padStart(2, '0')} · ${article.category}`,
       title: article.title,
       meta: `${article.dateShort} · ${article.author}`,
       onclick: article.onclick
     })),
-    featuredHero: filteredArticles.length > 1 ? {
-      tag: filteredArticles[1].category,
-      tagClass: `tag-${filteredArticles[1].sport}`,
+    featuredHero: {
+      tag: featuredArticle.category,
+      tagClass: `tag-${featuredArticle.sport}`,
       timeTag: 'Analysis',
-      title: filteredArticles[1].title,
-      excerpt: filteredArticles[1].excerpt,
-      author: filteredArticles[1].author,
-      role: filteredArticles[1].role,
-      date: `${filteredArticles[1].dateShort} · ${filteredArticles[1].readTime}`,
-      avatar: filteredArticles[1].avatar,
-      image: filteredArticles[1].image,
-      onclick: filteredArticles[1].onclick
-    } : {
-      // If only one article, use it for both hero and featured hero
-      tag: heroArticle.category,
-      tagClass: `tag-${heroArticle.sport}`,
-      timeTag: 'Analysis',
-      title: heroArticle.title,
-      excerpt: heroArticle.excerpt,
-      author: heroArticle.author,
-      role: heroArticle.role,
-      date: `${heroArticle.dateShort} · ${heroArticle.readTime}`,
-      avatar: heroArticle.avatar,
-      image: heroArticle.image,
-      onclick: heroArticle.onclick
+      title: featuredArticle.title,
+      excerpt: featuredArticle.excerpt,
+      author: featuredArticle.author,
+      role: featuredArticle.role,
+      date: `${featuredArticle.dateShort} · ${featuredArticle.readTime}`,
+      avatar: featuredArticle.avatar,
+      image: featuredArticle.image,
+      onclick: featuredArticle.onclick
     }
   };
   
