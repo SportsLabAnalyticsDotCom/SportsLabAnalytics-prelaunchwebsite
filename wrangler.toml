@@ -3,11 +3,8 @@ main = "index.js"
 compatibility_date = "2024-01-01"
 
 [vars]
-# Add any public variables here (don't add secrets)
-
-# Secrets should be added via wrangler secret put:
-# wrangler secret put SUPABASE_URL
-# wrangler secret put SUPABASE_ANON_KEY
+SUPABASE_URL = "https://vobiffgwkchogqklwlkp.supabase.co"
+SUPABASE_ANON_KEY = "sb_publishable_rcpld30f243ZbHueuiL3lw_Gxtw-S_8"
 
 [assets]
 binding = "ASSETS"
