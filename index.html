@@ -2097,38 +2097,41 @@ function submitContribution(event) {
   submitBtn.classList.add('loading');
   submitBtn.disabled = true;
   
-  // Simulate submission (remove this in production)
-  setTimeout(() => {
-    // Success state
-    submitBtn.classList.remove('loading');
-    submitBtn.disabled = false;
-    
-    showMessage('✓ Thank you for your submission! We\'ll review your contribution and get back to you soon.', 'success');
-    
-    // Clear form
-    form.reset();
-    clearValidationStates();
-    
-    // Log submission data for development (remove in production)
-    console.log('Contributor submission:', {
+  // Submit to backend API
+  fetch('/api/contribute', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
       fullName,
       email,
       role,
       topic,
       submissionType,
       portfolioLink,
-      pitch,
-      timestamp: new Date().toISOString()
-    });
+      pitch
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
     
-    // TODO: Replace this with actual backend submission
-    // Options:
-    // 1. Send to email service (SendGrid, Mailgun, etc.)
-    // 2. Submit to CMS API
-    // 3. Store in database
-    // 4. Send to webhook (Zapier, Make.com, etc.)
-    
-  }, 1500); // Simulate network delay
+    if (data.success) {
+      showMessage('✓ Thank you for your submission! We\'ll review your contribution and get back to you soon.', 'success');
+      form.reset();
+      clearValidationStates();
+    } else {
+      showMessage(data.error || 'Something went wrong. Please try again.', 'error');
+    }
+  })
+  .catch(error => {
+    console.error('Submission error:', error);
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+    showMessage('Network error. Please check your connection and try again.', 'error');
+  });
 }
 
 // Helper functions for validation and UX
