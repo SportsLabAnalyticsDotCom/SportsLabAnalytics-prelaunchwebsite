@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Sports Economy: What Is It and How Could It Improve the Health of Both People and Planet? - SportsLab">
+<title>The Sports Economy: What Is It and How Could It Improve the Health of Both People and Planet? — SportsLab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+:root {
+  --bg: #faf9f6; --bg2: #f0ede6; --ink: #0f0f0f; --ink2: #3a3a3a;
+  --mid: #6b6b6b; --border: #e2ddd6; --red: #dc2626; --red-dark: #b91c1c;
+  --white: #ffffff; --dark: #111111; --dark2: #1a1a1a; --dark3: #242424; --gold: #f5c842;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+body.dark-mode { --bg: #0f0f0f; --bg2: #1a1a1a; --ink: #f0ede6; --ink2: #c8c4bc; --mid: #8a8a8a; --border: #2a2a2a; --white: #1e1e1e; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 2px solid var(--ink); transition: background 0.3s; }
+.nav-top { max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--ink); display: flex; align-items: baseline; cursor: pointer; }
+.logo span { color: var(--red); }
+.logo-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--mid); margin-left: 8px; text-transform: uppercase; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-icon { background: none; border: none; padding: 8px; color: var(--mid); transition: color 0.2s; display: flex; }
+.btn-icon:hover { color: var(--ink); }
+
+/* ARTICLE TEMPLATE */
+.article-page { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-bottom: 24px; }
+.breadcrumb a { color: var(--mid); cursor: pointer; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { color: var(--border); }
+.article-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
+.article-lead { font-size: 17px; color: var(--mid); line-height: 1.7; border-left: 4px solid var(--border); padding-left: 20px; margin-bottom: 24px; }
+.article-byline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+.byline-author { display: flex; align-items: center; gap: 12px; }
+.avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--bg2); border: 2px solid var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+.byline-name { font-size: 15px; font-weight: 600; color: var(--ink); }
+.byline-role { font-size: 11px; color: var(--mid); font-family: 'DM Mono', monospace; }
+.byline-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); display: flex; gap: 16px; }
+.share-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.2s; }
+.share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.art-section { margin-bottom: 32px; }
+.art-section h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+.art-section p { font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+.art-section ul { margin-left: 20px; margin-bottom: 16px; }
+.art-section li { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 4px; }
+.art-section strong { font-weight: 600; }
+.article-tags { margin-top: 24px; padding: 16px; background: var(--bg2); border-radius: 4px; }
+.tag { display: inline-block; padding: 4px 8px; background: var(--border); border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--mid); text-transform: uppercase; margin-right: 8px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-top">
+    <div class="logo" onclick="window.location.href='../index.html'">Sports<span>Lab</span></div>
+    <div class="nav-actions">
+      <button class="btn-icon" onclick="window.location.href='../index.html'" title="Home">⌂</button>
+      <button class="btn-icon" onclick="window.location.href='../index.html#archive'" title="Archive">☰</button>
+    </div>
+  </div>
+</nav>
+
+<div class="article-page">
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a onclick="window.location.href='../index.html'">Home</a><span>›</span>
+    <a onclick="window.location.href='../index.html#archive'">Archive</a><span>›</span>
+    <span>The Sports Economy: What Is It and How Could It Improve the Health of Both People and Planet?</span>
+  </div>
+
+  <!-- CATEGORY -->
+  <div class="article-category">Other Sports</div>
+
+  <!-- TITLE -->
+  <h1 class="article-title">The Sports Economy: What Is It and How Could It Improve the Health of Both People and Planet?</h1>
+
+  <!-- LEAD -->
+  <p class="article-lead">How a $2.3 trillion global sector can drive healthier societies while addressing climate and sustainability risks</p>
+
+  <!-- COVER IMAGE -->
+  <img src="../images/Seba1.png" alt="The Sports Economy: What Is It and How Could It Improve the Health of Both People and Planet?" style="width:100%;border-radius:4px;margin:12px 0 20px 0;object-fit:cover;max-height:420px;">
+
+  <!-- BYLINE -->
+  <div class="article-byline">
+    <div class="byline-author">
+      <div class="avatar">SD</div>
+      <div>
+        <a href="https://www.linkedin.com/in/sbhtndvcgl/" target="_blank" style="color:inherit;text-decoration:none;cursor:pointer;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='inherit'" class="byline-name">Sebahattin Devecioğlu</a>
+        <div class="byline-role">Contributor</div>
+      </div>
+    </div>
+    <div class="byline-info">
+      <span>January 16, 2026</span>
+      <span>7 min read</span>
+    </div>
+    <button class="share-btn" onclick="shareArticle()">Share</button>
+  </div>
+
+  <!-- ARTICLE CONTENT -->
+  <div class="art-section">
+    <h2>The $2.3 trillion question</h2>
+    <p>The $2.3 trillion global sports economy is experiencing robust growth, with annual revenues projected to reach $8.8 trillion by 2050. However, this trajectory is increasingly at risk due to rising levels of physical inactivity and escalating environmental challenges – factors that could erode up to $1.6 trillion in annual revenue by mid-century and undermine the sector's broader impact.</p>
+    <p>When you think about sport, what do you picture? The FIFA World Cup or grassroots games played by children in your local park?</p>
+    <p>Both are equally part of the $2.3 trillion sports economy, a new Forum report shows. This vast sector ranges from global events and consumer brands, to adventure tourism and active lifestyles – creating jobs, driving growth and supporting healthier lives.</p>
+    <p>In an increasingly divided world, sport is one of the few uniting forces – but today it faces an unprecedented challenge from climate change.</p>
+    <p>Extreme weather disrupted more than 2,000 global events between 2004 and 2024, according to a study in the International Journal of Disaster Risk Reduction, with a fifth of those being sporting events.</p>
+    <p>At the FIFA Club World Cup in Los Angeles in June 2025, six matches were delayed due to storms. Planetary health is central to human health and a sustainable sports economy.</p>
+    <p>In collaboration with Oliver Wyman, the World Economic Forum has published <em>Sports for People and Planet</em>, a report that measures the size of the sports economy – and outlines how to drive resilience by addressing both physical inactivity and the climate and nature crisis.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>What is the sports economy?</h2>
+    <p>It is a major global economic driver generating $2.3 trillion in annual revenues, close to 2% of global GDP.</p>
+    <p>Current projections show the sector, including connected industries such as broadcasting and streaming, nutrition and wearables, growing to $3.7 trillion by 2030 (a 10% compound annual growth rate) and reaching $8.8 trillion by 2050.</p>
+    <p><strong>The growth of the sports economy is being shaped by four trends:</strong></p>
+    <ul>
+      <li>The emergence of sports as an asset class.</li>
+      <li>The mainstreaming of women's sport – revenues tripled between 2022 and 2025 to $2.35 billion.</li>
+      <li>Rebalancing of sports growth with emerging economies.</li>
+      <li>The acceleration of sports tourism – the fastest-growing area of tourism.</li>
+    </ul>
+    <p>The sports economy is growing. But it faces two main, interconnected challenges, which it can also help to address:</p>
+  </div>
+
+  <div class="art-section">
+    <h2>1. Rising physical inactivity is eroding future demand</h2>
+    <p>In 2024, around one in three adults didn't get the recommended 150 minutes of moderate intensity exercise each week, according to the World Health Organization.</p>
+    <p>Meanwhile, a 2021 IPSOS survey for the World Economic Forum found that over half of people (58%) want to do more sport, but they're limited by a lack of time, cost, weather and access to facilities.</p>
+    <p>The report notes: "As fiscal priorities shift towards acute healthcare, defence and crisis response, funding for prevention and community sport initiatives risks further erosion."</p>
+  </div>
+
+  <div class="art-section">
+    <h2>2. Climate change is disrupting sports activities</h2>
+    <p>Physical climate risks, including extreme weather events and air and water pollution, are impacting everything from event scheduling and athlete health, to the infrastructure and natural settings of sports.</p>
+    <p>Meanwhile, essential ecosystem services, such as freshwater resources critical for sporting goods production and sports tourism, are under increasing strain.</p>
+    <ul>
+      <li>1 in 5 UK stadiums affected by fluvial flooding by 2050</li>
+      <li>10 countries with enough snow to host the Winter Olympics by 2040</li>
+      <li>40% of participants failed to complete the women's marathon at the World Athletic Championships in Qatar</li>
+      <li>3 US leagues forced to cancel games during the 2023 Canada wildfires</li>
+    </ul>
+    <p>The industry itself is contributing to climate change, emitting up to an estimated 450 million tonnes in emissions each year – more than any European nation except Germany.</p>
+    <p>These two risks compound on each other. For example, heatwaves, pollution and extreme weather not only disrupt competitions and training for elite athletes, but they also discourage physical activity, and grassroots sport, impacting health and wellbeing at every level.</p>
+    <p>By 2030, physical inactivity, climate change and nature loss could reduce annual revenues of the sports economy by 14%, potentially increasing up to 18% by 2050.</p>
+    <p>Sport depends on stable environmental conditions. More than 90% of media rights and 76% of sponsorship revenues in professional sport are linked to outdoor activities, placing its two biggest revenue streams at direct risk from environmental disruption and the loss of visual appeal related to degradation.</p>
+    <p>But the sports economy cannot solve these challenges alone.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Pathways to prosperity</h2>
+    <p>The report identifies three key pathways for the sports economy to advance economic, social and environmental prosperity through multistakeholder partnerships.</p>
+    <p>There are examples of this already in action, such as the UN's Sports for Climate Action and Sports for Nature frameworks for professional and participatory sporting organizations, which set guidelines and establish reporting standards to catalyze action.</p>
+    <p>But a more joined-up approach is possible.</p>
+    <p>The report notes there is now a very real opportunity to "transform systemic risks into drivers of innovation, growth and shared value".</p>
+    <p>Together, these three distinct pathways form a coordinated transformation funnel, driving change from within the sector outwards:</p>
+  </div>
+
+  <div class="art-section">
+    <h2>1. Championing resource stewardship</h2>
+    <p>As of 2025, humans are consuming the Earth's natural resources at 1.8 times the speed at which the Earth can regenerate. The growth of the sports economy can only be achieved within the limits of the planet.</p>
+    <p>The sector is deeply interconnected with the four principal value chains – food, energy, infrastructure and fashion – that together drive 90% of human-induced pressure on nature and biodiversity loss.</p>
+    <p>"By championing resource stewardship, the sports economy can turn resource constraints into catalysts for innovation, resilience and inclusive growth," the report says.</p>
+    <p>By 2030, we face a global shortfall in the freshwater supply of 40%, which will only be further widened by the impacts of the climate crisis. Not only will this affect local communities' access to safe drinking water, but it will also restrict participation in water-based sports and challenge the sporting goods industry's ability to sustain production.</p>
+    <p>Between 2019 and 2023, PUMA was able to save more than 2.4 million cubic metres of water per year - around seven million bathtubs - through various efficiency programmes.</p>
+    <p>Strategic partnerships with sports governing bodies can enhance resource stewardship, as they serve as key stakeholders in efforts to minimize surplus waste generated at competitive events.</p>
+    <p>In August 2025, Mastercard found that spending on circular sports is growing year on year, with sales of used sporting equipment now nearly 30% above 2022 levels.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>2. Placing sport at the heart of cities</h2>
+    <p>Our physical environment has a huge impact on shaping our quality of life and longevity. The report finds that around 80% of the factors influencing societal health lie outside the healthcare system.</p>
+    <p>By 2050, urban areas will be home to nearly 70% of the world's population meaning their design will be critical to people's wellbeing, and the development of a resilient sports economy.</p>
+    <p>Bad weather, lack of money and lack of time remain the biggest barriers to physical activity, but cities can address these by ensuring equal access to nature, sustainably built sports infrastructure, and sustainable mobility.</p>
+    <p>Research in Spain shows a link between access to urban green spaces and higher physical activity levels, while restoring natural habitats can improve air quality.</p>
+    <p>Paris is a great example of a city marrying sport and nature after it used hosting the 2024 Olympics as a catalyst to clean up the Seine. This summer, the water quality in the Ile-de-France region was declared "exceptional".</p>
+    <p>Meanwhile, countries such as Viet Nam are rolling out dedicated cycle lanes to cut vehicle emissions and boost activity. In the Netherlands, the Dutch F1 Grand Prix required all 110,000 spectators to arrive either by public transport or bike, with storage space for 45,000 bicycles.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>3. Catalyzing purpose-driven capital flows</h2>
+    <p>Purpose-driven investment and corporate sponsorship can help to unlock new avenues for growth, says the report, enabling the sports economy to deliver health, environmental and financial benefits to communities.</p>
+    <p>In places facing growing climate and nature risks, investors can partner with governments to transform sporting infrastructure into hubs of community resilience.</p>
+    <p>Stadiums and sports grounds can be designed to withstand the increasing frequency of natural disasters, doing double duty as sporting venues – and community shelters during emergencies.</p>
+    <p>Community facilities co-funded by government and investors can promote preventative healthcare.</p>
+    <p>A good example of this is La Liga's Athletic Club San Mamés Stadium in Bilbao, Spain, built in 2013 and co-funded by the local municipality, Biscay's Provincial Council and the Basque Government. It includes public swimming pools, a gym and wellness spaces for the local community.</p>
+    <p>Mutually beneficial partnerships include DHL pairing with F1 to accelerate their adoption of biofuel-powered trucks, more fuel-efficient aircraft and the launch of sustainable motorhomes to house their logistics team during certain phases of the race tour.</p>
+    <p>Sponsors can also leverage sports partnerships, such as TCS' sponsorship of the London Marathon, to enhance employee wellbeing.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Conclusion</h2>
+    <p>Bold leadership, partnerships and strengthened governance can help the sports economy to reinforce the socio-environmental systems it depends on, boost profitability and participation, and reduce its environmental footprint.</p>
+  </div>
+
+  <!-- ARTICLE TAGS -->
+  <div class="article-tags">
+    <span class="tag">#SportsEconomy</span>
+    <span class="tag">#Sustainability</span>
+    <span class="tag">#ClimateAction</span>
+    <span class="tag">#GlobalHealth</span>
+    <span class="tag">#WEF</span>
+  </div>
+</div>
+
+<script>
+function shareArticle() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'The Sports Economy: What Is It and How Could It Improve the Health of Both People and Planet?',
+      text: 'How a $2.3 trillion global sector can drive healthier societies while addressing climate and sustainability risks',
+      url: window.location.href
+    });
+  } else {
+    alert('Share URL copied to clipboard: ' + window.location.href);
+  }
+}
+</script>
+</body>
+</html>
