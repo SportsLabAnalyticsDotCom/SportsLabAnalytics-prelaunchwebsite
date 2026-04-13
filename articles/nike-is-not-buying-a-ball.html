@@ -58,16 +58,6 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
 </style>
 </head>
 <body>
-<nav>
-  <div class="nav-top">
-    <div class="logo" onclick="window.location.href='../index.html'">Sports<span>Lab</span></div>
-    <div class="nav-actions">
-      <button class="btn-icon" onclick="window.location.href='../index.html'" title="Home">⌂</button>
-      <button class="btn-icon" onclick="window.location.href='../index.html#archive'" title="Archive">☰</button>
-    </div>
-  </div>
-</nav>
-
 <div class="article-page">
   <!-- BREADCRUMB -->
   <div class="breadcrumb">
@@ -152,16 +142,54 @@ nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bott
   </div>
 </div>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-top">
+    <div class="nav-actions">
+      <button class="btn-icon" onclick="window.location.href='../index.html'">← Back</button>
+    </div>
+  </div>
+</nav>
+
 <script>
 function shareArticle() {
+  const title = document.title;
+  const text = document.querySelector('meta[name="description"]')?.content || document.title;
+  const url = window.location.href;
+  
   if (navigator.share) {
     navigator.share({
-      title: 'Nike Is Not Buying a Ball',
-      text: 'Why the most filmed object in European football may be the sport\'s most underestimated brand asset',
-      url: window.location.href
+      title: title,
+      text: text,
+      url: url
+    }).then(() => {
+      // Share successful
+    }).catch((error) => {
+      console.log('Share failed:', error);
+      // Fallback to clipboard if share fails
+      copyToClipboard(url);
     });
   } else {
-    alert('Share URL copied to clipboard: ' + window.location.href);
+    // Fallback for browsers that don't support Web Share API
+    copyToClipboard(url);
+  }
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      // Show minimal confirmation
+      const btn = document.querySelector('.share-btn');
+      if (btn) {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      }
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+    });
   }
 }
 </script>
