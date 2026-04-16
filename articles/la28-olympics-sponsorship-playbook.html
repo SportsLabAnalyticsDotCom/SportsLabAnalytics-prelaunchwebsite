@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LA28 Olympics Are Rewriting the Sponsorship Playbook - SportsLab">
+<title>LA28 Olympics Are Rewriting the Sponsorship Playbook — SportsLab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+:root {
+  --bg: #faf9f6; --bg2: #f0ede6; --ink: #0f0f0f; --ink2: #3a3a3a;
+  --mid: #6b6b6b; --border: #e2ddd6; --red: #dc2626; --red-dark: #b91c1c;
+  --white: #ffffff; --dark: #111111; --dark2: #1a1a1a; --dark3: #242424; --gold: #f5c842;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+body.dark-mode { --bg: #0f0f0f; --bg2: #1a1a1a; --ink: #f0ede6; --ink2: #c8c4bc; --mid: #8a8a8a; --border: #2a2a2a; --white: #1e1e1e; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 200; background: var(--bg); border-bottom: 2px solid var(--ink); transition: background 0.3s; }
+.nav-top { max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--ink); display: flex; align-items: baseline; cursor: pointer; }
+.logo span { color: var(--red); }
+.logo-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--mid); margin-left: 8px; text-transform: uppercase; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-icon { background: none; border: none; padding: 8px; color: var(--mid); transition: color 0.2s; display: flex; }
+.btn-icon:hover { color: var(--ink); }
+
+/* ARTICLE TEMPLATE */
+.article-page { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); margin-bottom: 24px; }
+.breadcrumb a { color: var(--mid); cursor: pointer; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { color: var(--border); }
+.article-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
+.article-lead { font-size: 17px; color: var(--mid); line-height: 1.7; border-left: 4px solid var(--border); padding-left: 20px; margin-bottom: 24px; }
+.article-byline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+.byline-author { display: flex; align-items: center; gap: 12px; }
+.avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--bg2); border: 2px solid var(--border); color: var(--mid); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+.byline-name { font-size: 15px; font-weight: 600; color: var(--ink); }
+.byline-role { font-size: 11px; color: var(--mid); font-family: 'DM Mono', monospace; }
+.byline-info { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); display: flex; gap: 16px; }
+.share-btn { padding: 6px 14px; border: 1px solid var(--border); border-radius: 2px; font-size: 12px; color: var(--mid); background: none; transition: all 0.2s; }
+.share-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.art-section { margin-bottom: 32px; }
+.art-section h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+.art-section p { font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+.art-section ul { margin-left: 20px; margin-bottom: 16px; }
+.art-section li { font-size: 14px; color: var(--mid); line-height: 1.7; margin-bottom: 4px; }
+.art-section strong { font-weight: 600; }
+.article-tags { margin-top: 24px; padding: 16px; background: var(--bg2); border-radius: 4px; }
+.tag { display: inline-block; padding: 4px 8px; background: var(--border); border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--mid); text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="article-page">
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a onclick="window.location.href='../index.html'">Home</a><span>›</span>
+    <a onclick="window.location.href='../index.html#archive'">Archive</a><span>›</span>
+    <span>LA28 Olympics Are Rewriting the Sponsorship Playbook</span>
+  </div>
+
+  <!-- CATEGORY -->
+  <div class="article-category">Other Sports</div>
+
+  <!-- TITLE -->
+  <h1 class="article-title">LA28 Olympics Are Rewriting the Sponsorship Playbook</h1>
+
+  <!-- LEAD -->
+  <p class="article-lead">How venue naming rights are transforming Olympic sponsorship strategy and unlocking new commercial opportunities.</p>
+
+  <!-- COVER IMAGE -->
+  <img src="../images/Roda9.png" alt="LA28 Olympics Are Rewriting the Sponsorship Playbook" style="width:100%;border-radius:4px;margin:12px 0 20px 0;object-fit:cover;max-height:420px;">
+
+  <!-- BYLINE -->
+  <div class="article-byline">
+    <div class="byline-author">
+      <div class="avatar">AR</div>
+      <div>
+        <a href="https://www.linkedin.com/in/anubhavroda/?skipRedirect=true" target="_blank" style="color:inherit;text-decoration:none;cursor:pointer;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='inherit'" class="byline-name">Anubhav Roda</a>
+        <div class="byline-role">Contributor</div>
+      </div>
+    </div>
+    <div class="byline-info">
+      <span>September 15, 2025</span>
+      <span>4 min read</span>
+    </div>
+    <button class="share-btn" onclick="shareArticle()">Share</button>
+  </div>
+
+  <!-- ARTICLE CONTENT -->
+  <div class="art-section">
+    <h2>A Historic Shift in Olympic Sponsorship</h2>
+    <p>The LA28 Olympic organisers have introduced a groundbreaking change that could reshape how brands engage with the world's biggest sporting event.</p>
+    
+    <p>For the first time in Olympic history, brands are being allowed to secure naming rights for official competition venues. This unlocks a powerful new revenue stream and represents a fundamental evolution in Olympic sponsorship strategy.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>From Sponsorship to Physical Brand Presence</h2>
+    <p>This is not simply a new revenue lever. It is a structural shift in how sponsorship value is created.</p>
+    
+    <p>Qualifying TOP partners such as Comcast and Honda have already moved quickly. The Honda Center will retain its name for volleyball events, while Comcast is sponsoring the squash venue at Universal Studios.</p>
+    
+    <p>Even major venues such as SoFi Stadium and Crypto.com Arena may retain their commercial naming rights during the Games through sponsorship agreements.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Implications for IOC TOP Partners</h2>
+    <p>From an International Olympic Committee (IOC) TOP sponsorship perspective, this model creates both opportunities and challenges.</p>
+    
+    <p>TOP partners maintain first rights of refusal for venue naming rights, but this shift requires them to rethink how they activate partnerships within a more complex ecosystem.</p>
+    <ul>
+      <li>Some partners may pursue venue naming rights to deepen experiential presence</li>
+      <li>Others may prioritize different assets within the TOP sponsorship portfolio</li>
+    </ul>
+  </div>
+
+  <div class="art-section">
+    <h2>A More Flexible Sponsorship Ecosystem</h2>
+    <p>This approach signals a more flexible and layered partnership structure from the IOC.</p>
+    
+    <p>It allows sponsors to expand beyond traditional visibility channels and compete for highly localized, high-impact branding assets within the Olympic footprint.</p>
+    
+    <p>It also encourages greater collaboration among TOP sponsors, as brands seek to maximize their collective presence across venues and fan experiences.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Commercial Strategy Meets Sustainability</h2>
+    <p>LA28's initiative aligns with its ambitious $2.5 billion sponsorship target and supports a fully privately funded, no-new-build Olympic model.</p>
+    
+    <p>This approach balances commercial innovation with sustainability objectives, ensuring that new revenue streams do not compromise the long-term value of the Olympic ecosystem.</p>
+    
+    <p>Importantly, venue naming rights revenue is additional to existing TOP sponsorship agreements, preserving the integrity of the broader sponsorship structure.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>A New Era for Global Sports Sponsorship</h2>
+    <p>For brands and rights holders, this model represents a major opportunity to pioneer a new era of Olympic partnerships.</p>
+    
+    <p>It combines global prestige with localized activation, enabling deeper storytelling and more immersive fan engagement on the world's biggest stage.</p>
+  </div>
+
+  <div class="art-section">
+    <h2>Conclusion</h2>
+    <p>The LA28 Olympics are setting a new precedent in sports sponsorship. By introducing venue naming rights, the IOC and LA28 organisers are redefining how value is created and distributed within global sporting events.</p>
+    
+    <p>This innovation is likely to influence not only future Olympic Games, but also other major sports properties as they rethink how to structure partnerships, monetize assets, and deliver more meaningful brand experiences.</p>
+  </div>
+
+  <!-- ARTICLE TAGS -->
+  <div class="article-tags">
+    <span class="tag">#SportsSponsorship</span>
+    <span class="tag">#Olympics</span>
+    <span class="tag">#LA28</span>
+    <span class="tag">#BrandPartnerships</span>
+    <span class="tag">#TOPSponsors</span>
+    <span class="tag">#IOC</span>
+    <span class="tag">#SponsorshipInnovation</span>
+    <span class="tag">#SportsMarketing</span>
+    <span class="tag">#SportsBusiness</span>
+    <span class="tag">#SportsBiz</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-top">
+    <div class="nav-actions">
+      <button class="btn-icon" onclick="window.location.href='../index.html'">← Back</button>
+    </div>
+  </div>
+</nav>
+
+<script>
+function shareArticle() {
+  const title = document.title;
+  const text = document.querySelector('meta[name="description"]')?.content || document.title;
+  const url = window.location.href;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: title,
+      text: text,
+      url: url
+    }).then(() => {
+      // Share successful
+    }).catch((error) => {
+      console.log('Share failed:', error);
+      // Fallback to clipboard if share fails
+      copyToClipboard(url);
+    });
+  } else {
+    // Fallback for browsers that don't support Web Share API
+    copyToClipboard(url);
+  }
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      // Show minimal confirmation
+      const btn = document.querySelector('.share-btn');
+      if (btn) {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      }
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+    });
+  }
+}
+</script>
+</body>
+</html>
